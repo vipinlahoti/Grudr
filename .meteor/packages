@@ -13,11 +13,11 @@ accounts-password@1.5.1
 # accounts-twitter
 # accounts-facebook
 
-vulcan:debug
-vulcan:backoffice
-vulcan:ui-bootstrap
+# vulcan:debug
+# vulcan:backoffice
 # meteortesting:mocha
 # vulcan:ui-material
-apollo
 
+vulcan:ui-bootstrap
+apollo
 grudr

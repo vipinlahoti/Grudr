@@ -9,8 +9,8 @@ const Layout = ({currentUser, children }) =>
   <div className={classNames('wrapper')} id="wrapper">
 
     <Helmet>
-      <link name="bootstrap" rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
       <link name="font-awesome" rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+      <link name="font-face" rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,700|Montserrat:300,400,500|Material+Icons"/>
     </Helmet>
    
     <Components.HeadTags />
@@ -18,15 +18,8 @@ const Layout = ({currentUser, children }) =>
     {currentUser ? <Components.UsersProfileCheck currentUser={currentUser} documentId={currentUser._id} /> : null}
 
     <Components.Header />
-  
-    <div className="main">
-
-      <Components.FlashMessages />
-
-      {children}
-
-    </div>
-  
+    <Components.FlashMessages />
+    {children}
     <Components.Footer />
   
   </div>

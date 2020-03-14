@@ -66,7 +66,7 @@ const UserLoggedInMenu = ({ currentUser, client }) => {
       trigger={
         <div className="dropdown-toggle-inner">
           <Components.Avatar size="small" user={currentUser} addLink={false} />
-          <div className="users-menu-name">{Users.getDisplayName(currentUser)}</div>
+          {Users.getDisplayName(currentUser)}
         </div>
       }
       menuItems={menuItems}

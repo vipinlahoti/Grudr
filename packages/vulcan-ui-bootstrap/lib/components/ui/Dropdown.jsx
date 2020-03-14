@@ -14,13 +14,13 @@ A node contains a menu item, and optionally a list of child items
 */
 const Node = ({ childrenItems, ...rest }) => {
   return (
-    <>
+    <React.Fragment>
       <Item {...rest} />
       {childrenItems &&
         !!childrenItems.length && (
           <div className="menu-node-children">{childrenItems.map((item, index) => <Item key={index} {...item} />)}</div>
         )}
-    </>
+    </React.Fragment>
   );
 };
 
