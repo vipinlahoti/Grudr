@@ -34,7 +34,7 @@ $grays: map-merge(
   $grays
 );
 
-$blue:    #007bff !default;
+$blue:    #5e72e4 !default;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
 $pink:    #e83e8c !default;
@@ -278,8 +278,8 @@ $embed-responsive-aspect-ratios: join(
 // Font, line-height, and color for body text, headings, and more.
 
 // stylelint-disable value-keyword-case
-$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
-$font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-sans-serif:      'Montserrat', sans-serif !default;
+$font-family-monospace:       'Poppins', sans-serif !default;
 $font-family-base:            $font-family-sans-serif !default;
 // stylelint-enable value-keyword-case
 
@@ -724,7 +724,7 @@ $navbar-padding-x:                  $spacer !default;
 
 $navbar-nav-link-padding-x:         .5rem !default;
 
-$navbar-brand-font-size:            $font-size-lg !default;
+$navbar-brand-font-size:            $font-size-lg * 2 !default;
 // Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
 $nav-link-height:                   $font-size-base * $line-height-base + $nav-link-padding-y * 2 !default;
 $navbar-brand-height:               $navbar-brand-font-size * $line-height-base !default;

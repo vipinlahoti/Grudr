@@ -1,19 +1,19 @@
 import { registerComponent } from 'meteor/vulcan:core';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Logo = ({ logoUrl, siteTitle }) => {
   if (logoUrl) {
     return (
-      <NavLink exact to={{ pathname: '/' }} className="navbar-brand">
+      <Link to={{ pathname: '/' }} className="navbar-brand">
         <img src={logoUrl} alt={siteTitle} />
-      </NavLink>
+      </Link>
     );
   } else {
     return (
-      <NavLink exact to={{ pathname: '/' }} className="navbar-brand">
+      <Link to={{ pathname: '/' }} className="navbar-brand">
         {siteTitle}
-      </NavLink>
+      </Link>
     );
   }
 };

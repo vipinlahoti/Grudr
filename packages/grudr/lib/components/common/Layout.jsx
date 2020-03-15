@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Helmet from 'react-helmet';
 
+import { Row, Col } from 'react-bootstrap';
+
 const Layout = ({currentUser, children }) =>
 
   <div className={classNames('wrapper')} id="wrapper">
@@ -18,9 +20,24 @@ const Layout = ({currentUser, children }) =>
     {currentUser ? <Components.UsersProfileCheck currentUser={currentUser} documentId={currentUser._id} /> : null}
 
     <Components.Header />
-    <Components.FlashMessages />
-    {children}
-    <Components.Footer />
+
+    {currentUser ? 
+      <Row>
+        <Col xs={2}>
+          <Components.Sidebar />
+        </Col>
+        <Col xs={10}>
+          <Components.FlashMessages />
+          {children}
+        </Col>
+      </Row>
+      : 
+      <>
+        <Components.FlashMessages />
+        {children}
+      </>
+    }
+    
   
   </div>
 

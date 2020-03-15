@@ -59,7 +59,7 @@ const PostsList = ({
   count,
   totalCount,
   loadMore,
-  showHeader = true,
+  showHeader = false,
   showFooter = true,
   networkStatus,
   currentUser,
