@@ -2,6 +2,7 @@ import './voting.js';
 import './components.js';
 import './routes.js';
 import './headtags.js';
+import './iconsList.js';
 import './i18n/index.js';
 
 export * from './posts/index.js';

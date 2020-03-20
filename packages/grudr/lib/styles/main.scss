@@ -42,3 +42,24 @@
 @import "spinners";
 @import "utilities";
 @import "print";
+
+
+.section {
+  padding: 6rem 0;
+}
+
+.section-hero {
+  min-height: 100vh;
+  max-height: 999px;
+  display: flex;
+  align-items: center;
+
+  .navbar-brand {
+    font-size: 3.5rem;
+    font-weight: 600;
+  }
+}
+
+.icon {
+  margin-right: 0.5rem;
+}

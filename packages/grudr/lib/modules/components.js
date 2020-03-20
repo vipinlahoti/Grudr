@@ -47,3 +47,12 @@ import '../components/admin/AdminUsers.jsx';
 import '../components/admin/AdminPosts.jsx';
 import '../components/admin/AdminCategories.jsx';
 import '../components/admin/AdminComments.jsx';
+
+// Sections
+import '../components/sections/HeroComponent.jsx';
+import '../components/sections/FeaturesBlock.jsx';
+
+
+// Pages
+import '../components/pages/DashboardPage.jsx';
+import '../components/pages/HomePage.jsx';

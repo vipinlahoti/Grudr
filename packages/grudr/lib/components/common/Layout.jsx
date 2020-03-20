@@ -12,25 +12,26 @@ const Layout = ({currentUser, children }) =>
 
     <Helmet>
       <link name="font-awesome" rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-      <link name="font-face" rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,700|Montserrat:300,400,500|Material+Icons"/>
+      <link name="font-face" rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,700|Open+Sans:300,400,600|Material+Icons"/>
     </Helmet>
    
     <Components.HeadTags />
 
     {currentUser ? <Components.UsersProfileCheck currentUser={currentUser} documentId={currentUser._id} /> : null}
 
-    <Components.Header />
-
     {currentUser ? 
-      <Row>
-        <Col xs={2}>
-          <Components.Sidebar />
-        </Col>
-        <Col xs={10}>
-          <Components.FlashMessages />
-          {children}
-        </Col>
-      </Row>
+      <React.Fragment>
+        <Components.Header />
+        <Row>
+          <Col xs={2}>
+            <Components.Sidebar />
+          </Col>
+          <Col xs={10}>
+            <Components.FlashMessages />
+            {children}
+          </Col>
+        </Row>
+      </React.Fragment>
       : 
       <>
         <Components.FlashMessages />

@@ -90,5 +90,8 @@ addStrings('en', {
   'admin.users': 'Users (admin)',
   'admin.comments': 'Comments (admin)',
   'admin.posts': 'Posts (admin)',
+
+  'user.signup': 'Sign Up',
+  'user.signin': 'Sign In'
   
 });

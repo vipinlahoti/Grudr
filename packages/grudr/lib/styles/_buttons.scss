@@ -5,7 +5,7 @@
 //
 
 .btn {
-  display: inline-block;
+  display: inline-flex;
   font-family: $btn-font-family;
   font-weight: $btn-font-weight;
   color: $body-color;
@@ -16,8 +16,16 @@
   user-select: none;
   background-color: transparent;
   border: $btn-border-width solid transparent;
-  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-line-height, $btn-border-radius);
-  @include transition($btn-transition);
+  box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+  text-transform: uppercase;
+  will-change: transform;
+  letter-spacing: .025em;
+  font-weight: 600;
+  font-size: .875rem;
+  padding: .625rem 1.25rem;
+  margin-right: 1rem;
+  border-radius: .25rem;
+  transition: all .15s ease;
 
   @include hover() {
     color: $body-color;

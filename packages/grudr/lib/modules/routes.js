@@ -1,10 +1,13 @@
 import { addRoute } from 'meteor/vulcan:core';
 
 addRoute([
+  // pages
+  {name: 'dashboard',        path: '/dashboard',             componentName: 'DashboardPage'},
+  {name: 'home',             path: '/',                      componentName: 'HomePage'},
 
   // posts
 
-  {name: 'posts.top',        path: '/',                      componentName: 'PostsHome'},
+  {name: 'posts.top',        path: '/posts',                 componentName: 'PostsHome'},
   {name: 'posts.new',        path: '/new',                   componentName: 'PostsHome'}, 
   {name: 'posts.best',       path: '/best',                  componentName: 'PostsHome'},
   {name: 'posts.category',   path: '/category/:slug',        componentName: 'PostsCategory'},

@@ -3,7 +3,7 @@ import { getSetting, Components, registerComponent } from 'meteor/vulcan:core';
 import { Navbar, Nav } from 'react-bootstrap';
 
 const logoUrl = getSetting('logoUrl');
-const siteTitle = getSetting('title', 'My App');
+const siteTitle = getSetting('title', 'Grudr');
 const tagline = getSetting('tagline');
 
 const Header = ({ flash, history }) => {
