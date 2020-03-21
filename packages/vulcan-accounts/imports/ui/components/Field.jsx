@@ -64,10 +64,10 @@ export class AccountsField extends PureComponent {
       className += ' required';
     
     return mount ? (
-      <div className={ className } style={{marginBottom: '10px'}}>
+      <div className={ className } style={{marginBottom: '15px'}}>
         <Components.FormControl id={ id } type={ type } inputRef={ref => { this.input = ref; }} onChange={ onChange } placeholder={ hint } defaultValue={ defaultValue } autoComplete={autoComplete }/>
         {message && (
-          <span className={['message', message.type].join(' ').trim()}>
+          <span className={['small', message.type].join(' ').trim()}>
             {message.message}</span>
         )}
       </div>

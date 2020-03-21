@@ -20,13 +20,10 @@ export class AccountsButton extends PureComponent {
         href="#"
         id={id}
         className={className}
-        onClick={onClick}
-        style={{marginRight: '10px'}}>
+        onClick={onClick}>
         {label}
       </a> :
       <Components.Button
-        style={{marginRight: '10px'}}
-        variant="primary"
         id={id}
         className={className}
         type={type}

@@ -441,7 +441,6 @@ export class AccountsLoginFormInner extends TrackerComponent {
         id: 'signUp',
         label: this.context.intl.formatMessage({ id: 'accounts.sign_up' }),
         type: hasPasswordService() ? 'submit' : 'link',
-        className: 'active',
         disabled: waiting,
         onClick: hasPasswordService() ? this.signUp.bind(this, {}) : null,
       });
@@ -452,7 +451,6 @@ export class AccountsLoginFormInner extends TrackerComponent {
         id: 'signIn',
         label: this.context.intl.formatMessage({ id: 'accounts.sign_in' }),
         type: hasPasswordService() ? 'submit' : 'link',
-        className: 'active',
         disabled: waiting,
         onClick: hasPasswordService() ? this.signIn.bind(this) : null,
       });
@@ -734,7 +732,7 @@ export class AccountsLoginFormInner extends TrackerComponent {
             label: capitalize(service),
             disabled: waiting,
             type: 'button',
-            className: `btn-${service} ${service}`,
+            className: `btn-white btn-${service} ${service}`,
             onClick: this.oauthSignIn.bind(this, service),
           });
         });

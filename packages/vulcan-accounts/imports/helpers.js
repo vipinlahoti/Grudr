@@ -68,10 +68,10 @@ export function validateEmail(email, showMessage, clearMessage) {
   if (Accounts.ui._options.emailPattern.test(email)) {
     return true;
   } else if (!email || email.length === 0) {
-    showMessage('accounts.error_email_required', 'warning', false, 'email');
+    showMessage('accounts.error_email_required', 'text-danger', false, 'email');
     return false;
   } else {
-    showMessage('accounts.error_invalid_email', 'warning', false, 'email');
+    showMessage('accounts.error_invalid_email', 'text-danger', false, 'email');
     return false;
   }
 }
@@ -81,7 +81,7 @@ export function validatePassword(password = '', showMessage, clearMessage){
     return true;
   } else {
     const errMsg = 'accounts.error_minchar';
-    showMessage(errMsg, 'warning', false, 'password');
+    showMessage(errMsg, 'text-danger', false, 'password');
     return false;
   }
 }
@@ -91,7 +91,7 @@ export function validateUsername(username, showMessage, clearMessage, formState)
     return true;
   } else {
     const fieldName = (passwordSignupFields() === 'USERNAME_ONLY' || formState === STATES.SIGN_UP) ? 'username' : 'usernameOrEmail';
-    showMessage('accounts.error_username_required', 'warning', false, fieldName);
+    showMessage('accounts.error_username_required', 'text-danger', false, fieldName);
     return false;
   }
 }

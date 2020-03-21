@@ -5,13 +5,17 @@ import { STATES } from 'meteor/vulcan:accounts';
 import { Container, Row, Col } from 'react-bootstrap';
 
 const RegisterPage = () =>
-<div className="login__wrapper">
-  <Row className="h-100 justify-content-md-center align-items-center h-100">
-    <Col xs={6}>
-      <h3 className="h3">Register to Grudr</h3>
-      <Components.AccountsLoginForm formState={STATES.SIGN_UP} />
-    </Col>
-  </Row>
-</div>
+  <React.Fragment>
+    <div className="section-diagonal"></div>
+    <div className="section-hero login__wrapper">
+      <Container>
+        <Row className="justify-content-md-center align-items-center h-100">
+          <Col sm={12} md={4} lg={4}>
+            <Components.AccountsLoginForm formState={STATES.SIGN_UP} />
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  </React.Fragment>
 
 registerComponent('RegisterPage', RegisterPage);

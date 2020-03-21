@@ -43,33 +43,3 @@
 @import "utilities";
 @import "global";
 @import "print";
-
-
-.section {
-  padding: 7rem 0;
-}
-
-.section-small {
-  padding: 4rem 0;
-}
-
-.section-hero {
-  min-height: 100vh;
-  max-height: 999px;
-  display: flex;
-  align-items: center;
-  margin-top: -77px;
-
-  .navbar-brand {
-    font-size: 3.5rem;
-    font-weight: 600;
-  }
-}
-
-.icon {
-  margin-right: 0.5rem;
-}
-
-.copyright {
-  font-size: 0.875rem;
-}

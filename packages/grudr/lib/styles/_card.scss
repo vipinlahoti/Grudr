@@ -39,6 +39,7 @@
   min-height: 1px;
   padding: $card-spacer-x;
   color: $card-color;
+  background: $white;
 }
 
 .card-title {
@@ -75,8 +76,7 @@
   padding: $card-spacer-y $card-spacer-x;
   margin-bottom: 0; // Removes the default margin-bottom of <hN>
   color: $card-cap-color;
-  background-color: $card-cap-bg;
-  border-bottom: $card-border-width solid $card-border-color;
+  background-color: $light;
 
   &:first-child {
     @include border-radius($card-inner-border-radius $card-inner-border-radius 0 0);
