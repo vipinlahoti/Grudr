@@ -19,7 +19,7 @@
 @import "buttons";
 @import "transitions";
 @import "dropdown";
-@import "button-group";
+// @import "button-group";
 @import "input-group";
 @import "custom-forms";
 @import "nav";
@@ -41,11 +41,16 @@
 @import "carousel";
 @import "spinners";
 @import "utilities";
+@import "global";
 @import "print";
 
 
 .section {
-  padding: 6rem 0;
+  padding: 7rem 0;
+}
+
+.section-small {
+  padding: 4rem 0;
 }
 
 .section-hero {
@@ -53,6 +58,7 @@
   max-height: 999px;
   display: flex;
   align-items: center;
+  margin-top: -77px;
 
   .navbar-brand {
     font-size: 3.5rem;
@@ -62,4 +68,8 @@
 
 .icon {
   margin-right: 0.5rem;
+}
+
+.copyright {
+  font-size: 0.875rem;
 }

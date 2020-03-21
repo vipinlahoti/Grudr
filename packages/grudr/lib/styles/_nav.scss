@@ -12,8 +12,9 @@
 }
 
 .nav-link {
-  display: block;
-  padding: $nav-link-padding-y $nav-link-padding-x;
+  display: inline-flex;
+  padding: $btn-padding-y $btn-padding-x;
+  margin: 0 $btn-padding-y;
 
   @include hover-focus() {
     text-decoration: none;

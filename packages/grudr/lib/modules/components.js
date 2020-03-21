@@ -56,3 +56,5 @@ import '../components/sections/FeaturesBlock.jsx';
 // Pages
 import '../components/pages/DashboardPage.jsx';
 import '../components/pages/HomePage.jsx';
+import '../components/pages/LoginPage.jsx';
+import '../components/pages/RegisterPage.jsx';

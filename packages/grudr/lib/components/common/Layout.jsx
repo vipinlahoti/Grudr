@@ -33,10 +33,12 @@ const Layout = ({currentUser, children }) =>
         </Row>
       </React.Fragment>
       : 
-      <>
+      <React.Fragment>
         <Components.FlashMessages />
+        <Components.Header />
         {children}
-      </>
+        <Components.Footer />
+      </React.Fragment>
     }
     
   

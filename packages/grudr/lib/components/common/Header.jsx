@@ -1,22 +1,31 @@
 import React from 'react';
 import { getSetting, Components, registerComponent } from 'meteor/vulcan:core';
-import { Navbar, Nav } from 'react-bootstrap';
+import { FormattedMessage } from 'meteor/vulcan:i18n';
+import { Link } from 'react-router-dom';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 
 const logoUrl = getSetting('logoUrl');
 const siteTitle = getSetting('title', 'Grudr');
-const tagline = getSetting('tagline');
 
 const Header = ({ flash, history }) => {
   return (
     <Navbar variant="dark" bg="primary">
-      <div className="collapse navbar-collapse">
-        <Components.Logo logoUrl={logoUrl} siteTitle={siteTitle} />
-        {tagline ? <span>{tagline}</span> : ''}
+      <Container>
+        <div className="collapse navbar-collapse">
+          <Components.Logo logoUrl={logoUrl} siteTitle={siteTitle} />
 
-        <Nav className="ml-auto">
-          <Components.UsersMenu />
-        </Nav>
-      </div>
+          <Nav className="ml-auto">
+            <Link to={{ pathname: '/register' }} className="nav-link">
+              <Components.Icon name="person_add" />
+              <FormattedMessage id="user.register"/>
+            </Link>
+
+            <Components.Button variant="white" type="link" path="/login" iconButton="account">
+              <FormattedMessage id="user.login"/>
+            </Components.Button>
+          </Nav>
+        </div>
+      </Container>
     </Navbar>
   );
 };

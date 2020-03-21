@@ -11,8 +11,6 @@
   word-wrap: break-word;
   background-color: $card-bg;
   background-clip: border-box;
-  border: $card-border-width solid $card-border-color;
-  @include border-radius($card-border-radius);
 
   > hr {
     margin-right: 0;
@@ -44,6 +42,7 @@
 }
 
 .card-title {
+  margin-top: $card-spacer-x;
   margin-bottom: $card-spacer-y;
 }
 
@@ -52,8 +51,10 @@
   margin-bottom: 0;
 }
 
-.card-text:last-child {
-  margin-bottom: 0;
+.card-text {
+  margin: 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 300;
 }
 
 .card-link {
@@ -274,5 +275,20 @@
       @include border-radius(0);
       margin-bottom: -$card-border-width;
     }
+  }
+}
+
+.card-icon {
+  padding: 12px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  width: 64px;
+  box-shadow: 0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07)!important;
+
+  .icon {
+    margin: 0;
   }
 }

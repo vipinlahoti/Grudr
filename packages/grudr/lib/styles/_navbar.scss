@@ -21,7 +21,7 @@
   flex-wrap: wrap; // allow us to do the line break for collapsing content
   align-items: center;
   justify-content: space-between; // space out brand from logo
-  padding: $navbar-padding-y $navbar-padding-x;
+  padding: $spacer;
 
   // Because flex properties aren't inherited, we need to redeclare these first
   // few properties so that content nested within behave properly.
@@ -56,7 +56,7 @@
   margin-right: $navbar-padding-x;
   font-family: $font-family-monospace;
   @include font-size($navbar-brand-font-size);
-  font-weight: 500;
+  font-weight: 600;
   line-height: inherit;
   white-space: nowrap;
 
@@ -76,11 +76,6 @@
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
-
-  .nav-link {
-    padding-right: 0;
-    padding-left: 0;
-  }
 
   .dropdown-menu {
     position: static;
@@ -178,11 +173,6 @@
           .dropdown-menu {
             position: absolute;
           }
-
-          .nav-link {
-            padding-right: $navbar-nav-link-padding-x;
-            padding-left: $navbar-nav-link-padding-x;
-          }
         }
 
         // For nesting containers, have to redeclare for alignment purposes
@@ -233,7 +223,7 @@
 
   .navbar-nav {
     .nav-link {
-      color: $navbar-light-color;
+      color: $black;
 
       @include hover-focus() {
         color: $navbar-light-hover-color;
@@ -285,7 +275,7 @@
 
   .navbar-nav {
     .nav-link {
-      color: $navbar-dark-color;
+      color: $white;
 
       @include hover-focus() {
         color: $navbar-dark-hover-color;

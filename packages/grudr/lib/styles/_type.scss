@@ -23,6 +23,7 @@ h6, .h6 { @include font-size($h6-font-size); }
 .lead {
   @include font-size($lead-font-size);
   font-weight: $lead-font-weight;
+  margin-top: 1.5rem;
 }
 
 // Type display classes
@@ -47,16 +48,26 @@ h6, .h6 { @include font-size($h6-font-size); }
   line-height: $display-line-height;
 }
 
+.display-1 span,
+.display-2 span,
+.display-3 span,
+.display-4 span {
+  display: block;
+  font-weight: 300;
+}
+
 
 //
 // Horizontal rules
 //
 
 hr {
-  margin-top: $hr-margin-y;
-  margin-bottom: $hr-margin-y;
+  margin-left: 0;
+  margin-top: $spacer * 1.5;
+  margin-bottom: $spacer * 1.5;
   border: 0;
   border-top: $hr-border-width solid $hr-border-color;
+  width: 10%
 }
 
 

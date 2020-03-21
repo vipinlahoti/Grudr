@@ -4,6 +4,8 @@ addRoute([
   // pages
   {name: 'dashboard',        path: '/dashboard',             componentName: 'DashboardPage'},
   {name: 'home',             path: '/',                      componentName: 'HomePage'},
+  {name: 'login',            path: '/login',                 componentName: 'LoginPage'},
+  {name: 'register',         path: '/register',              componentName: 'RegisterPage'},
 
   // posts
 
