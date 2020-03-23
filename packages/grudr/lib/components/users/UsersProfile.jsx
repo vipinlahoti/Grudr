@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import mapProps from 'recompose/mapProps';
 import get from 'lodash/get';
 
+import { Jumbotron, Container, Row } from 'react-bootstrap';
+
 const UsersProfile = ({ currentUser, loading, document: user }) => {
   if (loading) {
     return (
@@ -21,34 +23,48 @@ const UsersProfile = ({ currentUser, loading, document: user }) => {
     );
   } else {
     return (
-      <div className="page users-profile">
+      <React.Fragment>
         <Components.HeadTags url={Users.getProfileUrl(user, true)} title={Users.getDisplayName(user)} />
-        <h2 className="page-title">{Users.getDisplayName(user)}</h2>
-        {user.htmlBio ? <div dangerouslySetInnerHTML={{ __html: user.htmlBio }} /> : null}
-        <ul>
-          {user.twitterUsername ? (
-            <li>
-              <a href={'http://twitter.com/' + user.twitterUsername}>@{user.twitterUsername}</a>
-            </li>
-          ) : null}
-          {user.website ? (
-            <li>
-              <a href={user.website}>{user.website}</a>
-            </li>
-          ) : null}
-          {Users.canUpdate({ collection: Users, document: user, user: currentUser }) && (
-            <li>
-              <Link to={Users.getEditUrl(user)}>
-                <FormattedMessage id="users.edit_account" />
-              </Link>
-            </li>
-          )}
-        </ul>
-        <h3>
-          <FormattedMessage id="users.posts" />
-        </h3>
-        <Components.PostsList input={{ filter: { userId: { _eq: user._id } } }} showHeader={false} />
-      </div>
+
+        <Jumbotron fluid>
+          <Container>
+            <Row>
+              <h4 className="display-3">Dr. {Users.getDisplayName(user)}</h4>
+              {user.htmlBio ? <div dangerouslySetInnerHTML={{ __html: user.htmlBio }} /> : null}
+            </Row>
+          </Container>
+        </Jumbotron>
+
+        <Container>
+          <Row>
+            <div className="section-main">
+              <ul>
+                {user.twitterUsername ? (
+                  <li>
+                    <a href={'http://twitter.com/' + user.twitterUsername}>@{user.twitterUsername}</a>
+                  </li>
+                ) : null}
+                {user.website ? (
+                  <li>
+                    <a href={user.website}>{user.website}</a>
+                  </li>
+                ) : null}
+                {Users.canUpdate({ collection: Users, document: user, user: currentUser }) && (
+                  <li>
+                    <Link to={Users.getEditUrl(user)}>
+                      <FormattedMessage id="users.edit_account" />
+                    </Link>
+                  </li>
+                )}
+              </ul>
+              <h4 className="display-4">
+                <FormattedMessage id="users.posts" />
+              </h4>
+              <Components.PostsList input={{ filter: { userId: { _eq: user._id } } }} showHeader={false} />
+            </div>
+          </Row>
+        </Container>
+      </React.Fragment>
     );
   }
 };

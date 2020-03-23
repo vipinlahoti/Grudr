@@ -92,6 +92,10 @@ addStrings('en', {
   'admin.posts': 'Posts (admin)',
 
   'user.register': 'Register',
-  'user.login': 'Log In'
+  'user.login': 'Log In',
   
+  'account.dashboard': 'Dashboard',
+  'account.articles': 'Articles',
+  'account.questions': 'Questions',
+
 });

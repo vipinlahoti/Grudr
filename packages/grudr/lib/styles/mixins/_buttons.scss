@@ -43,19 +43,19 @@
   &:not(:disabled):not(.disabled):active,
   &:not(:disabled):not(.disabled).active,
   .show > &.dropdown-toggle {
-    color: color-yiq($active-background);
-    background-color: $active-background;
+    // color: color-yiq($active-background);
+    // background-color: $active-background;
     @if $enable-gradients {
       background-image: none; // Remove the gradient for the pressed/active state
     }
-    border-color: $active-border;
+    // border-color: $active-border;
 
     &:focus {
       // Avoid using mixin so we can pass custom focus shadow properly
       @if $enable-shadows and $box-shadow != none {
-        box-shadow: $box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+        // box-shadow: $box-shadow, 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
       } @else {
-        box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
+        // box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($background), $border, 15%), .5);
       }
     }
   }

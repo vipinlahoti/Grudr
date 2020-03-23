@@ -29,7 +29,7 @@
   @if $enable-caret {
     &::after {
       display: inline-block;
-      margin-left: $caret-spacing;
+      margin-left: $spacer / 2;
       vertical-align: $caret-vertical-align;
       content: "";
       @if $direction == down {

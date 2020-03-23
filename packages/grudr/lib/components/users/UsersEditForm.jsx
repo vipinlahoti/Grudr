@@ -5,6 +5,8 @@ import { FormattedMessage } from 'meteor/vulcan:i18n';
 import Users from 'meteor/vulcan:users';
 import { STATES } from 'meteor/vulcan:accounts';
 
+import { Jumbotron, Container, Row } from 'react-bootstrap';
+
 const UsersEditForm = ({ document: user, currentUser, loading }) => {
   
   if (loading) {
@@ -12,34 +14,30 @@ const UsersEditForm = ({ document: user, currentUser, loading }) => {
   }
 
   return Users.canUpdate({ collection: Users, document: user, user: currentUser }) ? (
-    <div className="page users-edit-form">
-      <h2 className="page-title users-edit-form-title">
-        <FormattedMessage id="users.edit_account" />
-      </h2>
+    <React.Fragment>
+      <Jumbotron fluid>
+        <Container>
+          <Row>
+            <h4 className="display-3"><FormattedMessage id="users.edit_account" /></h4>
+          </Row>
+        </Container>
+      </Jumbotron>
 
-      <div className="change-password-link">
-        <Components.ModalTrigger
-          size="small"
-          title={<FormattedMessage id="accounts.change_password" />}
-          component={
-            <a href="#">
-              <FormattedMessage id="accounts.change_password" />
-            </a>
-          }
-        >
-          <Components.AccountsLoginForm formState={STATES.PASSWORD_CHANGE} />
-        </Components.ModalTrigger>
-      </div>
-
-      <Components.SmartForm
-        documentId={user._id}
-        collection={Users}
-        successCallback={user => {
-          props.flash({ id: 'users.edit_success', properties: { name: Users.getDisplayName(user) }, type: 'success' });
-        }}
-        showRemove={true}
-      />
-    </div>
+      <Container>
+        <Row>
+          <div className="section-main">
+            <Components.SmartForm
+              documentId={user._id}
+              collection={Users}
+              successCallback={user => {
+                props.flash({ id: 'users.edit_success', properties: { name: Users.getDisplayName(user) }, type: 'success' });
+              }}
+              showRemove={false}
+            />
+          </div>
+        </Row>
+      </Container>
+    </React.Fragment>
   ) : (
     <FormattedMessage id="app.noPermission" />
   );

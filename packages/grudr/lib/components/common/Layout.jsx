@@ -22,15 +22,11 @@ const Layout = ({currentUser, children }) =>
     {currentUser ? 
       <React.Fragment>
         <Components.Header />
-        <Row>
-          <Col xs={2}>
-            <Components.Sidebar />
-          </Col>
-          <Col xs={10}>
-            <Components.FlashMessages />
-            {children}
-          </Col>
-        </Row>
+        <Components.FlashMessages />
+        <div className="section-dashboard">
+          {children}
+        </div>
+        <Components.Footer />
       </React.Fragment>
       : 
       <React.Fragment>

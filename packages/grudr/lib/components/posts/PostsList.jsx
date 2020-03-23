@@ -3,11 +3,16 @@ import React from 'react';
 import { Posts } from '../../modules/posts/index.js';
 import { FormattedMessage } from 'meteor/vulcan:i18n';
 import classNames from 'classnames';
+import { Jumbotron, Container, Row } from 'react-bootstrap';
 
 const Error = ({ error }) => (
   <Components.Alert className="flash-message" variant="danger">
-    <FormattedMessage id={error.id} values={{ value: error.value }} />
-    {error.message}
+    <Container>
+      <Row>
+        <FormattedMessage id={error.id} values={{ value: error.value }} />
+        {error.message}
+      </Row>
+    </Container>
   </Components.Alert>
 );
 
@@ -99,12 +104,24 @@ const PostsList = ({
   };
 
   return (
-    <div className={classNames(className, 'posts-list')}>
-      {showHeader && <Components.PostsListHeader />}
-      {error && <Error error={error} />}
-      <div className="posts-list-content">{renderContents()}</div>
-      {showFooter && <div className="posts-list-footer">{renderFooter()}</div>}
-    </div>
+    <React.Fragment>
+      <Jumbotron fluid>
+        <Container>
+          <Row>
+            <h4 className="display-3"><FormattedMessage id="account.articles" /></h4>
+          </Row>
+        </Container>
+      </Jumbotron>
+
+      <Container>
+        <Row>
+          {showHeader && <Components.PostsListHeader />}
+          {error && <Error error={error} />}
+          <div className="section-main">{renderContents()}</div>
+          {showFooter && <div className="posts-list-footer">{renderFooter()}</div>}
+        </Row>
+      </Container>
+    </React.Fragment>
   );
 };
 

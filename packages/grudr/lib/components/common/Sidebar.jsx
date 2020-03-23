@@ -18,7 +18,7 @@ const NewPostButton = () => (
 
 const Sidebar = ({ flash, history }) => {
   return (
-    <nav className="bg-light sidebar">
+    <nav className="bg-white sidebar">
         <Components.NewButton
           collection={Posts}
           label={<FormattedMessage id="posts.new_post" />}

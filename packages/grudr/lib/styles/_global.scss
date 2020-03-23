@@ -1,3 +1,7 @@
+.main {
+  background-color: #f8f9fe;
+}
+
 .section {
   padding: 7rem 0;
 }
@@ -31,6 +35,16 @@
   }
 }
 
+.section-dashboard {
+  min-height: 550px;
+}
+
+.section-main {
+  // background: $white;
+  padding: $spacer * 3 0;
+  width: 100%;
+}
+
 .icon {
   margin-right: 0.5rem;
 }
@@ -53,5 +67,22 @@
 
   #switchToSignIn {
     display: none;
+  }
+}
+
+.sidebar {
+  box-shadow: $box-shadow-lg;
+  height: 100vh;
+}
+
+.users-menu {
+  .btn {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
   }
 }
