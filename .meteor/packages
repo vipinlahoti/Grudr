@@ -1,23 +1,17 @@
-# see http://docs.vulcanjs.org/packages
+meteor-base
+mongo
+reactive-var
 
-vulcan:core
+standard-minifier-css
+standard-minifier-js
+es5-shim
+ecmascript
 
-############ Language Packages ############
+shell-server
+server-render
+check
+http
 
-vulcan:i18n-en-us
-# vulcan:i18n-es-es
-
-############ Accounts Packages ############
-
-accounts-password@1.5.1
-accounts-twitter
-accounts-facebook
-
-# vulcan:debug
-# vulcan:backoffice
-# meteortesting:mocha
-# vulcan:ui-material
-
-vulcan:ui-bootstrap
-apollo
-grudr
+email
+static-html
+react-meteor-data

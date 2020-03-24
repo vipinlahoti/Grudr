@@ -2,13 +2,6 @@
   "public": {
 
     "title": "Grudr",
-    "tagline": "Lorem ipsum is placeholder text commonly used",
-
-    "logoUrl": "",
-    "logoHeight": "80",
-    "logoWidth": "250",
-    "faviconUrl": "/favicon.ico",
-
     "language": "en",
     "locale": "en",
 
@@ -17,18 +10,6 @@
 
     "googleAnalytics": {
       "apiKey": "foo123"
-    },
-
-    "backoffice": {
-      "enabled": true
-    },
-
-    "apolloSsr": {
-      "disable": false
-    },
-
-    "forum": {
-      "seedOnStart": true
     }
   },
 
