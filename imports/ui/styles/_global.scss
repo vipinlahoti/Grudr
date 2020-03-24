@@ -1,0 +1,88 @@
+.main {
+  background-color: #f8f9fe;
+}
+
+.section {
+  padding: 7rem 0;
+}
+
+.section-small {
+  padding: 4rem 0;
+}
+
+.section-diagonal {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 350px;
+  display: block;
+  left: 0;
+  top: -100px;
+  background-color: $primary;
+  transform: skewY(-7deg);
+}
+
+.section-hero {
+  min-height: 100vh;
+  max-height: 999px;
+  display: flex;
+  align-items: center;
+  margin-top: -77px;
+
+  .navbar-brand {
+    font-size: 3.5rem;
+    font-weight: 600;
+  }
+}
+
+.section-dashboard {
+  min-height: 550px;
+}
+
+.section-main {
+  // background: $white;
+  padding: $spacer * 3 0;
+  width: 100%;
+}
+
+.icon {
+  margin-right: 0.5rem;
+}
+
+.copyright {
+  font-size: 0.875rem;
+}
+
+.accounts-ui {
+  a {
+    font-size: .875rem;
+    margin-right: $spacer + .25;
+  }
+
+  #signIn,
+  #signUp {
+    @extend .btn-block;
+    margin-bottom: $spacer;
+  }
+
+  #switchToSignIn {
+    display: none;
+  }
+}
+
+.sidebar {
+  box-shadow: $box-shadow-lg;
+  height: 100vh;
+}
+
+.users-menu {
+  .btn {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+  }
+}

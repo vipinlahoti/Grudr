@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Grudr from '/imports/modules/core/config';
 
 class Hello extends Component {
   state = {
@@ -21,4 +22,4 @@ class Hello extends Component {
   }
 }
 
-export default Hello;
+module.exports = Hello;

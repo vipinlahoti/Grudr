@@ -6,7 +6,7 @@
   },
   "private": true,
   "scripts": {
-    "start": "meteor run",
+    "start": "meteor --settings settings.json",
     "lint": "eslint --cache --ext .jsx,js packages",
     "lintfix": "eslint --cache --fix --ext .jsx,js packages",
     "prettier": "node ./.vulcan/prettier/index.js write-changed",
@@ -49,6 +49,7 @@
     "rss": "^1.2.2",
     "sanitize-html": "^1.22.1",
     "simpl-schema": "^1.5.7",
+    "speakingurl": "^14.0.1",
     "underscore": "^1.9.2"
   },
   "devDependencies": {

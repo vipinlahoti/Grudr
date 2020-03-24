@@ -31,3 +31,5 @@ export default InfoContainer = withTracker(() => {
     links: LinksCollection.find().fetch(),
   };
 })(Info);
+
+module.exports = Info;

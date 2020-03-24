@@ -1,0 +1,28 @@
+.jumbotron {
+  padding: $spacer * 2 $spacer * 2;
+  // margin-bottom: $spacer;
+  color: $white;
+  background-color: $primary;
+
+  // @include media-breakpoint-up(sm) {
+  //   padding: ($jumbotron-padding * 2) $jumbotron-padding;
+  // }
+
+  // .jumbotron-border {
+  //   position: relative;
+
+  //   &:after {
+  //     content: '';
+  //     position: absolute;
+  //     bottom: -$spacer;
+  //     width: 100px;
+  //     height: 1px;
+  //     background: rgba(0, 0, 0, 0.1);
+  //   }
+  // }
+}
+
+.jumbotron-fluid {
+  padding-right: 0;
+  padding-left: 0;
+}
