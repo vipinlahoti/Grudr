@@ -12,6 +12,6 @@ Meteor.startup(() => {
 onPageLoad(async sink => {
     const App = (await import('/imports/ui/components/core/App')).default;
     
-    ReactDOM.hydrate(<App />, document.getElementById('react-app'));
+    ReactDOM.render(<App />, document.getElementById('react-app'));
   });
 })

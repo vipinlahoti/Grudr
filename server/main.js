@@ -41,9 +41,9 @@ Meteor.startup(() => {
     });
   }
 
-  onPageLoad(sink => {
-    sink.renderIntoElementById('react-app', renderToNodeStream(
-      <App location={sink.request.url} />
-    ));
-  });
+  // onPageLoad(sink => {
+  //   sink.renderIntoElementById('react-app', renderToNodeStream(
+  //     <App location={sink.request.url} />
+  //   ));
+  // });
 });

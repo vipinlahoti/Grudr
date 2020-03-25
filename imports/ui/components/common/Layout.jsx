@@ -1,4 +1,6 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
+
 import { Container, Row, Col, Card } from 'react-bootstrap';
 
 const Layout = ({children}) =>
@@ -9,7 +11,7 @@ const Layout = ({children}) =>
       <Container>
         <Row>
           <Col sm={12} md={7} lg={7}>
-            <h4 className="display-4">Publishing industries for previewing layouts and visual mockups.</h4>
+            <h4 className="display-4"><FormattedMessage id="hero.description" /></h4>
           </Col>
         </Row>
       </Container>
