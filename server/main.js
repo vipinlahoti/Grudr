@@ -4,7 +4,7 @@ import React from 'react';
 import { renderToNodeStream } from 'react-dom/server';
 
 import { LinksCollection } from '/imports/api/links';
-import App from '/imports/ui/App';
+import App from '/imports/ui/components/core/App';
 import '/imports/modules/core/modules';
 import '/imports/modules/components';
 // export * from '../modules/index.js';

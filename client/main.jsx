@@ -10,7 +10,7 @@ import '/imports/ui/styles/main.scss';
 
 Meteor.startup(() => {
 onPageLoad(async sink => {
-    const App = (await import('/imports/ui/App')).default;
+    const App = (await import('/imports/ui/components/core/App')).default;
     
     ReactDOM.hydrate(<App />, document.getElementById('react-app'));
   });

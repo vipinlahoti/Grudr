@@ -17,13 +17,17 @@ Grudr.registerComponent = (name, component) => {
   Grudr.components[name] = component;
 };
 
+// Strings can be for i18n
+Grudr.strings = {};
+
 // Routes
 Grudr.routes = {}
 
 // Head Tags
 Grudr.headtags = {
   meta: [],
-  link: []
+  link: [],
+  script: [],
 }
 
 // Statuses
