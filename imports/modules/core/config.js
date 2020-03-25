@@ -17,10 +17,6 @@ Grudr.registerComponent = (name, component) => {
   Grudr.components[name] = component;
 };
 
-Grudr.getComponent = (name) => {
-  return Grudr.components[name];
-};
-
 // Routes
 Grudr.routes = {}
 

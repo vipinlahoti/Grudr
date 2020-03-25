@@ -14,7 +14,10 @@ const NavLoggedIn = () =>
 
 const NavLoggedOut = () =>
   <Nav className="ml-auto">
-    <Nav.Link href="#home">Home</Nav.Link>
+    <Nav.Link href="#home">
+      <Grudr.components.Icon name="account" />
+      Home
+    </Nav.Link>
     <Nav.Link href="#link">Link</Nav.Link>
   </Nav>
 

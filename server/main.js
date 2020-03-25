@@ -1,7 +1,13 @@
 import { Meteor } from 'meteor/meteor';
-import { LinksCollection } from '/imports/api/links';
+import { onPageLoad } from 'meteor/server-render';
+import React from 'react';
+import { renderToNodeStream } from 'react-dom/server';
 
-// import '/imports/modules/components';
+import { LinksCollection } from '/imports/api/links';
+import App from '/imports/ui/App';
+import '/imports/modules/core/modules';
+import '/imports/modules/components';
+// export * from '../modules/index.js';
 
 function insertLink({ title, url }) {
   LinksCollection.insert({title, url, createdAt: new Date()});
@@ -34,4 +40,10 @@ Meteor.startup(() => {
       url: 'https://forums.meteor.com'
     });
   }
+
+  onPageLoad(sink => {
+    sink.renderIntoElementById('react-app', renderToNodeStream(
+      <App location={sink.request.url} />
+    ));
+  });
 });

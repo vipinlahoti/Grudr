@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+// import Grudr from '/imports/modules/core/config';
 
 const Footer = () =>
   <footer className="section-small bg-light">
@@ -15,3 +16,4 @@ const Footer = () =>
   </footer>
 
 module.exports = Footer;
+// Grudr.registerComponent('Footer', Footer);
