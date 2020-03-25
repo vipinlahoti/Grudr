@@ -1,12 +1,22 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { IntlProvider, intlShape } from 'react-intl';
+import { IntlProvider, /* intlShape */ } from 'react-intl';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
-import moment from 'moment';
-
-
 import Grudr from '/imports/modules/core/config';
+
+const RouteWithLayout = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render = {props =>
+      <Grudr.components.Layout {...props}>
+        {/* TODO: Fix SideEffect(NullComponent) Error
+        <Grudr.components.HeadTags /> */}
+        <Component {...props} />
+      </Grudr.components.Layout>
+    } />
+  );
+}
 
 class App extends PureComponent {
 
@@ -23,11 +33,7 @@ class App extends PureComponent {
   render() {
     console.log(Grudr);
     const routeNames = Grudr.routes.routes;
-    console.log(
-      routeNames.map(route => (
-              <Route {...route} />
-            ))
-      )
+
 
     return (
       <BrowserRouter>
@@ -38,14 +44,17 @@ class App extends PureComponent {
           <Grudr.components.ScrollToTop />
 
           <Switch>
-            {routeNames.map(route => (
-              <Route {...route} />
+            {routeNames.map((route, i) => (
+              <RouteWithLayout
+                exact
+                key={i}
+                {...route}
+              />
             ))}
+            <RouteWithLayout
+              component={Grudr.components.Error404}
+            />
           </Switch>
-            {/* TODO: Fix SideEffect(NullComponent) Error
-            <Grudr.components.HeadTags /> */}
-
-            {/*<Grudr.components.Layout/>*/}
         </IntlProvider>
       </BrowserRouter>
     );

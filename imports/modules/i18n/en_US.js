@@ -5,6 +5,7 @@ Grudr.strings.en = {
   "pages.about": "About",
   "pages.dashboard": "Dashboard",
   "pages.articles": "Articles",
+  "pages.404": "Error 404",
 
   "accounts.login": "Login",
   "accounts.register": "Register",
