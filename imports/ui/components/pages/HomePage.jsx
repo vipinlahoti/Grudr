@@ -6,6 +6,8 @@ import Grudr from '/imports/modules/core/config';
 const HomePage = () => {
   return (
     <React.Fragment>
+      <Grudr.components.HeadTags title="Home" description="Home description" />
+
       <div className="section section-hero">
         <Container>
           <Row>

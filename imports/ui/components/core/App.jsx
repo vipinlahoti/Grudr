@@ -10,8 +10,7 @@ const RouteWithLayout = ({ component: Component, ...rest }) => {
       {...rest}
       render = {props =>
       <Grudr.components.Layout {...props}>
-        {/* TODO: Fix SideEffect(NullComponent) Error
-        <Grudr.components.HeadTags /> */}
+        <Grudr.components.HeadTags /> 
         <Component {...props} />
       </Grudr.components.Layout>
     } />
