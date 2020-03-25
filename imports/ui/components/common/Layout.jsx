@@ -1,104 +1,12 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-
-import { Container, Row, Col, Card } from 'react-bootstrap';
 
 const Layout = ({children}) =>
   <div className="wrapper" id="wrapper">
     <Grudr.components.Header/>
-
-    <div className="section section-hero">
-      <Container>
-        <Row>
-          <Col sm={12} md={7} lg={7}>
-            <h4 className="display-4"><FormattedMessage id="hero.description" /></h4>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-
-    <div className="section section-features">
-      <Container>
-        <Row className="justify-content-md-center text-center mb-4">
-          <Col sm={12} md={8} lg={8}>
-            <h3 className="display-3">Excepteur sint occaecat cupidatat.</h3>
-            <p className="lead">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col sm={12} md={4} lg={4}>
-            <Card className="featured-card">
-              <Card.Body>
-                <div className="card-icon rounded-circle bg-primary text-white">
-                  <Grudr.components.Icon name="person_add"/>
-                </div>
-                <Card.Title>Lorem ipsum dolor sit amet</Card.Title>
-                <Card.Text>
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col sm={12} md={4} lg={4}>
-            <Card className="featured-card">
-              <Card.Body>
-                <div className="card-icon rounded-circle bg-warning text-white">
-                  <Grudr.components.Icon name="account"/>
-                </div>
-                <Card.Title>Lorem ipsum dolor sit amet</Card.Title>
-                <Card.Text>
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col sm={12} md={4} lg={4}>
-            <Card className="featured-card">
-              <Card.Body>
-                <div className="card-icon rounded-circle bg-dark text-white">
-                  <Grudr.components.Icon name="person_add"/>
-                </div>
-                <Card.Title>Lorem ipsum dolor sit amet</Card.Title>
-                <Card.Text>
-                  consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-
-    <div className="section">
-      <Container>
-        <Row>
-          <Col sm={12} md={5} lg={5}>
-            <h4 className="display-3">Lorem ipsum dolor <span className="text-primary">sit amet, consectetur adipiscing elit.</span></h4>
-            <p className="lead">uis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </Col>
-
-          <Col sm={12} md={7} lg={7}></Col>
-        </Row>
-      </Container>
-    </div>
-
-    <div className="section">
-      <Container>
-        <Row>
-          <Col sm={12} md={7} lg={7}></Col>
-          <Col sm={12} md={5} lg={5}>
-            <h4 className="display-3">Lorem ipsum dolor <span className="text-danger">sit amet, consectetur adipiscing elit.</span></h4>
-            <p className="lead">uis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+    
+    {children}
 
     <Grudr.components.Footer/>        
   </div>;
 
-module.exports = Layout
-;
+module.exports = Layout;

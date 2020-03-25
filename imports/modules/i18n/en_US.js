@@ -5,6 +5,7 @@ Grudr.strings.en = {
   "pages.about": "About",
   "pages.dashboard": "Dashboard",
   "pages.articles": "Articles",
+  "pages.404": "Error 404",
 
   "accounts.login": "Login",
   "accounts.register": "Register",
@@ -12,14 +13,3 @@ Grudr.strings.en = {
   "hero.description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
 }
 
-Grudr.strings.hi = {
-  "pages.home": "घर",
-  "pages.about": "के बारे में",
-  "pages.dashboard": "डैशबोर्ड",
-  "pages.articles": "सामग्री",
-
-  "accounts.login": "लॉग इन करें",
-  "accounts.register": "रजिस्टर करें",
-
-  "hero.description": "पडता सोफ़्टवेर सुचनाचलचित्र होसके जिसकी शुरुआत है।अभी करके(विशेष गएआप हुआआदी"
-}

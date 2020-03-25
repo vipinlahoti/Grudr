@@ -20,8 +20,35 @@ Grudr.registerComponent = (name, component) => {
 // Strings can be for i18n
 Grudr.strings = {};
 
-// Routes
-Grudr.routes = {}
+/**
+* @summary Routes namespace
+* @namespace Grudr.routes
+* @method Add a Routes to routes Array
+* @param {object} routes - Array of Objects
+*/
+Grudr.routes = {
+  routes: [],
+  add(Routes) {
+    const addedRoutes = Array.isArray(Routes) ? Routes : [Routes];
+    this.routes = this.routes.concat(addedRoutes);
+  }
+}
+
+
+/**
+* @summary Subscriptions namespace
+* @namespace Grudr.subscriptions
+*/
+Grudr.subscriptions = [];
+
+/**
+ * @summary Add a subscription to be preloaded
+ * @param {string} subscription - The name of the subscription
+ */
+Grudr.subscriptions.preload = function (subscription, args) {
+  Grudr.subscriptions.push({name: subscription, arguments: args});
+};
+
 
 // Head Tags
 Grudr.headtags = {

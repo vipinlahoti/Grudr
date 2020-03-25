@@ -13,3 +13,7 @@ Grudr.registerComponent('Logo', require('../ui/components/common/Logo.jsx'));
 Grudr.registerComponent('Footer', require('../ui/components/common/Footer.jsx'));
 Grudr.registerComponent('Header', require('../ui/components/common/Header.jsx'));
 
+// Pages
+Grudr.registerComponent('HomePage', require('../ui/components/pages/HomePage.jsx'));
+Grudr.registerComponent('LoginPage', require('../ui/components/pages/LoginPage.jsx'));
+Grudr.registerComponent('RegisterPage', require('../ui/components/pages/RegisterPage.jsx'));

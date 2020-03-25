@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-
 import Grudr from '/imports/modules/core/config';
 
 const siteTitle = Grudr.settings.get('title', 'Grudr');
@@ -19,13 +18,15 @@ const NavLoggedIn = () =>
 
 const NavLoggedOut = () =>
   <Nav className="ml-auto">
-    <Nav.Link href="#home">
+    <Link to={{ pathname: '/register' }} className="nav-link">
+      <Grudr.components.Icon name="person_add" />
+      <FormattedMessage id="accounts.register"/>
+    </Link>
+
+    <Link to={{ pathname: '/login' }} className="btn btn-white">
       <Grudr.components.Icon name="account" />
-      <FormattedMessage id="pages.home"/>
-    </Nav.Link>
-    <Nav.Link href="#link">
-      <FormattedMessage id="pages.about"/>
-    </Nav.Link>
+      <FormattedMessage id="accounts.login"/>
+    </Link>
   </Nav>
 
 const Header = () => 
