@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
 const siteTitle = Grudr.settings.get('title', 'Grudr');
+const topNavLinks = Grudr.settings.get('topNavLinks');
 
 const NavLoggedIn = () =>
   <Nav className="ml-auto">
@@ -15,21 +16,16 @@ const NavLoggedIn = () =>
     </Nav.Link>
   </Nav>
 
-const NavLoggedOut = () =>
+const NavLoggedOut = () => 
   <Nav className="ml-auto">
-    <Grudr.components.Button variant="link" path="register" icon="person_add">
-      <FormattedMessage id="accounts.register"/>
-    </Grudr.components.Button>
-
-    <Link to={{ pathname: '/register' }} className="nav-link">
-      <Grudr.components.Icon name="person_add" />
-      <FormattedMessage id="accounts.register"/>
-    </Link>
-
-    <Link to={{ pathname: '/login' }} className="btn btn-white">
-      <Grudr.components.Icon name="account" />
-      <FormattedMessage id="accounts.login"/>
-    </Link>
+    {topNavLinks.length ?
+      topNavLinks.map((item, i) => (
+        <Link key={i} to={{ pathname: item.link }} className={item.type ==='button' ? 'btn btn-white' : 'nav-link'}>
+          {item.icon ? <Grudr.components.Icon name={item.icon} /> : null }
+          {item.name}
+        </Link>
+      ))
+    : null}
   </Nav>
 
 const Header = () => 

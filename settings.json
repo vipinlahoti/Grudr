@@ -8,7 +8,38 @@
     "twitterAccount": "foo",
     "facebookPage": "http://facebook.com/foo",
 
-    "googleAnalyticsId":"123foo"
+    "googleAnalyticsId":"123foo",
+
+    "topNavLinks": [
+      {
+        "name": "Home",
+        "link": "/",
+        "order": 1,
+        "type": "link",
+        "icon": ""
+      },
+      {
+        "name": "About",
+        "link": "/about",
+        "order": 2,
+        "type": "link",
+        "icon": ""
+      },
+      {
+        "name": "Register",
+        "link": "/register",
+        "order": 3,
+        "type": "link",
+        "icon": ""
+      },
+      {
+        "name": "Login",
+        "link": "/login",
+        "order": 4,
+        "type": "button",
+        "icon": "account"
+      }
+    ]
   },
 
   "defaultEmail": "hello@world.com",
