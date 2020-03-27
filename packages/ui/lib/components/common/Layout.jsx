@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Grudr from 'meteor/grudr:core';
 
-const Layout = ({children}) =>
-  <div className="wrapper" id="wrapper">
-    <Grudr.components.Header/>
-    
-    {children}
+class Layout extends Component {
+  render() {
+    console.log('Grudr', Grudr);
 
-    <Grudr.components.Footer/>        
-  </div>;
+    return (
+      <div className="wrapper" id="wrapper">
+        <Grudr.components.Header/>
+        
+        {this.props.children}
+
+        <Grudr.components.Footer/>        
+      </div>
+    )
+  }
+}
 
 module.exports = Layout;

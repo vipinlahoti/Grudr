@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router';
 import Grudr from '../config';
 
 class ScrollToTop extends Component {
@@ -13,4 +14,4 @@ class ScrollToTop extends Component {
   }
 }
 
-Grudr.registerComponent('ScrollToTop', ScrollToTop);
+Grudr.registerComponent('ScrollToTop', withRouter(ScrollToTop));
