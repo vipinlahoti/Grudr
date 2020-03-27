@@ -1,0 +1,206 @@
+import Grudr from './config.js';
+import marked from 'marked';
+import moment from 'moment';
+import getSlug from 'speakingurl';
+
+/**
+ * @summary The global namespace for Grudr utils.
+ * @namespace Grudr.utils
+ */
+Grudr.utils = {};
+
+/**
+ * @summary Convert a camelCase string to dash-separated string
+ * @param {String} str
+ */
+Grudr.utils.camelToDash = str => {
+  return str
+    .replace(/\W+/g, '-')
+    .replace(/([a-z\d])([A-Z])/g, '$1-$2')
+    .toLowerCase();
+};
+
+/**
+ * @summary Convert a camelCase string to a space-separated capitalized string
+ * See http://stackoverflow.com/questions/4149276/javascript-camelcase-to-regular-form
+ * @param {String} str
+ */
+Grudr.utils.camelToSpaces = str => {
+  return str.replace(/([A-Z])/g, ' $1').replace(/^./, function(str){
+    return str.toUpperCase();
+  });
+};
+
+/**
+ * @summary Convert an underscore-separated string to dash-separated string
+ * @param {String} str
+ */
+Grudr.utils.underscoreToDash = str => {
+  return str.replace('_', '-');
+};
+
+/**
+ * @summary Convert a dash separated string to camelCase.
+ * @param {String} str
+ */
+Grudr.utils.dashToCamel = str => {
+  return str.replace(/(\-[a-z])/g, function($1){
+    return $1.toUpperCase().replace('-', '');
+  });
+};
+
+/**
+ * @summary Convert a string to camelCase and remove spaces.
+ * @param {String} str
+ */
+Grudr.utils.camelCaseify = str => {
+  str = this.dashToCamel(str.replace(' ', '-'));
+  str = str.slice(0,1).toLowerCase() + str.slice(1);
+  return str;
+};
+
+/**
+ * @summary Trim a sentence to a specified amount of words and append an ellipsis.
+ * @param {String} s - Sentence to trim.
+ * @param {Number} numWords - Number of words to trim sentence to.
+ */
+Grudr.utils.trimWords = (s, numWords) => {
+  if (!s) return s;
+
+  const expString = s.split(/\s+/, numWords);
+  if(expString.length >= numWords) return expString.join(' ') + '…';
+  return s;
+};
+
+/**
+ * @summary Trim a block of HTML code to get a clean text excerpt
+ * @param {String} html - HTML to trim.
+ */
+Grudr.utils.trimHTML = (html, numWords) => {
+  const text = Grudr.utils.stripHTML(html);
+  return Grudr.utils.trimWords(text, numWords);
+};
+
+/**
+ * @summary Capitalize a string.
+ * @param {String} str
+ */
+Grudr.utils.capitalise = str => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+Grudr.utils.t = message => {
+  const d = new Date();
+  console.log('### ' + message + ' rendered at ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()); // eslint-disable-line
+};
+
+Grudr.utils.nl2br = str => {
+  const breakTag = '<br />';
+  return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+};
+
+Grudr.utils.scrollPageTo = selector => {
+  $('body').scrollTop($(selector).offset().top);
+};
+
+Grudr.utils.scrollIntoView = selector => {
+  if (!document) return;
+
+  const element = document.querySelector(selector);
+  if (element) {
+    element.scrollIntoView();
+  }
+};
+
+Grudr.utils.getDateRange = pageNumber => {
+  const now = moment(new Date());
+  const dayToDisplay = now.subtract(pageNumber-1, 'days');
+  const range = {};
+  range.start = dayToDisplay.startOf('day').valueOf();
+  range.end = dayToDisplay.endOf('day').valueOf();
+  // console.log("after: ", dayToDisplay.startOf('day').format("dddd, MMMM Do YYYY, h:mm:ss a"));
+  // console.log("before: ", dayToDisplay.endOf('day').format("dddd, MMMM Do YYYY, h:mm:ss a"));
+  return range;
+};
+
+//////////////////////////
+// URL Helper Functions //
+//////////////////////////
+
+/**
+ * @summary Returns the user defined site URL or Meteor.absoluteUrl
+ */
+Grudr.utils.getSiteUrl = () => {
+  return Grudr.settings.get('siteUrl', Meteor.absoluteUrl());
+};
+
+/**
+ * @summary The global namespace for Grudr utils.
+ * @param {String} url - the URL to redirect
+ */
+Grudr.utils.getOutgoingUrl = url => {
+  return Grudr.utils.getSiteUrl() + 'out?url=' + encodeURIComponent(url);
+};
+
+Grudr.utils.slugify = s => {
+  let slug = getSlug(s, {
+    truncate: 60
+  });
+
+  // can't have posts with an "edit" slug
+  if (slug === 'edit') {
+    slug = 'edit-1';
+  }
+
+  return slug;
+};
+
+// add http: if missing
+Grudr.utils.addHttp = url => {
+  try {
+    if (url.substring(0, 5) !== 'http:' && url.substring(0, 6) !== 'https:') {
+      url = 'http:' + url;
+    }
+    return url;
+  } catch (error) {
+    return null;
+  }
+};
+
+/////////////////////////////
+// String Helper Functions //
+/////////////////////////////
+
+Grudr.utils.cleanUp = s => {
+  return Grudr.utils.stripHTML(s);
+};
+
+Grudr.utils.stripHTML = s => {
+  return s.replace(/<(?:.|\n)*?>/gm, '');
+};
+
+Grudr.utils.stripMarkdown = s => {
+  const htmlBody = marked(s);
+  return Grudr.utils.stripHTML(htmlBody);
+};
+
+Grudr.log = function (s) {
+  if(Grudr.settings.get('debug', false) || process.env.NODE_ENV === 'development') {
+    console.log(s); // eslint-disable-line
+  }
+};
+
+Grudr.utils.getFieldLabel = (fieldName, collection) => {
+  const label = collection.simpleSchema()._schema[fieldName].label;
+  const nameWithSpaces = Grudr.utils.camelToSpaces(fieldName.replace('grudr.', ''));
+  return label || nameWithSpaces;
+};
+
+Grudr.utils.getLogoUrl = () => {
+  const logoUrl = Grudr.settings.get('logoUrl');
+  if (!!logoUrl) {
+    const prefix = Grudr.utils.getSiteUrl().slice(0,-1);
+    // the logo may be hosted on another website
+    return logoUrl.indexOf('://') > -1 ? logoUrl : prefix + logoUrl;
+  }
+};
