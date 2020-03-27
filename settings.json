@@ -13,31 +13,35 @@
     "topNavLinks": [
       {
         "name": "Home",
-        "link": "/",
+        "path": "/",
         "order": 1,
         "type": "link",
-        "icon": ""
+        "icon": "",
+        "component": "Grudr.components.HomePage"
       },
       {
         "name": "About",
-        "link": "/about",
+        "path": "/about",
         "order": 2,
         "type": "link",
-        "icon": ""
+        "icon": "",
+        "component": "Grudr.components.RegisterPage"
       },
       {
         "name": "Register",
-        "link": "/register",
+        "path": "/register",
         "order": 3,
         "type": "link",
-        "icon": ""
+        "icon": "",
+        "component": "Grudr.components.RegisterPage"
       },
       {
         "name": "Login",
-        "link": "/login",
+        "path": "/login",
         "order": 4,
         "type": "button",
-        "icon": "account"
+        "icon": "account",
+        "component": "Grudr.components.LoginPage"
       }
     ]
   },
