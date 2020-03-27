@@ -17,6 +17,10 @@ const NavLoggedIn = () =>
 
 const NavLoggedOut = () =>
   <Nav className="ml-auto">
+    <Grudr.components.Button variant="link" path="register" icon="person_add">
+      <FormattedMessage id="accounts.register"/>
+    </Grudr.components.Button>
+
     <Link to={{ pathname: '/register' }} className="nav-link">
       <Grudr.components.Icon name="person_add" />
       <FormattedMessage id="accounts.register"/>
