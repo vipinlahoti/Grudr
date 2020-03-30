@@ -1,0 +1,11 @@
+<template name="header">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary{{headerClass}}">
+    {{> logo}}
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      {{#if hasPrimaryNav}}
+        {{> modules zone="primaryNav" zoneClass="nav primary-nav desktop-nav header-module" moduleClass="header-module"}}
+      {{/if}}
+    </div>
+  </nav>
+</template>

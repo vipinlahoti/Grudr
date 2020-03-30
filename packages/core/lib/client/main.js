@@ -1,17 +1,13 @@
-import React from 'react';
-import { Meteor } from 'meteor/meteor';
-import { onPageLoad } from 'meteor/server-render';
-import ReactDOM from 'react-dom';
-import App from './components/App';
 import Grudr from '../modules';
 
-Meteor.startup(() => {
-  const rootElement = document.createElement('div');
-  rootElement.id = 'react-app';
-  document.body.appendChild(rootElement);
+console.log('Grudr', Grudr)
+// Session variables
+Session.set('appIsReady', false);
 
-  ReactDOM.render(<App />, document.getElementById('react-app'));
-
-});
-
-export default Grudr;
+// Global Subscriptions
+// Grudr.subsManager = new SubsManager({
+//   // cache recent 50 subscriptions
+//   cacheLimit: 50,
+//   // expire any subscription after 30 minutes
+//   expireIn: 30
+// });

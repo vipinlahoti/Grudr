@@ -1,18 +1,15 @@
 import Grudr from './config.js';
 
-import './callbacks.js';
-import './settings.js';
 import './utils.js';
+import './settings.js';
+import './callbacks.js';
+import './collections.js';
 import './icons.js';
-
-import './components/Layout.jsx';
-import './components/HeadTags.jsx';
-import './components/Icon.jsx';
-import './components/ScrollToTop.jsx';
-import './components/Loading.jsx';
-import './components/Error404.jsx';
-import './components/Button.jsx';
-
-import './components/HelloWorld.jsx';
+import './menus.js';
+import './modules.js';
+import './router.js';
+import './schema.js';
+import './seo.js';
+import './themes.js';
 
 export default Grudr;

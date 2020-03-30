@@ -1,0 +1,12 @@
+<template name="logo">
+  {{#if logoUrl}}
+    <a href="/" class="navbar-brand">
+      <img src="{{logoUrl}}" alt="{{getSetting 'title' 'Grudr'}}"/>
+    </a>
+  {{else}}
+    <a href="/" class="navbar-brand">{{getSetting 'title' 'Grudr'}}</a>
+  {{/if}}
+  {{#if getSetting "tagline"}}
+    <h2 class="tagline">{{getSetting "tagline"}}</h2>
+  {{/if}}
+</template>
