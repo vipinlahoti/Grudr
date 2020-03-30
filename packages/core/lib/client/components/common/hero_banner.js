@@ -1,1 +1,1 @@
-import './hero_banner';
+import './hero_banner.html';

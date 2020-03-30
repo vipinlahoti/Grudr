@@ -3,9 +3,13 @@
     {{> logo}}
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      {{#if hasPrimaryNav}}
-        {{> modules zone="primaryNav" zoneClass="nav primary-nav desktop-nav header-module" moduleClass="header-module"}}
-      {{/if}}
+    {{#if hasPrimaryNav}}
+      {{> modules zone="primaryNav" zoneClass="primary-nav" moduleClass="header-module"}}
+    {{/if}}
+
+    {{#if hasSecondaryNav}}
+      {{> modules zone="secondaryNav" zoneClass="secondary-nav" moduleClass="header-module"}}
+    {{/if}}
     </div>
   </nav>
 </template>

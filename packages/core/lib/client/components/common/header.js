@@ -11,11 +11,10 @@ Template.header.helpers({
 
   hasPrimaryNav() {
     return !!Grudr.modules.get('primaryNav').length;
+  },
+
+  hasSecondaryNav() {
+    return !!Grudr.modules.get("secondaryNav").length;
   }
 
-});
-
-// Events on template
-Template.header.events({
- 
 });

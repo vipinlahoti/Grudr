@@ -24,19 +24,18 @@ Package.onUse(function(api) {
     'server-render',
     'underscore',
 
-    'kadira:flow-router',
-    'kadira:blaze-layout',
-    'kadira:dochead',
-    
     'check',
     'http',
     'email',
-
     'service-configuration',
     'session',
     'fourseven:scss',
 
+    'kadira:flow-router',
+    'kadira:blaze-layout',
+    'kadira:dochead',
     'meteorhacks:subs-manager',
+    'arillo:flow-router-helpers',
   ]
 
   api.use(packages);
@@ -57,6 +56,7 @@ Package.onUse(function(api) {
     'lib/client/components/common/loader.html',
     'lib/client/components/common/layout.js',
     'lib/client/components/common/logo.js',
+    'lib/client/components/common/user_menu.js',
     'lib/client/components/common/header.js',
     'lib/client/components/common/footer.js',
     'lib/client/components/common/hero_banner.js',

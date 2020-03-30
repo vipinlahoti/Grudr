@@ -1,0 +1,14 @@
+<template name="user_menu">
+  {{#if isLoggedIn}}
+    
+  {{else}}
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{{pathFor 'signUp'}}">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{pathFor 'signIn'}}">Login</a>
+      </li>
+    </ul>
+  {{/if}}
+</template>
