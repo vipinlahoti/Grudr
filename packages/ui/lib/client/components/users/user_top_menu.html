@@ -1,0 +1,12 @@
+<template name="user_top_menu">
+  {{#if isLoggedIn}}
+    Welcome!!
+  {{else}}
+    <li class="nav-item">
+      <a class="nav-link" href="{{pathFor 'signUp'}}">Register</a>
+    </li>
+    <li class="nav-item">
+      <a class="btn btn-white" href="{{pathFor 'signIn'}}">Login</a>
+    </li>
+  {{/if}}
+</template>

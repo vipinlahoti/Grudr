@@ -1,10 +1,10 @@
 <template name="layout">
   {{#if appIsReady}}
     <div class="template-{{pageName}}">
-      {{> header}}
+      {{> modules zone="header"}}
       {{> modules zone="hero"}}
       {{> Template.dynamic template=main}}
-      {{> footer}}
+      {{> modules zone="footer"}}
     </div>
   {{else}}
     <div class="app-loading">{{> loading}}</div>

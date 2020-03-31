@@ -1,5 +1,5 @@
 import './logo.html';
-import Grudr from '../../../modules';
+// import Grudr from '../../../modules';
 
 Template.logo.helpers({
   logoUrl() {

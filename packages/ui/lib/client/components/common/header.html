@@ -1,0 +1,17 @@
+<template name="header">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    {{> logo}}
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        {{#if hasPrimaryNav}}
+          {{> modules zone="primaryNav"}}
+        {{/if}}
+
+        {{#if hasSecondaryNav}}
+          {{> modules zone="secondaryNav"}}
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
+</template>

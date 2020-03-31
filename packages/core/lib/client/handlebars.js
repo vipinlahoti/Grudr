@@ -51,3 +51,7 @@ Template.registerHelper('getSetting', function(setting, defaultArgument){
   setting = Grudr.settings.get(setting, defaultArg);
   return setting;
 });
+
+Template.registerHelper('isLoggedIn', function() {
+  return !!Meteor.user();
+});

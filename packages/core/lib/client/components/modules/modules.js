@@ -6,22 +6,6 @@ Template.modules.helpers({
     return Session.get('debug');
   },
 
-  getClass() {
-    let zoneClass = 'zone-wrapper ';
-
-    if (this.zoneClass) {
-      zoneClass += this.zoneClass;
-    }
-    else {
-      zoneClass += this.zone;
-    }
-    return zoneClass;
-  },
-
-  getId() {
-    return this.wrapperId;
-  },
-
   getModules() {
     const modules = this;
 
@@ -29,10 +13,11 @@ Template.modules.helpers({
       // use deep copy to avoid modifying original module when extending it with modules property
       const newModule = jQuery.extend(true, {}, module);
       newModule.modules = modules;
+      console.log('zoneModules', newModule);
+
       return newModule;
     });
 
-    console.log('zoneModules', zoneModules)
     return zoneModules;
   },
 
@@ -65,8 +50,6 @@ Template.modules.helpers({
       zone: this.modules.zone,
       moduleClass: this.modules.moduleClass
     }, this.modules.moduleData);
-
-    console.log(data)
     return data;
   }
 });
