@@ -1,8 +1,7 @@
 {
   "extends": [
     "eslint:recommended",
-    "plugin:meteor/recommended",
-    "plugin:react/recommended"
+    "plugin:meteor/recommended"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -54,8 +53,6 @@
       "single",
       "avoid-escape"
     ],
-    "react/display-name": 1,
-    "react/prop-types": 0,
     "semi": [1, "always"]
   },
   "env": {
@@ -68,7 +65,6 @@
   "plugins": [
     "babel",
     "meteor",
-    "react",
     "prettier"
   ],
   "settings": {
