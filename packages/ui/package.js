@@ -10,8 +10,10 @@ Package.onUse(function(api) {
     'fourseven:scss@4.12.0',
     
     'grudr:core',
+    'grudr:accounts',
+    'grudr:accounts-unstyled',
     'grudr:email',
-    'grudr:events'
+    'grudr:events',
   ]);
 
   api.addFiles([
