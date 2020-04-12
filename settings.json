@@ -1,0 +1,89 @@
+{
+  "public": {
+    "title": "Skawe",
+    "tagline": "",
+    "description": "This is meta description",
+
+    "logoUrl": "",
+
+    "headerColor": "white",
+
+    "language": "en",
+    "locale": "en",
+    
+    "twitterAccount": "foo",
+    "facebookPage": "http://facebook.com/foo",
+
+    "googleAnalyticsId":"123foo",
+
+    "topNavLinks": [
+      {
+        "name": "Home",
+        "path": "/",
+        "order": 1,
+        "type": "link",
+        "icon": "",
+        "component": "HomePage"
+      },
+      {
+        "name": "About",
+        "path": "/about",
+        "order": 2,
+        "type": "link",
+        "icon": "",
+        "component": "RegisterPage"
+      },
+      {
+        "name": "Register",
+        "path": "/register",
+        "order": 3,
+        "type": "link",
+        "icon": "",
+        "component": "RegisterPage"
+      },
+      {
+        "name": "Login",
+        "path": "/login",
+        "order": 4,
+        "type": "button",
+        "icon": "account",
+        "component": "LoginPage"
+      }
+    ]
+  },
+
+  "defaultEmail": "hello@world.com",
+  "mailUrl": "smtp://postmaster%40foo.mailgun.org:foo123@smtp.mailgun.org:587/",
+
+  "categories": [
+    {
+      "name": "Test Category 1",
+      "description": "The first test category",
+      "order": 4,
+      "slug": "testcat1"
+    },
+    {
+      "name": "Test Category 2",
+      "description": "The second test category",
+      "order": 7,
+      "slug": "testcat2"
+    },
+    {
+      "name": "Test Category 3",
+      "description": "The third test category",
+      "order": 10,
+      "slug": "testcat3"
+    }
+  ],
+
+  "oAuth": {
+    "twitter": {
+      "consumerKey": "foo",
+      "secret": "bar"
+    },
+    "facebook": {
+      "appId": "foo",
+      "secret": "bar"
+    }
+  }
+}

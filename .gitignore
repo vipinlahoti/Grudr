@@ -19,9 +19,9 @@ deploy.sh
 dump/
 dump/*
 
-production.settings.json
-settings.json
+# settings.json
 settings.json.not-used
+production.settings.json
 .idea
 
 scratch
@@ -50,9 +50,8 @@ jsdoc.json
 packages/nova-router/.npm
 npm-debug.log
 
-.meteor/.id
-.env
+typings
 
-### Cypress
-tests/cypress/screenshots
-tests/cypress/videos
+storybook-static
+docs/storybook-material
+docs/storybook-bootstrap
