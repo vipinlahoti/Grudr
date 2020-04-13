@@ -2,6 +2,8 @@
 import { Meteor } from 'meteor/meteor'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Form from 'react-bootstrap/Form';
+
 import AccountsReact from '../AccountsReact'
 import { handleInputChange } from './commonUtils'
 
@@ -65,7 +67,7 @@ class BaseForm extends Component {
     const globalErrors = errors ? errors.filter(errField => errField._id === '__globals') : []
 
     return (
-      <FormField onSubmit={(e) => e.preventDefault()} className={`ar-${currentState}`}>
+      <Form onSubmit={(e) => e.preventDefault()} className={`ar-${currentState}`}>
 
         {/* Title  */}
         {title && <TitleField text={title} />}
@@ -107,7 +109,7 @@ class BaseForm extends Component {
           {errors.length > 0 && <ErrorsField errors={globalErrors} />}
         </div>
 
-      </FormField>
+      </Form>
     )
   }
 
