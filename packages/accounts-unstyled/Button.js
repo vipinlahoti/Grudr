@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from 'react-bootstrap/Button';
 
 class AccountsButton extends React.Component {
   /* Default accounts-react button element */
@@ -9,9 +8,9 @@ class AccountsButton extends React.Component {
     const { onClick, text, social } = this.props
 
     return (
-      <Button onClick={onClick} className={ social ? 'social-btn btn-white ' + social : 'btn-block'}>
+      <Grudr.components.Button onClick={onClick} className={ social ? 'social-btn btn-white ' + social : 'btn-block'}>
         {social ? text[0].toUpperCase() + text.substr(1) : text}
-      </Button>
+      </Grudr.components.Button>
     )
   }
 }

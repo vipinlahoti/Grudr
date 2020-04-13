@@ -35,7 +35,8 @@ class App extends PureComponent {
       <IntlProvider
         locale={this.getLocale()}
         key={this.getLocale()}
-        messages={Grudr.strings[this.getLocale()]}>
+        messages={Grudr.strings[this.getLocale()]}
+      >
         <Grudr.components.ScrollToTop />
         <Grudr.components.HeadTags />
         {routeNames.length ? (
