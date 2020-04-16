@@ -4,12 +4,6 @@ import { onPageLoad } from 'meteor/server-render';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import Grudr from '../modules/index.js';
-
-// Create the root element
-// const rootElement = document.createElement('div');
-// rootElement.id = 'react-app';
-// document.body.appendChild(rootElement);
 
 const Main = () => 
   <BrowserRouter>
@@ -22,5 +16,3 @@ onPageLoad(sink => {
     document.getElementById('react-app')
   );
 });
-
-export default Grudr;

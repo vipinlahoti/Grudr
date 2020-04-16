@@ -1,8 +1,7 @@
+import Grudr from 'meteor/grudr:lib';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-
-import Grudr from '../config';
 
 const Error404 = () =>
   <div className="section">

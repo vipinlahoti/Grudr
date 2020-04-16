@@ -1,8 +1,7 @@
+import Grudr from 'meteor/grudr:lib';
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-
-import Grudr from '../config';
 
 class GrudrButton extends Component {
 

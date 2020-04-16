@@ -1,8 +1,2 @@
 grudr:core
-grudr:events
-grudr:ui
-
-grudr:accounts
-grudr:accounts-unstyled
-accounts-facebook
-accounts-google
+grudr:lib

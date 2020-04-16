@@ -1,5 +1,5 @@
+import Grudr from 'meteor/grudr:lib';
 import React from 'react';
-import Grudr from '../config';
 
 const Layout = ({children}) =>
   <div className="wrapper" id="wrapper">{children}</div>;

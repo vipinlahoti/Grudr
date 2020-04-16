@@ -1,8 +1,8 @@
+import Grudr from 'meteor/grudr:lib';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { IntlProvider, /* intlShape */ } from 'react-intl';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Grudr from '../config';
 
 const RouteWithLayout = ({ component: Component, ...rest }) => {
   return (

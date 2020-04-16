@@ -1,5 +1,5 @@
+import Grudr from 'meteor/grudr:lib';
 import React from 'react';
-import Grudr from '../config';
 
 const Icon = ({ name, iconClass }) => {
   const icons = Grudr.utils.icons;

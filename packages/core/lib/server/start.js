@@ -1,19 +1,17 @@
 import { onPageLoad } from 'meteor/server-render';
-// 
+
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import { object } from 'prop-types';
 import { Helmet } from 'react-helmet';
-import Grudr from '../modules/index.js';
 
 onPageLoad(sink => {
   const context = {};
   let htmlContent = '';
 
   const App = props => {
-    // console.log('Server props: ', props)
   return (
       <StaticRouter location={props.location} context={context}>
         <Grudr.components.App />

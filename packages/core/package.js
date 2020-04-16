@@ -6,40 +6,10 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.10.1');
   
-  var packages = [
-    'meteor-base',
-    'mongo',
-    'tracker',
-    'reactive-var',
-
-    'standard-minifier-css',
-    'standard-minifier-js',
-    'es5-shim',
-    'ecmascript',
-
-    'shell-server',
-    'server-render',
-    'check',
-    'http',
-    'email',
-
-    'underscore',
-    'fourseven:scss@4.12.0',
-
-    'aldeed:simple-schema'
-  ]
-
-  api.use(packages);
-
-  api.imply(packages);
-
-  api.export('Grudr');
+  api.use([
+    'grudr:lib'
+  ]);
 
   api.mainModule('lib/server/main.js', 'server');
   api.mainModule('lib/client/main.js', 'client');
 });
-
-
-
-
-

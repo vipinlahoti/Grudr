@@ -1,6 +1,6 @@
+import Grudr from 'meteor/grudr:lib';
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
-import Grudr from '../config';
 
 class ScrollToTop extends Component {
   componentDidUpdate(prevProps) {

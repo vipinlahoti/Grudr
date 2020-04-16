@@ -13,11 +13,13 @@ Package.onUse(api => {
     'ecmascript',
     'accounts-base',
     'accounts-password',
+    'accounts-facebook',
+    'accounts-google',
     'mdg:validated-method@1.1.0',
     'check'
   ], ['client', 'server'])
 
-  api.use('react-meteor-data@0.2.16', 'client')
+  api.use('react-meteor-data', 'client')
 
   api.use('service-configuration', { weak: true })
   api.use('http', 'server')
