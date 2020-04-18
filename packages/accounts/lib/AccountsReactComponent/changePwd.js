@@ -52,7 +52,7 @@ class ChangePwd extends Component {
           errors={errors}
         />
 
-        {passwordUpdated && <p>{texts.info.pwdChanged}</p>}
+        {passwordUpdated && <small className="d-block text-success mt-2">{texts.info.pwdChanged}</small>}
 
       </Fragment>
     )

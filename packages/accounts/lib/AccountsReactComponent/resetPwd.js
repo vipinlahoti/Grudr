@@ -45,7 +45,7 @@ class ResetPwd extends Component {
           errors={errors}
         />
 
-        {passwordUpdated && <p>{texts.info.pwdSet}</p>}
+        {passwordUpdated && <small className="d-block text-success mt-2">{texts.info.pwdSet}</small>}
 
       </Fragment>
     )

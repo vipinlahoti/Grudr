@@ -28,7 +28,7 @@ const NavLoggedOut = () =>
       <FormattedMessage id="accounts.register"/>
     </Link>
 
-    <Link to={{ pathname: '/login' }} className="btn btn-cclll">
+    <Link to={{ pathname: '/login' }} className="btn btn-white">
       <Grudr.components.Icon name="account" />
       <FormattedMessage id="accounts.login"/>
     </Link>

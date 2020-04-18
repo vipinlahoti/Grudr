@@ -1,8 +1,7 @@
-import { Accounts } from 'meteor/accounts-base'
-import { ValidatedMethod } from 'meteor/mdg:validated-method'
-import AccountsReact from '../../AccountsReact'
-import validateField from '../../utils/validateField'
-
+import { Accounts } from 'meteor/accounts-base';
+import AccountsReact from '../../AccountsReact';
+import validateField from '../../utils/validateField';
+import { ValidatedMethod } from './ValidatedMethod';
 
 const ARCreateAccount = new ValidatedMethod({
   name: 'ARCreateAccount',

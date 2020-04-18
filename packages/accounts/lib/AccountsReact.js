@@ -487,17 +487,5 @@ class AccountsReact_ {
 }
 
 const AccountsReact = new AccountsReact_()
-Meteor.startup(() => {
-  // Automatically use an installed package.
-  // Packages must be installed before this package in .meteor/packages
-
-  const prefix = 'meteoreact:accounts-'
-  const components =
-    Package[prefix + 'unstyled'] ||
-    Package[prefix + 'semantic']
-    // ...
-
-  AccountsReact.components = components
-})
 
 export default AccountsReact

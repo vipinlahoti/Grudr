@@ -46,7 +46,7 @@ class EnrollAccount extends Component {
           errors={errors}
         />
 
-        {passwordSet && <p>{texts.info.accountEnrolled}</p>}
+        {passwordSet && <small className="d-block text-success mt-2">{texts.info.accountEnrolled}</small>}
 
       </Fragment>
     )

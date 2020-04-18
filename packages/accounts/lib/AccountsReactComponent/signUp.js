@@ -51,7 +51,7 @@ class SignUp extends Component {
             showReCaptcha={showReCaptcha}
           />
 
-          {signUpSuccessful && sendVerificationEmail && <p>{texts.info.signUpVerifyEmail}</p>}
+          {signUpSuccessful && sendVerificationEmail && <small className="d-block text-success mt-2">{texts.info.signUpVerifyEmail}</small>}
 
           {!hideSignInLink && (
             <a className='signIn-link d-block mt-3' onMouseDown={this.redirectToSignIn} href=''>

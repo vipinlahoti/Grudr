@@ -6,7 +6,7 @@ AccountsReact.configure({
   defaultState: 'signUp',
   confirmPassword: false,
   showForgotPasswordLink: true,
-  showLabels: false,
+  showPlaceholders: false,
   passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL',
   mapStateToRoute: {
     signIn: '/login',

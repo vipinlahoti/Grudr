@@ -1,7 +1,7 @@
-import { Accounts } from 'meteor/accounts-base'
-import { ValidatedMethod } from 'meteor/mdg:validated-method'
-import { check } from 'meteor/check'
-import AccountsReact from '../../AccountsReact'
+import { Accounts } from 'meteor/accounts-base';
+import { check } from 'meteor/check';
+import AccountsReact from '../../AccountsReact';
+import { ValidatedMethod } from './ValidatedMethod';
 
 // Based on https://github.com/meteor-useraccounts/core/blob/2e8986813b51f321f908d2f6211f6f81f76cd627/lib/server_methods.js#L124
 const ARResendVerificationEmail = new ValidatedMethod({
