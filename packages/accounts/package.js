@@ -15,8 +15,10 @@ Package.onUse(api => {
     'accounts-google',
   ], ['client', 'server']);
 
+  api.use('accounts-oauth', { weak: true });
   api.use('service-configuration', { weak: true });
   api.use('http', 'server');
 
   api.mainModule('lib/index.js', ['client', 'server'])
+  // api.mainModule('lib/utils/oAuth-config.js', ['server'])
 })

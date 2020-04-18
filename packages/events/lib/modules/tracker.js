@@ -15,7 +15,7 @@ if (Meteor.isServer) {
 }
 
 Events.track = function(event, properties){
-  // console.log('trackevent: ', event, properties);
+  console.log('trackevent: ', event, properties);
   properties = properties || {};
   //TODO
   // add event to an Events collection for logging and buffering purposes
@@ -29,4 +29,4 @@ Events.track = function(event, properties){
   // }
 };
 
-export default Events;
+// export default Events;

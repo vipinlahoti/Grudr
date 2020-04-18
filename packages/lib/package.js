@@ -22,6 +22,7 @@ Package.onUse(function(api) {
     'check',
     'http',
     'email',
+    'react-meteor-data',
 
     'underscore'
   ]

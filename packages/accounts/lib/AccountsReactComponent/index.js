@@ -17,8 +17,6 @@ class AccountsReactComponent extends React.Component {
   }
 
   render () {
-    // ensureComponentsExist()
-
     // State priority -> 1.internal 2. provided by route/state prop (from parent component) 3. default state from config
     let state = this.state.internalState || this.props.state
     if (!state) {
@@ -73,12 +71,6 @@ class AccountsReactComponent extends React.Component {
     this.setState({ internalState: toState })
   }
 }
-
-// function ensureComponentsExist () {
-//   if (!AccountsReact.components) {
-//     throw new Error('Please ensure you have provided AccountsReact a set of components to use')
-//   }
-// }
 
 AccountsReactComponent.defaultProps = {
   config: {}

@@ -1,8 +1,10 @@
 import Grudr from 'meteor/grudr:lib';
+import { withTracker } from 'meteor/react-meteor-data';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { IntlProvider, /* intlShape */ } from 'react-intl';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Messages from '../messages.js';
 
 const RouteWithLayout = ({ component: Component, ...rest }) => {
   return (
@@ -30,6 +32,14 @@ class App extends PureComponent {
 
   render() {
     const routeNames = Grudr.routes.routes;
+
+    // const data = {
+    //   // currentUser: Meteor.user(),
+    //   messages: Messages
+    // }
+
+    // console.log('subscriptions: ', subscriptions);
+    // console.log('data: ', data);
 
     return (
       <IntlProvider
@@ -67,4 +77,12 @@ App.childContextTypes = {
   getLocale: PropTypes.func,
 };
 
-Grudr.registerComponent('App', App);
+const AppContainer = withTracker(() => {
+  // const subscriptions = Grudr.subscriptions.map((sub) => Meteor.subscribe(sub.name, sub.arguments));
+  // console.log('subscriptions: ', subscriptions);
+
+  return {
+  };
+})(App);
+
+Grudr.registerComponent('App', AppContainer);

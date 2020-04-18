@@ -1,7 +1,5 @@
 import { AccountsReact } from 'meteor/grudr:accounts'
 
-AccountsReact.style(Package['grudr:accounts-unstyled'], true)
-
 AccountsReact.configure({
   defaultState: 'signUp',
   confirmPassword: false,
