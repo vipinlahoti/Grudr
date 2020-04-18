@@ -1,4 +1,4 @@
-import Grudr from 'meteor/grudr:core';
+import Grudr from 'meteor/grudr:lib';
 
 Grudr.routes.add([
   {name: 'home', path: '/', component: Grudr.components.HomePage},

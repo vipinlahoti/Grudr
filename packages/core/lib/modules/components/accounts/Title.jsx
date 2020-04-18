@@ -1,3 +1,4 @@
+import Grudr from 'meteor/grudr:lib';
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -13,4 +14,4 @@ Title.propTypes = {
   text: PropTypes.string.isRequired
 }
 
-export default Title
+Grudr.registerComponent('Title', Title);

@@ -2,9 +2,6 @@
 import { Meteor } from 'meteor/meteor'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Form from 'react-bootstrap/Form';
-
-import AccountsReact from '../AccountsReact'
 import { handleInputChange } from './commonUtils'
 
 class BaseForm extends Component {
@@ -52,34 +49,22 @@ class BaseForm extends Component {
     const title  = texts.title[currentState]
     const button = texts.button[currentState]
 
-    // Components
-    const {
-      FormField,
-      InputField,
-      SelectField,
-      RadioField,
-      SubmitField,
-      TitleField,
-      ErrorsField
-    } = AccountsReact.components
-
     // Global errors
     const globalErrors = errors ? errors.filter(errField => errField._id === '__globals') : []
-
     return (
-      <Form onSubmit={(e) => e.preventDefault()} className={`ar-${currentState}`}>
+      <Grudr.components.Forms onSubmit={(e) => e.preventDefault()} className={`ar-${currentState}`}>
 
         {/* Title  */}
-        {title && <TitleField text={title} />}
+        {title && <Grudr.components.Title text={title} />}
 
         {/* Fields  */}
         <div className='ar-fields'>
           {fields.map((f, i) => {
 
-            let Field = InputField // Defaults to input
+            let Field = Grudr.components.InputField // Defaults to input
             switch (f.type) {
-              case 'select': Field = SelectField; break;
-              case 'radio':  Field = RadioField;  break;
+              case 'select': Field = Grudr.components.SelectField; break;
+              case 'radio':  Field = Grudr.components.RadioField;  break;
             }
 
             const props = {
@@ -102,14 +87,15 @@ class BaseForm extends Component {
         {showReCaptcha && <div id='recaptcha-container' />}
 
         {/* Submit Button  */}
-        <SubmitField onClick={onSubmit} text={button} />
+        <Grudr.components.AccountsButton onClick={onSubmit} text={button} />
+
 
         {/* Errors Message  */}
         <div className='ar-errors'>
-          {errors.length > 0 && <ErrorsField errors={globalErrors} />}
+          {globalErrors.length > 0 && <Grudr.components.Errors errors={globalErrors} />}
         </div>
 
-      </Form>
+      </Grudr.components.Forms>
     )
   }
 

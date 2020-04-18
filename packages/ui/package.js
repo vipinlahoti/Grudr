@@ -11,7 +11,6 @@ Package.onUse(function(api) {
     
     'grudr:core',
     'grudr:accounts',
-    'grudr:accounts-unstyled',
     'grudr:email',
     'grudr:events',
   ]);

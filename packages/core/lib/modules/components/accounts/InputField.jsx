@@ -1,3 +1,4 @@
+import Grudr from 'meteor/grudr:lib';
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 
@@ -27,4 +28,4 @@ const InputField = props => {
   )
 }
 
-export default InputField
+Grudr.registerComponent('InputField', InputField);

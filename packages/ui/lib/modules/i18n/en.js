@@ -1,4 +1,4 @@
-import Grudr from 'meteor/grudr:core';
+import Grudr from 'meteor/grudr:lib';
 
 Grudr.strings.en = {
   "pages.home": "Home",

@@ -1,23 +1,22 @@
-import Grudr from 'meteor/grudr:core';
+import Grudr from 'meteor/grudr:lib';
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Jumbotron, Container, Row, Col, Card } from 'react-bootstrap';
 
 const HomePage = () => {
   return (
     <React.Fragment>
       <Grudr.components.HeadTags title="Home" description="Home description" />
 
-      <div className="section section-hero">
+      <Jumbotron className="section-hero">
         <Container>
           <Row>
             <Col sm={12} md={7} lg={7}>
-
-              <h4 className="display-4"><FormattedMessage id="hero.description"/></h4>
-
+              <h4 className="display-4">An agile suite that’s designed for change.</h4>
+              <p>Business today moves fast. Faster than ever before. That’s why we bring your enterprise applications into one agile suite. With finance, HR, planning, and analytics together, you gain the insight, efficiency, and agility needed to succeed in the ever-changing world.</p>
               <div className="mt-4">
-                <Grudr.components.Button variant="primary" type="link" path="/register" icon="person_add">
+                <Grudr.components.Button variant="white" type="link" path="/register" icon="person_add">
                   <FormattedMessage id="accounts.register"/>
                 </Grudr.components.Button>
                 <Grudr.components.Button variant="white" type="link" path="/login" icon="account">
@@ -28,7 +27,7 @@ const HomePage = () => {
             </Col>
           </Row>
         </Container>
-      </div>
+      </Jumbotron>
 
       <div className="section section-features">
       <Container>

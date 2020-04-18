@@ -1,3 +1,4 @@
+import Grudr from 'meteor/grudr:lib';
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -20,4 +21,4 @@ AccountsButton.propTypes = {
   onClick: PropTypes.func.isRequired
 }
 
-export default AccountsButton
+Grudr.registerComponent('AccountsButton', AccountsButton);

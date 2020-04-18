@@ -1,2 +1,4 @@
 grudr:core
-grudr:lib
+
+grudr:ui
+grudr:accounts

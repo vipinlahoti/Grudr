@@ -10,11 +10,11 @@ class SocialButtons extends React.Component {
     }
 
     const services = Accounts.oauth.serviceNames()
-    const { SubmitField } = AccountsReact.components
+    // const { SubmitField } = AccountsReact.components
     return services && services.map((service, i) => {
 
       return (
-        <SubmitField
+        <Grudr.components.AccountsButton
           key={i}
           onClick={() => this.loginWith(service)}
           social={service}

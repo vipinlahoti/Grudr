@@ -1,3 +1,4 @@
+import SimpleSchema from 'simpl-schema';
 import Grudr from './config.js';
 
 /**

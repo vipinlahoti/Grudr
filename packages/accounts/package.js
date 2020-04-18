@@ -24,5 +24,5 @@ Package.onUse(api => {
   api.use('service-configuration', { weak: true })
   api.use('http', 'server')
 
-  api.mainModule('index.js', ['client', 'server'])
+  api.mainModule('lib/index.js', ['client', 'server'])
 })

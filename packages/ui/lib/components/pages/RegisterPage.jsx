@@ -1,4 +1,4 @@
-import Grudr from 'meteor/grudr:core';
+import Grudr from 'meteor/grudr:lib';
 
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';

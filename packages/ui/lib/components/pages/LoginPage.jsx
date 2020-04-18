@@ -1,12 +1,12 @@
-import Grudr from 'meteor/grudr:core';
+import Grudr from 'meteor/grudr:lib';
 import { AccountsReactComponent } from 'meteor/grudr:accounts'
 
 import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Jumbotron, Container, Row, Col, Card } from 'react-bootstrap';
 
 const LoginPage = () =>
   <React.Fragment>
-    <div className="section-diagonal"></div>
+    
     <div className="login__wrapper">
       <Container>
         <Row>

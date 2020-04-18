@@ -1,4 +1,5 @@
 import Grudr from 'meteor/grudr:lib';
+import { AccountsReactComponent } from 'meteor/grudr:accounts'
 import React from 'react';
 
 const wrapper = {
@@ -14,9 +15,17 @@ const wrapper = {
   justifyContent: 'center',
 };
 
+const loginWrapper = {
+  margin: '3rem auto',
+  width: '450px'
+}
+
 const HelloWorld = () => 
-  <div style={wrapper}>
+  <div style={loginWrapper}>
     <h2>Hello World!!</h2>
+    <div style={wrapper}>
+      <AccountsReactComponent state='signIn'/>
+    </div>
   </div>
 
 Grudr.registerComponent('HelloWorld', HelloWorld);

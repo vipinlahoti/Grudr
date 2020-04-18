@@ -31,11 +31,18 @@
 }
 
 .section-hero {
-  min-height: 100vh;
-  max-height: 999px;
+  // min-height: 100vh;
+  // max-height: 999px;
+  height: 650px;
   display: flex;
   align-items: center;
-  margin-top: -77px;
+  margin: 0 $spacer * 3;
+  position: relative;
+  border-radius: 2rem;
+  // background-image: url('/images/hero_banner.png');
+  // background-repeat: no-repeat;
+  // background-size: 80% auto;
+  // background-position: 178%;
 
   .navbar-brand {
     font-size: 3.5rem;
@@ -51,6 +58,10 @@
   // background: $white;
   padding: $spacer * 3 0;
   width: 100%;
+}
+
+.section-gray {
+  background: $gray-100;
 }
 
 .icon {

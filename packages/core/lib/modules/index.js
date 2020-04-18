@@ -9,3 +9,11 @@ import './components/Loading.jsx';
 import './components/Error404.jsx';
 import './components/Button.jsx';
 import './components/HelloWorld.jsx';
+
+import './components/accounts/AccountsButton.jsx';
+import './components/accounts/AccountsErrors.jsx';
+import './components/accounts/Form.jsx';
+import './components/accounts/InputField.jsx';
+import './components/accounts/RadioField.jsx';
+import './components/accounts/SelectField.jsx';
+import './components/accounts/Title.jsx';

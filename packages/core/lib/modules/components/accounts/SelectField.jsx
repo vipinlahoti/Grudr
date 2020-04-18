@@ -1,7 +1,12 @@
+import Grudr from 'meteor/grudr:lib';
 import React from 'react'
 import PropTypes from 'prop-types'
 
-class RadioField extends React.Component {
+class SelectField extends React.Component {
+
+  state = {
+    defaultOption: null
+  }
 
   componentDidMount () {
 
@@ -16,19 +21,19 @@ class RadioField extends React.Component {
 
       // let parent know that this field has a default value
       onChange(defaultOption.value, _id)
+      this.setState({ defaultOption })
     }
   }
 
   render () {
-
     const {
-      _id,
       displayName,
       options,
       error,
-      values,
       defaults
     } = this.props
+
+    const { defaultOption } = this.state
 
     return (
 
@@ -37,23 +42,18 @@ class RadioField extends React.Component {
         {defaults.showLabels && <label>{displayName}</label>}
         <br />
 
-        {options.map((option, i) => (
-          <React.Fragment key={i}>
-            <input
-              type='radio'
-              value={option.value}
-              checked={values[_id] === option.value}
-              onChange={this.handleChange}
-            />
-            <label>{option.text}</label>
-            <br />
-          </React.Fragment>
-        ))}
-
+        <select defaultValue={defaultOption ? defaultOption.value : options[0].value} onChange={this.handleChange}>
+          {options.map((option, i) => (
+            <option key={i} value={option.value}>{option.text}</option>
+          ))}
+        </select>
         <br />
-        {error && <span style={{ color: 'red' }}>{error.errStr}</span>}
+
+        {error && <Grudr.components.Errors errors={[error.errStr]} />}
+        <br />
 
       </div>
+
     )
   }
 
@@ -68,15 +68,15 @@ class RadioField extends React.Component {
   }
 }
 
-RadioField.propTypes = {
+SelectField.propTypes = {
   component: PropTypes.element,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   type: PropTypes.string
 }
 
-RadioField.defaultProps = {
+SelectField.defaultProps = {
   type: 'text'
 }
 
-export default RadioField
+Grudr.registerComponent('SelectField', SelectField);

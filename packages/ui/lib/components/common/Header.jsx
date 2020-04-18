@@ -1,4 +1,4 @@
-import Grudr from 'meteor/grudr:core';
+import Grudr from 'meteor/grudr:lib';
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
@@ -28,18 +28,16 @@ const NavLoggedOut = () =>
       <FormattedMessage id="accounts.register"/>
     </Link>
 
-    <Link to={{ pathname: '/login' }} className="btn btn-white">
+    <Link to={{ pathname: '/login' }} className="btn btn-cclll">
       <Grudr.components.Icon name="account" />
       <FormattedMessage id="accounts.login"/>
     </Link>
   </Nav>
 
 const Header = () => 
-  <Navbar variant="dark" bg="primary">
-    <Container>
-      <Grudr.components.Logo logoUrl={logoUrl} siteTitle={siteTitle}/>
-      <NavLoggedOut />
-    </Container>
+  <Navbar variant="light">
+    <Grudr.components.Logo logoUrl={logoUrl} siteTitle={siteTitle}/>
+    <NavLoggedOut />
   </Navbar>
 
 Grudr.registerComponent('Header', Header);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Grudr from 'meteor/grudr:core';
+import Grudr from 'meteor/grudr:lib';
 
 class Layout extends Component {
   render() {

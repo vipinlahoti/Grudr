@@ -1,4 +1,4 @@
-import Grudr from 'meteor/grudr:core';
+import Grudr from 'meteor/grudr:lib';
 import Events from '../modules/collection.js';
 
 Events.analyticsRequest = function() {
