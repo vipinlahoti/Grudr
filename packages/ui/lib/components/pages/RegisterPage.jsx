@@ -1,17 +1,18 @@
 import Grudr from 'meteor/grudr:lib';
+import { AccountsReactComponent } from 'meteor/grudr:accounts'
 
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 
 const RegisterPage = () =>
   <React.Fragment>
-    <div className="section-diagonal"></div>
-    <div className="section-hero login__wrapper">
+    <div className="login__wrapper">
       <Container>
-        <Row className="justify-content-md-center align-items-center h-100">
-          <Col sm={12} md={4} lg={4}>
-            Register Form
-          </Col>
+        <Row>
+          <div className="accounts-card">
+            <div className="accounts-card-banner"></div>
+            <AccountsReactComponent state='signUp'/>
+          </div>
         </Row>
       </Container>
     </div>

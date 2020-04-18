@@ -1,9 +1,7 @@
 Package.describe({
   name: 'grudr:accounts',
   summary: 'Simple and intuative accounts view layer with react',
-  version: '1.2.4',
-  documentation: 'README.md',
-  git: 'https://github.com/royGil/accounts-react'
+  version: '0.0.1'
 })
 
 Package.onUse(api => {
