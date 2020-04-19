@@ -8,6 +8,7 @@ Grudr.strings.en = {
   "pages.404": "Error 404",
 
   "accounts.login": "Login",
+  "accounts.logout": "Logout",
   "accounts.register": "Register",
 
   "hero.description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."

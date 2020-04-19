@@ -12,7 +12,7 @@ const LoginPage = () =>
         <Row>
           <div className="accounts-card">
             <div className="accounts-card-banner"></div>
-            <AccountsReactComponent state='signIn'/>
+            <AccountsReactComponent />
           </div>
         </Row>
       </Container>

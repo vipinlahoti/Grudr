@@ -29,6 +29,7 @@
     "moment": "^2.24.0",
     "pluralize": "^8.0.0",
     "prop-types": "^15.7.2",
+    "random": "^2.2.0",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.0",
     "react-cookie": "^4.0.3",
@@ -41,7 +42,8 @@
     "sanitize-html": "^1.22.1",
     "simpl-schema": "^1.5.7",
     "speakingurl": "^14.0.1",
-    "underscore": "^1.9.2"
+    "underscore": "^1.9.2",
+    "universal-cookie": "^4.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^9.7.5",

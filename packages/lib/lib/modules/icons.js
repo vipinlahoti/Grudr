@@ -5,5 +5,6 @@ import Grudr from './config.js';
  */
 Grudr.utils.icons = {
   account: 'account_circle',
-  person_add: 'person_add'
+  person_add: 'person_add',
+  lock_outline: 'lock_outline',
 };

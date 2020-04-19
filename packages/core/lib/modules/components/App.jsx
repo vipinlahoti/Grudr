@@ -2,7 +2,7 @@ import Grudr from 'meteor/grudr:lib';
 import { withTracker } from 'meteor/react-meteor-data';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { IntlProvider, /* intlShape */ } from 'react-intl';
+import { IntlProvider, intlShape } from 'react-intl';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Messages from '../messages.js';
 
@@ -16,7 +16,8 @@ const RouteWithLayout = ({ component: Component, ...rest }) => {
             <Component {...props} />
           </Grudr.components.Layout>
         </React.Fragment>
-    } />
+      }
+    />
   );
 };
 
@@ -27,14 +28,19 @@ class App extends PureComponent {
   }
 
   getChildContext() {
+    // const { intl } = intlProvider.getChildContext();
+
     return {
-      getLocale: this.getLocale
+      getLocale: this.getLocale,
+      currentUser: this.props.currentUser,
+      actions: this.props.actions,
+      messages: this.props.messages,
     };
   }
 
   render() {
     const routeNames = Grudr.routes.routes;
-    console.log('this.props: ', this.props.ready);
+    console.log('Apps.jsx props: ', this.props);
 
     return (
       <IntlProvider
@@ -44,20 +50,26 @@ class App extends PureComponent {
       >
         <Grudr.components.ScrollToTop />
         <Grudr.components.HeadTags />
-        {routeNames.length ? (
-          <Switch>
-            {routeNames.map((route, i) => (
-              <RouteWithLayout
-                exact
-                key={i}
-                {...route}
-              />
-            ))}
-            <RouteWithLayout
-              component={Grudr.components.Error404}
-            />
-          </Switch> )
-        : ( <Grudr.components.HelloWorld /> )}
+        
+        {this.props.ready ?
+          <React.Fragment>
+            {routeNames.length ? (
+              <Switch>
+                {routeNames.map((route, i) => (
+                  <RouteWithLayout
+                    exact
+                    key={i}
+                    {...route}
+                  />
+                ))}
+                <RouteWithLayout
+                  component={Grudr.components.Error404}
+                />
+              </Switch> )
+            : ( <Grudr.components.HelloWorld /> )}
+          </React.Fragment>
+        : <Grudr.components.Loading /> }
+
       </IntlProvider>
     );
   }
@@ -89,26 +101,13 @@ const AppContainer = withTracker(() => {
       currentUser: Meteor.user(),
       actions: {call: Meteor.call},
       messages: Messages,
-      ready: null,
+    }
+    if (!subscriptions.length || _.every(subscriptions, handle => handle.ready())) {
+      data.ready = true;
+    } else {
+      data.ready = false;
     }
   }
-
-  console.log('subscriptions: ', subscriptions);
-  console.log('data: ', data);
-
-  // if (!subscriptions.length || _.every(subscriptions, handle => handle.ready())) {
-  //   data.ready = true;
-  //   console.log('if subscriptions: ', subscriptions);
-  // } else {
-  //   console.log('else subscriptions: ', subscriptions);
-  //   data.ready = false;
-  // }
-
-  // if ((subscriptions && subscriptions.ready()) || Meteor.isServer) {
-  //   // data.ready = false;
-  //   console.log('data: ', data);
-  //   // returnObj.data = SomeCollection.findOne({ some: 'condition' });
-  // }
 
   return data;
 })(App);
