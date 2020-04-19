@@ -13,17 +13,17 @@ AccountsReact.configure({
     signIn: '/login',
     signUp: '/register'
   },
-  redirects: {
-    toSignUp: () => {
-      window.location.href = '/register';
-    },
-    toSignIn: () => {
-      window.location.href = '/register';
-    },
-    toForgotPwd: () => {
-      window.location.href = '/forgot-password';
-    }
-  },
+  // redirects: {
+  //   toSignUp: () => {
+  //     window.location.href = '/register';
+  //   },
+  //   toSignIn: () => {
+  //     window.location.href = '/register';
+  //   },
+  //   toForgotPwd: () => {
+  //     window.location.href = '/forgot-password';
+  //   }
+  // },
   onLoginHook() {
     if (Meteor.isServer) return;
 
