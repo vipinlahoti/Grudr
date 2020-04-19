@@ -11,9 +11,11 @@ const RouteWithLayout = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render = {props =>
-      <Grudr.components.Layout {...props}>
-        <Component {...props} />
-      </Grudr.components.Layout>
+        <React.Fragment>
+          <Grudr.components.Layout {...props}>
+            <Component {...props} />
+          </Grudr.components.Layout>
+        </React.Fragment>
     } />
   );
 };
@@ -32,14 +34,7 @@ class App extends PureComponent {
 
   render() {
     const routeNames = Grudr.routes.routes;
-
-    // const data = {
-    //   // currentUser: Meteor.user(),
-    //   messages: Messages
-    // }
-
-    // console.log('subscriptions: ', subscriptions);
-    // console.log('data: ', data);
+    console.log('this.props: ', this.props.ready);
 
     return (
       <IntlProvider
@@ -69,20 +64,53 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  messages: PropTypes.object,
+  ready: PropTypes.bool,
+  currentUser: PropTypes.object,
+  actions: PropTypes.object,
+  messages: PropTypes.object
 };
 
 App.childContextTypes = {
+  currentUser: PropTypes.object,
+  actions: PropTypes.object,
+  messages: PropTypes.object,
   // intl: intlShape,
   getLocale: PropTypes.func,
 };
 
 const AppContainer = withTracker(() => {
-  // const subscriptions = Grudr.subscriptions.map((sub) => Meteor.subscribe(sub.name, sub.arguments));
-  // console.log('subscriptions: ', subscriptions);
+  let subscriptions;
+  let data;
 
-  return {
-  };
+  if (Meteor.isClient) {
+    subscriptions = Grudr.subscriptions.map((sub) => Meteor.subscribe(sub.name, sub.arguments));
+
+    data = {
+      currentUser: Meteor.user(),
+      actions: {call: Meteor.call},
+      messages: Messages,
+      ready: null,
+    }
+  }
+
+  console.log('subscriptions: ', subscriptions);
+  console.log('data: ', data);
+
+  // if (!subscriptions.length || _.every(subscriptions, handle => handle.ready())) {
+  //   data.ready = true;
+  //   console.log('if subscriptions: ', subscriptions);
+  // } else {
+  //   console.log('else subscriptions: ', subscriptions);
+  //   data.ready = false;
+  // }
+
+  // if ((subscriptions && subscriptions.ready()) || Meteor.isServer) {
+  //   // data.ready = false;
+  //   console.log('data: ', data);
+  //   // returnObj.data = SomeCollection.findOne({ some: 'condition' });
+  // }
+
+  return data;
 })(App);
 
 Grudr.registerComponent('App', AppContainer);

@@ -19,10 +19,8 @@ Meteor.publish('users.single', function (terms) {
  * @summary Publish the current user
  */
 
- // console.log('Meteor.publish(users.current)1 : ', Users.find({_id: this.userId}, {fields: {'services.password.bcrypt': false}}))
 Meteor.publish('users.current', function () {
   const user = Users.find({_id: this.userId}, {fields: {'services.password.bcrypt': false}});
-  console.log('Meteor.publish(users.current)1 : ', 'users.current')
   return user || [];
 });
 
