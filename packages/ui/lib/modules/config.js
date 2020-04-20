@@ -36,7 +36,7 @@ AccountsReact.configure({
     }
 
     cookies.set('clientId', clientId, { path: '/' });
-    window.location.href = '/';
+    window.location.href = '/dashboard';
 
     // Meteor.call('userLoggedIn', clientId, (error, clientId) => {
     //   if (error) {

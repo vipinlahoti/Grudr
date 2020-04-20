@@ -5,4 +5,8 @@ Grudr.routes.add([
   
   {name: 'login', path: '/login', component: Grudr.components.LoginPage},
   {name: 'register', path: '/register', component: Grudr.components.RegisterPage},
+
+
+  // Accounts
+  {name: 'dashboard', path: '/dashboard', component: Grudr.components.DashboardPage},
 ]);

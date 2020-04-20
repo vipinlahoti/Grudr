@@ -8,3 +8,7 @@ import '../components/common/Header.jsx';
 import '../components/pages/HomePage.jsx';
 import '../components/pages/LoginPage.jsx';
 import '../components/pages/RegisterPage.jsx';
+
+
+// Accounts
+import '../components/accounts/DashboardPage.jsx';
