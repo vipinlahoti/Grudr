@@ -1,23 +1,20 @@
 import Grudr from 'meteor/grudr:lib';
+import { AccountsReact } from 'meteor/grudr:accounts';
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { AccountsReact } from 'meteor/grudr:accounts';
 
 const siteTitle = Grudr.settings.get('title', 'Grudr');
 const logoUrl = Grudr.settings.get('logoUrl');
 
 const NavLoggedIn = () =>
   <Nav className="ml-auto">
-    <Nav.Link href="#home">
+    <Link to={{ pathname: '/dashboard' }} className="nav-link">
       <FormattedMessage id="pages.dashboard"/>
-    </Nav.Link>
-    <Nav.Link href="#link">
-      <FormattedMessage id="pages.articles"/>
-    </Nav.Link>
+    </Link>
     <Grudr.components.Button variant="danger" icon="lock_outline" onClick={() => AccountsReact.logout() }>
       <FormattedMessage id="accounts.logout"/>
     </Grudr.components.Button>

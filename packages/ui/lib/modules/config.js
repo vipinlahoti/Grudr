@@ -36,7 +36,8 @@ AccountsReact.configure({
     }
 
     cookies.set('clientId', clientId, { path: '/' });
-    window.location.href = '/dashboard';
+    // window.location.href = '/dashboard';
+  
 
     // Meteor.call('userLoggedIn', clientId, (error, clientId) => {
     //   if (error) {
@@ -46,7 +47,6 @@ AccountsReact.configure({
     //     window.location.href = '/';
     //   }
     // });
-
     console.log('onLoginHook', 'cookies: ', cookies, ' clientId: ', clientId);
   },
   onLogoutHook() {
@@ -57,6 +57,7 @@ AccountsReact.configure({
 
     cookies.remove('clientId');
     window.location.href = '/';
+    // <Redirect to='/' />
 
     // Meteor.call('userLoggedOut', clientId, error => {
     //   if (error) {
@@ -65,8 +66,8 @@ AccountsReact.configure({
     //     cookies.remove('clientId');
     //   }
     // });
-
     console.log('onLogoutHook', 'cookies: ', cookies, ' clientId: ', clientId);
+    // return (<Redirect to='/' />)
   },
   oauth: {
     google: {

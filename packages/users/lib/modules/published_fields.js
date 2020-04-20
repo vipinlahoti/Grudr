@@ -13,10 +13,10 @@ Users.publishedFields.public = PublicationsUtils.arrayToFields([
   'services.twitter.profile_image_url_https',
   'services.facebook.id',
   'services.twitter.screenName',
-  'telescope.downvotedComments',
-  'telescope.downvotedPosts',
-  'telescope.upvotedComments',
-  'telescope.upvotedPosts'
+  'grudr.downvotedComments',
+  'grudr.downvotedPosts',
+  'grudr.upvotedComments',
+  'grudr.upvotedPosts'
 ]);
 
 /**
@@ -25,9 +25,9 @@ Users.publishedFields.public = PublicationsUtils.arrayToFields([
  */
 // Users.publishedFields.list = PublicationsUtils.arrayToFields([
 //   '_id',
-//   'telescope.emailHash',
-//   'telescope.slug',
-//   'telescope.displayName',
+//   'grudr.emailHash',
+//   'grudr.slug',
+//   'grudr.displayName',
 //   'username',
 //   'profile.username',
 //   'profile.github',

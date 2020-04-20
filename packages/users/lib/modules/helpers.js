@@ -54,7 +54,7 @@ Users.getDisplayName = function (user) {
   if (typeof user === 'undefined') {
     return '';
   } else {
-    return (user.telescope && user.telescope.displayName) ? user.telescope.displayName : Users.getUserName(user);
+    return (user.grudr && user.grudr.displayName) ? user.grudr.displayName : Users.getUserName(user);
   }
 };
 // Users.helpers({getDisplayName: function () {return Users.getDisplayName(this);}});
@@ -71,8 +71,8 @@ Users.getProfileUrl = function (user, isAbsolute) {
   }
   isAbsolute = typeof isAbsolute === 'undefined' ? false : isAbsolute; // default to false
   var prefix = isAbsolute ? Grudr.utils.getSiteUrl().slice(0,-1) : '';
-  if (user.telescope && user.telescope.slug) {
-    return `${prefix}/users/${user.telescope.slug}`;
+  if (user.grudr && user.grudr.slug) {
+    return `${prefix}/users/${user.grudr.slug}`;
   } else {
     return '';
   }
@@ -128,8 +128,8 @@ Users.getGitHubNameById = function (userId) {return Users.getGitHubName(Users.fi
  * @param {Object} user
  */
 Users.getEmail = function (user) {
-  if(user.telescope && user.telescope.email){
-    return user.telescope.email;
+  if(user.grudr && user.grudr.email){
+    return user.grudr.email;
   }else{
     return null;
   }
@@ -142,7 +142,7 @@ Users.getEmailById = function (userId) {return Users.getEmail(Users.findOne(user
  * @param {Object} user
  */
 Users.getEmailHash = function (user) {
-  return user.telescope.emailHash;
+  return user.grudr.emailHash;
 };
 // Users.helpers({getEmailHash: function () {return Users.getEmailHash(this);}});
 Users.getEmailHashById = function (userId) {return Users.getEmailHash(Users.findOne(userId));};
@@ -156,10 +156,10 @@ Users.getEmailHashById = function (userId) {return Users.getEmailHash(Users.find
 Users.getSetting = function (user, settingName, defaultValue) {
   user = user || Meteor.user();
   defaultValue = defaultValue || null;
-  // all settings should be in the user.telescope namespace, so add 'telescope.' if needed
-  settingName = settingName.slice(0,10) === 'telescope.' ? settingName : 'telescope.' + settingName;
+  // all settings should be in the user.grudr namespace, so add 'grudr.' if needed
+  settingName = settingName.slice(0,10) === 'grudr.' ? settingName : 'grudr.' + settingName;
 
-  if (user && user.telescope) {
+  if (user && user.grudr) {
     var settingValue = Users.getProperty(user, settingName);
     return typeof settingValue === 'undefined' ? defaultValue : settingValue;
   } else {
@@ -272,6 +272,6 @@ Users.getCurrentUserEmail = function () {
 };
 
 Users.findByEmail = function (email) {
-  return Users.findOne({'telescope.email': email});
+  return Users.findOne({'grudr.email': email});
 };
 

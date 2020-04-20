@@ -1,9 +1,10 @@
 import Grudr from 'meteor/grudr:lib';
 import { withTracker } from 'meteor/react-meteor-data';
 import React, { PureComponent } from 'react';
+import { Redirect } from 'react-router'
 import PropTypes from 'prop-types';
 import { IntlProvider, intlShape } from 'react-intl';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
 import Messages from '../messages.js';
 
 const RouteWithLayout = ({ component: Component, ...rest }) => {
@@ -30,6 +31,7 @@ class App extends PureComponent {
   getChildContext() {
     // const { intl } = intlProvider.getChildContext();
 
+    // This return will keep keep these props as context
     return {
       getLocale: this.getLocale,
       currentUser: this.props.currentUser,
@@ -40,7 +42,13 @@ class App extends PureComponent {
 
   render() {
     const routeNames = Grudr.routes.routes;
-    console.log('Apps.jsx props: ', this.props);
+    const currentRoute = this.props.location.pathname;
+    
+    if (Meteor.isClient) {
+      if ((Meteor.user() && currentRoute === '/login') || (Meteor.user() && currentRoute === '/register')) {
+        return (<Redirect to='/dashboard' />)
+      }
+    }
 
     return (
       <IntlProvider
@@ -112,4 +120,6 @@ const AppContainer = withTracker(() => {
   return data;
 })(App);
 
-Grudr.registerComponent('App', AppContainer);
+const MainAppContainer = withRouter(AppContainer)
+
+Grudr.registerComponent('App', MainAppContainer);
