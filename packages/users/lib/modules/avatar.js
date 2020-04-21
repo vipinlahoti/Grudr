@@ -1,11 +1,82 @@
 // import { Gravatar } from 'meteor/jparker:gravatar';
 import Users from './collection.js';
+import md5 from 'crypto-js/md5';
 
-// var _ = require('underscore');
+// let _ = require('underscore');
 
 // import Gravatar from 'gravatar';
 
 Users.avatar = {
+
+   /**
+   * `cleantString` remove starting and trailing whitespaces
+   * and lowercase the input
+   * @param  {String} string input string that may contain leading and trailing
+   * whitespaces and uppercase letters
+   * @return {String}        output cleaned string
+   */
+  cleanString: function (string) {
+    return string.trim().toLowerCase();
+  },
+
+  /**
+   * `isHash` check if a string match the MD5 form :
+   * 32 chars string containing letters from `a` to `f`
+   * and digits from `0` to `9`
+   * @param  {String}  string that might be a hash
+   * @return {Boolean}
+   */
+  isHash: function (string) {
+    var self = this;
+    return /^[a-f0-9]{32}$/i.test(self.cleanString(string));
+  },
+
+  /**
+   * `hash` takes an input and run it through `CryptoJS.MD5`
+   * @see https://atmospherejs.com/jparker/crypto-md5
+   * @param  {String} string input string
+   * @return {String}        md5 hash of the input
+   */
+  hash: function (string) {
+    var self = this;
+    // eslint-disable-next-line babel/new-cap
+    return md5(self.cleanString(string)).toString();
+  },
+
+  /**
+   * `imageUrl` will provide the url for the avatar, given an email or a hash
+   * and a set of options to be passed to the gravatar API
+   * @see https://en.gravatar.com/site/implement/images/
+   * @param  {String} emailOrHash email or pregenerated MD5 hash to query
+   * gravatar with.
+   * @param  {Object} options     options to be passed to gravatar in the query
+   * string. The `secure` will be used to determine which base url to use.
+   * @return {String}             complete url to the avatar
+   */
+  imageUrl: function (emailOrHash, options) {
+    var self = this;
+    options = options || {};
+
+    // Want HTTPS ?
+    var url = options.secure
+    ? 'https://secure.gravatar.com/avatar/'
+    : 'http://www.gravatar.com/avatar/';
+    delete options.secure;
+
+    // Is it an MD5 already ?
+    url += self.isHash(emailOrHash)
+    ? emailOrHash
+    : self.hash(emailOrHash);
+
+    // Have any options to pass ?
+    var params = _.map(options, function (val, key) {
+      return key + '=' + encodeURIComponent(val);
+    }).join('&');
+
+    return (params.length > 0)
+    ? url + '?' + params
+    : url;
+  },
 
   // Default functionality. You can override these options by calling
   // Users.avatar.setOptions (do not set this.options directly)
@@ -24,7 +95,7 @@ Users.avatar = {
     // This will replace the included default avatar image's URL
     // ('packages/utilities_avatar/default.png'). It can be a relative path
     // (relative to website's base URL, e.g. 'images/defaultthis.png').
-    defaultImageUrl: 'https://placekitten.com/80/80',
+    defaultImageUrl: 'http://www.gravatar.com/avatar/?d=identicon',
 
     // This property name will be used to fetch an avatar url from the user's profile
     // (e.g. 'avatar'). If this property is set and a property of that name exists
@@ -42,7 +113,7 @@ Users.avatar = {
     // If a value is set to, 'foo' for example, the resulting CSS classes are prefixed with 'foo'.
     cssClassPrefix: '',
 
-    // This property defines the various image sizes available
+    // This property defines the letious image sizes available
     imageSizes: {
       'large': 80,
       'small': 30,
@@ -94,9 +165,9 @@ Users.avatar = {
   // Get the initials of the user
   getInitials: function (user) {
 
-    var initials = '';
-    var name = '';
-    var parts = [];
+    let initials = '';
+    let name = '';
+    let parts = [];
 
     if (user && user.profile && user.profile.firstName) {
       initials = user.profile.firstName.charAt(0).toUpperCase();
@@ -138,8 +209,8 @@ Users.avatar = {
     // Default to the currently logged in user, unless otherwise specified.
     if (!user) return null;
 
-    var url = '';
-    var defaultUrl, svc;
+    let url = '';
+    let defaultUrl, svc;
 
     if (user) {
       svc = this.getService(user);
@@ -167,7 +238,7 @@ Users.avatar = {
         url = this.getCustomUrl(user);
       }
       else if (svc === 'none') {
-        defaultUrl = this.options.defaultImageUrl || '/packages/utilities_avatar/default.png';
+        defaultUrl = this.options.defaultImageUrl;
         // If it's a relative path (no '//' anywhere), complete the URL
         if (defaultUrl.indexOf('//') === -1) {
           // Add starting slash if it does not exist
@@ -175,7 +246,7 @@ Users.avatar = {
           // Then add the relative path to the server's base URL
           defaultUrl = [window.location.origin, defaultUrl].join('');
         }
-        // url = this.getGravatarUrl(user, defaultUrl);
+        url = this.getGravatarUrl(user, defaultUrl);
       }
     }
 
@@ -183,9 +254,9 @@ Users.avatar = {
   },
 
   getService: function (user) {
-    var services = user && user.services || {};
+    let services = user && user.services || {};
     if (this.getCustomUrl(user)) { return 'custom'; }
-    var service = _.find([['twitter', 'profile_image_url_https'], ['facebook', 'id'], ['google', 'picture'], ['github', 'username'], ['instagram', 'profile_picture'], ['linkedin', 'pictureUrl']], function(s) { return !!services[s[0]] && s[1].length && !!services[s[0]][s[1]]; });
+    let service = _.find([['twitter', 'profile_image_url_https'], ['facebook', 'id'], ['google', 'picture'], ['github', 'username'], ['instagram', 'profile_picture'], ['linkedin', 'pictureUrl']], function(s) { return !!services[s[0]] && s[1].length && !!services[s[0]][s[1]]; });
     if(!service)
       return 'none';
     else
@@ -202,14 +273,14 @@ Users.avatar = {
   },
 
   getDescendantProp: function (obj, desc) {
-    var arr = desc.split('.');
+    let arr = desc.split('.');
     while(arr.length && (obj = obj[arr.shift()]));
     return obj;
   },
 
   getCustomUrl: function (user) {
 
-    var customProp = user && this.options.customImageProperty;
+    let customProp = user && this.options.customImageProperty;
     if (typeof customProp === 'function') {
       return this.computeUrl(customProp, user);
     } else if (customProp) {
@@ -217,37 +288,38 @@ Users.avatar = {
     }
   },
 
-  // getGravatarUrl: function (user, defaultUrl) {
-  //   var gravatarDefault;
-  //   var validGravatars = ['404', 'mm', 'identicon', 'monsterid', 'wavatar', 'retro', 'blank'];
+  getGravatarUrl: function (user, defaultUrl) {
+    console.log(user, defaultUrl)
+    let gravatarDefault;
+    let validGravatars = ['404', 'mm', 'identicon', 'monsterid', 'wavatar', 'retro', 'blank'];
 
-  //   // Initials are shown when Gravatar returns 404.
-  //   if (this.options.fallbackType !== 'initials') {
-  //     var valid = _.contains(validGravatars, this.options.gravatarDefault);
-  //     gravatarDefault = valid ? this.options.gravatarDefault : defaultUrl;
-  //   }
-  //   else {
-  //     gravatarDefault = '404';
-  //   }
+    // Initials are shown when Gravatar returns 404.
+    if (this.options.fallbackType !== 'initials') {
+      let valid = _.contains(validGravatars, this.options.gravatarDefault);
+      gravatarDefault = valid ? this.options.gravatarDefault : defaultUrl;
+    }
+    else {
+      gravatarDefault = '404';
+    }
 
-  //   var emailOrHash = this.getUserEmail(user) || Users.getEmailHash(user);
-  //   // var secure = true;
-  //   var options = {
-  //     // NOTE: Gravatar's default option requires a publicly accessible URL,
-  //     // so it won't work when your app is running on localhost and you're
-  //     // using an image with either the standard default image URL or a custom
-  //     // defaultImageUrl that is a relative path (e.g. 'images/defaultthis.png').
-  //     size: 200, // use 200x200 like twitter and facebook above (might be useful later)
-  //     default: gravatarDefault,
-  //     secure: true
-  //   };
-  //   return emailOrHash ? Gravatar.imageUrl(emailOrHash, options) : null;
+    let emailOrHash = this.getUserEmail(user) || Users.getEmailHash(user);
+    // let secure = true;
+    let options = {
+      // NOTE: Gravatar's default option requires a publicly accessible URL,
+      // so it won't work when your app is running on localhost and you're
+      // using an image with either the standard default image URL or a custom
+      // defaultImageUrl that is a relative path (e.g. 'images/defaultthis.png').
+      size: 200, // use 200x200 like twitter and facebook above (might be useful later)
+      default: gravatarDefault,
+      secure: true
+    };
+    return emailOrHash ? this.imageUrl(emailOrHash, options) : null;
 
-  // },
+  },
 
   // Get the user's email address
   getUserEmail: function (user) {
-    var emails = _.pluck(user.emails, 'address');
+    let emails = _.pluck(user.emails, 'address');
     return emails[0] || null;
   },
 
@@ -259,7 +331,7 @@ Users.avatar = {
 
   // Returns the shape class for an avatar
   getShapeClass: function (context) {
-    var valid = ['rounded', 'circle'];
+    let valid = ['rounded', 'circle'];
     return _.contains(valid, context.shape) ? this.getCssClassPrefix() + '-' + context.shape : '';
   },
 

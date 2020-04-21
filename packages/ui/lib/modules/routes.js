@@ -8,5 +8,6 @@ Grudr.routes.add([
 
 
   // Accounts
-  {name: 'dashboard', path: '/dashboard', component: Grudr.components.DashboardPage},
+  {name: 'dashboard',      path: '/dashboard', component: Grudr.components.DashboardPage},
+  {name: 'users.single',   path:'users/:slug', component:Grudr.components.UserProfile},
 ]);

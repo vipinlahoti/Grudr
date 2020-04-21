@@ -10,11 +10,14 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 const siteTitle = Grudr.settings.get('title', 'Grudr');
 const logoUrl = Grudr.settings.get('logoUrl');
 
-const NavLoggedIn = () =>
+const NavLoggedIn = ({user}) =>
   <Nav className="ml-auto">
     <Link to={{ pathname: '/dashboard' }} className="nav-link">
       <FormattedMessage id="pages.dashboard"/>
     </Link>
+
+    <Grudr.components.Avatar size="small" user={user} />
+
     <Grudr.components.Button variant="danger" icon="lock_outline" onClick={() => AccountsReact.logout() }>
       <FormattedMessage id="accounts.logout"/>
     </Grudr.components.Button>
@@ -41,7 +44,7 @@ const Header = (props, {currentUser}) => {
   return (
     <Navbar variant="light">
       <Grudr.components.Logo logoUrl={logoUrl} siteTitle={siteTitle}/>
-      { currentUser ? <NavLoggedIn /> : <NavLoggedOut /> }
+      { currentUser ? <NavLoggedIn user={currentUser} /> : <NavLoggedOut /> }
     </Navbar>
   )
 }

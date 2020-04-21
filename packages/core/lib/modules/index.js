@@ -10,6 +10,7 @@ import './components/Error404.jsx';
 import './components/Button.jsx';
 import './components/HelloWorld.jsx';
 import './components/Permission.jsx';
+import './components/Avatar.jsx';
 
 import './components/accounts/AccountsButton.jsx';
 import './components/accounts/AccountsErrors.jsx';

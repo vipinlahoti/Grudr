@@ -12,3 +12,6 @@ import '../components/pages/RegisterPage.jsx';
 
 // Accounts
 import '../components/accounts/DashboardPage.jsx';
+
+// Users
+import '../components/users/UserProfile.jsx';
