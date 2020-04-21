@@ -51,7 +51,7 @@ Users.getUserNameById = function (userId) {return Users.getUserName(Users.findOn
  * @param {Object} user
  */
 Users.getDisplayName = function (user) {
-  if (typeof user === 'undefined') {
+  if (!user) {
     return '';
   } else {
     return (user.grudr && user.grudr.displayName) ? user.grudr.displayName : Users.getUserName(user);
@@ -183,26 +183,6 @@ Users.hasCompletedProfile = function (user) {
 };
 // Users.helpers({hasCompletedProfile: function () {return Users.hasCompletedProfile(this);}});
 Users.hasCompletedProfileById = function (userId) {return Users.hasCompletedProfile(Users.findOne(userId));};
-
-/**
- * @summary Check if a user has upvoted a document
- * @param {Object} user
- * @param {Object} document
- */
-Users.hasUpvoted = function (user, document) {
-  return user && _.include(document.upvoters, user._id);
-};
-// Users.helpers({hasUpvoted: function (document) {return Users.hasUpvoted(this, document);}});
-
-/**
- * @summary Check if a user has downvoted a document
- * @param {Object} user
- * @param {Object} document
- */
-Users.hasDownvoted = function (user, document) {
-  return user && _.include(document.downvoters, user._id);
-};
-// Users.helpers({hasDownvoted: function (document) {return Users.hasDownvoted(this, document);}});
 
 ///////////////////
 // Other Helpers //

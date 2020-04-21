@@ -23,9 +23,6 @@ const loginWrapper = {
 const HelloWorld = () => 
   <div style={loginWrapper}>
     <h2>Hello World!!</h2>
-    <div style={wrapper}>
-      <AccountsReactComponent state='signIn'/>
-    </div>
   </div>
 
 Grudr.registerComponent('HelloWorld', HelloWorld);

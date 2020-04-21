@@ -45,6 +45,7 @@ Users.createGroup = groupName => {
  */
 Users.getGroups = user => {
 
+  console.log('user groups.js: ', user)
   let userGroups = [];
 
   if (!user) { // anonymous user

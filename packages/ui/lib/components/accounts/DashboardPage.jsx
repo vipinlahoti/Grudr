@@ -8,7 +8,7 @@ import { Jumbotron, Container, Row, Col, Card } from 'react-bootstrap';
 
 const DashboardPage = (props, { currentUser }) => {
   return (
-    <React.Fragment>
+    <Grudr.components.CanDo action="users.edit.own" displayNoPermissionMessage={true}>
       <Grudr.components.HeadTags title="Dashboard" description="Dashboard description" />
 
       <Jumbotron className="section-hero section-small">
@@ -22,7 +22,7 @@ const DashboardPage = (props, { currentUser }) => {
         </Container>
       </Jumbotron>
 
-    </React.Fragment>
+    </Grudr.components.CanDo>
   )
 }
 

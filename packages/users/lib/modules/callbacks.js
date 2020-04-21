@@ -136,6 +136,7 @@ function setupUser (user, options) {
 
   Events.track('new user', {username: user.grudr.displayName, email: user.grudr.email});
 
+  console.log('users callback: ', user)
   return user;
 }
 Grudr.callbacks.add('users.new.sync', setupUser);
