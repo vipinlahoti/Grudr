@@ -7,7 +7,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
-const Avatar = ({user, size, link}) => {
+const Avatar = ({user, size, link, className}) => {
+
+  const avatarClassNames = classNames('avatar', className);
 
   const sizes = {
     small: '50px',
@@ -32,11 +34,11 @@ const Avatar = ({user, size, link}) => {
   const avatarUrl = Users.avatar.getUrl(user);
 
   const img = <img alt={Users.getDisplayName(user)} style={imgStyle} className="shadow-lg avatar" src={avatarUrl} title={user.username} />;
-  const initials = <span className="avatar-initials"><span>{Users.avatar.getInitials(user)}</span></span>;
+  const initials = <span className={avatarClassNames}><span>{Users.avatar.getInitials(user)}</span></span>;
 
   const avatar = avatarUrl ? img : initials;
 
-  return link ? <Link style={aStyle} className="users-avatar" to={Users.getProfileUrl(user)}>{avatar}</Link> : avatar;
+  return link ? <Link style={aStyle} className={avatarClassNames} to={Users.getProfileUrl(user)}>{avatar}</Link> : avatar;
 
 };
 

@@ -66,7 +66,7 @@ Users.getDisplayNameById = function (userId) {return Users.getDisplayName(Users.
  * @param {Boolean} isAbsolute
  */
 Users.getProfileUrl = function (user, isAbsolute) {
-  if (typeof user === 'undefined') {
+  if (!user) {
     return '';
   }
   isAbsolute = typeof isAbsolute === 'undefined' ? false : isAbsolute; // default to false
