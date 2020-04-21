@@ -19,7 +19,7 @@ const UserProfile = (props, { currentUser }) => {
           <Row>
             <Col sm={12} md={7} lg={7}>
               <div className="d-flex">
-                <Grudr.components.Avatar size="large" user={currentUser} className="mr-3" />
+                <Grudr.components.Avatar size="large" user={currentUser} link={false} className="mr-3" />
                 <h2 className="page-title">{Users.getDisplayName(currentUser)}</h2>
               </div>
             </Col>
@@ -41,7 +41,7 @@ const UserProfileContainer = withTracker(() => {
   if (Meteor.isClient) {
     subscription = Meteor.subscribe('users.single');
   }
-  console.log(subscription)
+  console.log('subscription: ', subscription)
 
   return {
     // links: LinksCollection.find().fetch(),

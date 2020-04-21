@@ -2,8 +2,8 @@ import Grudr from 'meteor/grudr:lib';
 import Users from './collection.js';
 import moment from 'moment';
 
-// Users.helpers({getCollection: () => Users});
-// Users.helpers({getCollectionName: () => 'users'});
+Users.helpers({getCollection: () => Users});
+Users.helpers({getCollectionName: () => 'users'});
 
 ////////////////////
 //  User Getters  //
@@ -43,7 +43,7 @@ Users.getUserName = function (user) {
     return null;
   }
 };
-// Users.helpers({getUserName: function () {return Users.getUserName(this);}});
+Users.helpers({getUserName: function () {return Users.getUserName(this);}});
 Users.getUserNameById = function (userId) {return Users.getUserName(Users.findOne(userId))};
 
 /**
@@ -57,7 +57,7 @@ Users.getDisplayName = function (user) {
     return (user.grudr && user.grudr.displayName) ? user.grudr.displayName : Users.getUserName(user);
   }
 };
-// Users.helpers({getDisplayName: function () {return Users.getDisplayName(this);}});
+Users.helpers({getDisplayName: function () {return Users.getDisplayName(this);}});
 Users.getDisplayNameById = function (userId) {return Users.getDisplayName(Users.findOne(userId));};
 
 /**
@@ -77,7 +77,7 @@ Users.getProfileUrl = function (user, isAbsolute) {
     return '';
   }
 };
-// Users.helpers({getProfileUrl: function (isAbsolute) {return Users.getProfileUrl(this, isAbsolute);}});
+Users.helpers({getProfileUrl: function (isAbsolute) {return Users.getProfileUrl(this, isAbsolute);}});
 
 /**
  * @summary Get a user's account edit URL
@@ -87,7 +87,7 @@ Users.getProfileUrl = function (user, isAbsolute) {
 Users.getEditUrl = function (user, isAbsolute) {
   return `${Users.getProfileUrl(user, isAbsolute)}/edit`;
 };
-// Users.helpers({getEditUrl: function (isAbsolute) {return Users.getEditUrl(this, isAbsolute);}});
+Users.helpers({getEditUrl: function (isAbsolute) {return Users.getEditUrl(this, isAbsolute);}});
 
 /**
  * @summary Get a user's Twitter name
@@ -104,7 +104,7 @@ Users.getTwitterName = function (user) {
   }
   return null;
 };
-// Users.helpers({getTwitterName: function () {return Users.getTwitterName(this);}});
+Users.helpers({getTwitterName: function () {return Users.getTwitterName(this);}});
 Users.getTwitterNameById = function (userId) {return Users.getTwitterName(Users.findOne(userId));};
 
 /**
@@ -120,7 +120,7 @@ Users.getGitHubName = function (user) {
   }
   return null;
 };
-// Users.helpers({getGitHubName: function () {return Users.getGitHubName(this);}});
+Users.helpers({getGitHubName: function () {return Users.getGitHubName(this);}});
 Users.getGitHubNameById = function (userId) {return Users.getGitHubName(Users.findOne(userId));};
 
 /**
@@ -134,7 +134,7 @@ Users.getEmail = function (user) {
     return null;
   }
 };
-// Users.helpers({getEmail: function () {return Users.getEmail(this);}});
+Users.helpers({getEmail: function () {return Users.getEmail(this);}});
 Users.getEmailById = function (userId) {return Users.getEmail(Users.findOne(userId));};
 
 /**
@@ -144,7 +144,7 @@ Users.getEmailById = function (userId) {return Users.getEmail(Users.findOne(user
 Users.getEmailHash = function (user) {
   return user.grudr.emailHash;
 };
-// Users.helpers({getEmailHash: function () {return Users.getEmailHash(this);}});
+Users.helpers({getEmailHash: function () {return Users.getEmailHash(this);}});
 Users.getEmailHashById = function (userId) {return Users.getEmailHash(Users.findOne(userId));};
 
 /**
@@ -166,7 +166,7 @@ Users.getSetting = function (user, settingName, defaultValue) {
     return defaultValue;
   }
 };
-// Users.helpers({getSetting: function (settingName, defaultValue) {return Users.getSetting(this, settingName, defaultValue);}});
+Users.helpers({getSetting: function (settingName, defaultValue) {return Users.getSetting(this, settingName, defaultValue);}});
 
 ////////////////////
 //  User Checks   //
@@ -177,11 +177,12 @@ Users.getSetting = function (user, settingName, defaultValue) {
  * @param {Object} user
  */
 Users.hasCompletedProfile = function (user) {
+  console.log('Users.hasCompletedProfile', user)
   return _.every(Users.getRequiredFields(), function (fieldName) {
     return !!Grudr.getNestedProperty(user, fieldName);
   });
 };
-// Users.helpers({hasCompletedProfile: function () {return Users.hasCompletedProfile(this);}});
+Users.helpers({hasCompletedProfile: function () {return Users.hasCompletedProfile(this);}});
 Users.hasCompletedProfileById = function (userId) {return Users.hasCompletedProfile(Users.findOne(userId));};
 
 ///////////////////
@@ -240,6 +241,7 @@ Users.getRequiredFields = function () {
     var field = schema[fieldName];
     return !!field.required;
   });
+  console.log('fields: ', fields);
   return fields;
 };
 

@@ -30,6 +30,7 @@
     &::after {
       display: inline-block;
       margin-left: $spacer / 2;
+      margin-top: $spacer * 1.45;
       vertical-align: $caret-vertical-align;
       content: "";
       @if $direction == down {

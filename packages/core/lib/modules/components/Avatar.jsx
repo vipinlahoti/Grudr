@@ -9,6 +9,7 @@ import classNames from 'classnames';
 
 const Avatar = ({user, size, link, className}) => {
 
+
   const avatarClassNames = classNames('avatar', className);
 
   const sizes = {
@@ -37,6 +38,8 @@ const Avatar = ({user, size, link, className}) => {
   const initials = <span className={avatarClassNames}><span>{Users.avatar.getInitials(user)}</span></span>;
 
   const avatar = avatarUrl ? img : initials;
+
+  console.log(avatarClassNames)
 
   return link ? <Link style={aStyle} className={avatarClassNames} to={Users.getProfileUrl(user)}>{avatar}</Link> : avatar;
 

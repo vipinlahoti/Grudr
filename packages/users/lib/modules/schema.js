@@ -26,10 +26,11 @@ Grudr.schemas.userData = new SimpleSchema({
   */
   bio: {
     type: String,
-    optional: true,
+    // optional: true,
     control: 'textarea',
     insertableIf: canInsert,
     editableIf: canEdit,
+    required: true,
     // form: {
     //   rows: 5
     // }

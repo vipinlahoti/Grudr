@@ -8,6 +8,8 @@ Grudr.routes.add([
   {name: 'register',       path: '/register',   component: Grudr.components.RegisterPage},
 
   // Users
-  {name: 'dashboard',      path: '/dashboard',  component: Grudr.components.DashboardPage},
-  {name: 'users.single',   path:'/users/:slug', component:Grudr.components.UserProfile},
+  {name: 'dashboard',      path: '/dashboard',      component: Grudr.components.DashboardPage},
+  {name: 'users.single',   path:'/users/:slug',     component: Grudr.components.UserProfile},
+  {name: 'users.edit',     path:'/users/:slug/edit', component: Grudr.components.UserEdit},
+
 ]);

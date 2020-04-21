@@ -16,11 +16,7 @@ const NavLoggedIn = ({user}) =>
       <FormattedMessage id="pages.dashboard"/>
     </Link>
 
-    <Grudr.components.Avatar size="small" user={user} />
-
-    <Grudr.components.Button variant="danger" icon="lock_outline" onClick={() => AccountsReact.logout() }>
-      <FormattedMessage id="accounts.logout"/>
-    </Grudr.components.Button>
+    <Grudr.components.UserMenu />
   </Nav>
 
 const NavLoggedOut = () => 

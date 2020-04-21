@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import { Container, Row, Col } from 'react-bootstrap';
 
 const Footer = () =>
-  <footer className="section-small bg-light">
+  <footer className="section-small">
     <Container>
       <Row>
         <Col md={7}>

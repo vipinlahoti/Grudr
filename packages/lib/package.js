@@ -24,7 +24,10 @@ Package.onUse(function(api) {
     'email',
     'react-meteor-data',
 
-    'underscore'
+    'underscore',
+
+    'matb33:collection-hooks',
+    'dburles:collection-helpers'
   ]
 
   api.use(packages);

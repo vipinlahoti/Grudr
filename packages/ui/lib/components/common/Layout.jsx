@@ -6,6 +6,7 @@ class Layout extends Component {
   render() {
     return (
       <div className="wrapper" id="wrapper">
+        <Grudr.components.UserProfileCheck />
         <Grudr.components.Header />
         {this.props.children}
         <Grudr.components.Footer />        

@@ -1,4 +1,3 @@
-// import { Gravatar } from 'meteor/jparker:gravatar';
 import Users from './collection.js';
 import md5 from 'crypto-js/md5';
 

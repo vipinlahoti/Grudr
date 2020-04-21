@@ -1,2 +1,6 @@
 grudr:core
+grudr:notifications
+
 grudr:ui
+
+grudr:debug

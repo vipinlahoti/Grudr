@@ -1,3 +1,3 @@
-import Email from '../modules/index.js';
+import GrudrEmail from '../modules/namespace.js';
 
-export default Email;
+export default GrudrEmail;

@@ -14,4 +14,10 @@ import '../components/pages/RegisterPage.jsx';
 import '../components/accounts/DashboardPage.jsx';
 
 // Users
+import '../components/users/UserName.jsx';
+import '../components/users/UserMenu.jsx';
+import '../components/users/UserEdit.jsx';
 import '../components/users/UserProfile.jsx';
+import '../components/users/UserProfileCheck.jsx';
+
+
