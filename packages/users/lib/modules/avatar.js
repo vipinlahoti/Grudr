@@ -289,7 +289,6 @@ Users.avatar = {
   },
 
   getGravatarUrl: function (user, defaultUrl) {
-    console.log(user, defaultUrl)
     let gravatarDefault;
     let validGravatars = ['404', 'mm', 'identicon', 'monsterid', 'wavatar', 'retro', 'blank'];
 

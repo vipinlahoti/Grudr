@@ -40,7 +40,6 @@ const NavLoggedOut = () =>
   </Nav>
 
 const Header = (props, {currentUser}) => {
-  console.log('currentUser: ', currentUser)
   return (
     <Navbar variant="light">
       <Grudr.components.Logo logoUrl={logoUrl} siteTitle={siteTitle}/>

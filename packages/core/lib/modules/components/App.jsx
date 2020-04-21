@@ -116,7 +116,6 @@ const AppContainer = withTracker(() => {
       data.ready = false;
     }
 
-    console.log('subscriptions: ', subscriptions)
   }
 
   console.log('App.jsx data: ', data)
