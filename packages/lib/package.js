@@ -26,6 +26,7 @@ Package.onUse(function(api) {
 
     'underscore',
 
+    'meteorhacks:picker',
     'matb33:collection-hooks',
     'dburles:collection-helpers'
   ]

@@ -115,10 +115,8 @@ const AppContainer = withTracker(() => {
     } else {
       data.ready = false;
     }
-
   }
 
-  console.log('App.jsx data: ', data)
   return data;
 })(App);
 
