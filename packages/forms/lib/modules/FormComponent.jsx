@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Formsy from 'formsy-react';
 import FRC from 'formsy-react-components';
-
 import DateTime from './DateTime.jsx';
 
 // import Utils from './utils.js';
@@ -25,7 +23,7 @@ class FormComponent extends Component {
     // see https://facebook.github.io/react/warnings/unknown-prop.html
     const { control, group, updateCurrentValue, document, ...rest } = this.props; // eslint-disable-line
 
-    const base = this.props.control === "function" ? this.props : rest;
+    const base = this.props.control === 'function' ? this.props : rest;
 
     const properties = {
       ...base,
@@ -40,7 +38,7 @@ class FormComponent extends Component {
     } else { // else pick a predefined component
       switch (this.props.control) {
         case 'text':
-          return <Input         {...properties} type="text" />;
+          return <Input type="text" {...properties} />;
         case 'textarea':
           return <Textarea      {...properties} />;
         case 'checkbox':
@@ -55,7 +53,7 @@ class FormComponent extends Component {
         case 'datetime':
           return <DateTime      {...properties} />;
         default:
-          return <Input         {...properties} type="text" />;
+          return <Input type="text" {...properties} />;
       }
     
     }
@@ -146,7 +144,7 @@ class CheckboxGroup extends Component {
 
   render() {
 
-    if (this.getLayout() === 'elementOnly') {
+    if (FormHelpers.getLayout() === 'elementOnly') {
       return (
         <div>{this.renderElement()}</div>
       )
@@ -155,8 +153,8 @@ class CheckboxGroup extends Component {
     return (
       <Row {...FormHelpers.getRowProperties()} fakeLabel={true}>
         {this.renderElement()}
-        {FormHelpers.renderHelp()}
-        {FormHelpers.renderErrorMessage()}
+        
+        
       </Row>
     )
   }

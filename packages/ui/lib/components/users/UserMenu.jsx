@@ -19,10 +19,10 @@ class UserMenu extends Component {
             <Grudr.components.Avatar size="small" user={currentUser} link={false} />
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu-right">
-            <LinkContainer to={`/users/${currentUser.grudr.slug}`}>
+            <LinkContainer to={`/users/${currentUser.slug}`}>
               <Dropdown.Item eventKey="1"><FormattedMessage id="users.profile"/></Dropdown.Item>
             </LinkContainer>
-            <LinkContainer to={`/users/${currentUser.grudr.slug}/edit`}>
+            <LinkContainer to={`/users/${currentUser.slug}/edit`}>
               <Dropdown.Item eventKey="2"><FormattedMessage id="users.edit_account"/></Dropdown.Item>
             </LinkContainer>
             <LinkContainer to={`/cheatsheet`}>

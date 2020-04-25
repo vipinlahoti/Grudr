@@ -2,7 +2,7 @@ import Grudr from 'meteor/grudr:lib';
 import Users from './collection.js';
 
 /*
-const completeUserProfile = function (userId, modifier, user) {
+var completeUserProfile = function (userId, modifier, user) {
   Users.update(userId, modifier);
   Grudr.callbacks.runAsync('users.profileCompleted.async', Users.findOne(userId));
   return Users.findOne(userId);
@@ -41,28 +41,29 @@ Users.methods.edit = (userId, modifier, user) => {
 }
 
 Users.methods.setSetting = (userId, settingName, value) => {
-  // all settings should be in the user.grudr namespace, so add 'grudr.' if needed
-  const field = settingName.slice(0,10) === 'grudr.' ? settingName : 'grudr.' + settingName;
+  // all settings should be in the user.grudr namespace, so add '' if needed
+  var field = settingName.slice(0,10) === '' ? settingName : '' + settingName;
 
-  const modifier = {$set: {}};
+  var modifier = {$set: {}};
   modifier.$set[field] = value;
 
   Users.update(userId, modifier);
 }
 
 Users.methods.addGroup = (userId, groupName) => {
-  Users.update(userId, {$push: {'grudr.groups': groupName}});
+  Users.update(userId, {$push: {'groups': groupName}});
 };
 
 Users.methods.removeGroup = (userId, groupName) => {
-  Users.update(userId, {$pull: {'grudr.groups': groupName}});
+  Users.update(userId, {$pull: {'groups': groupName}});
 };
 
 Meteor.methods({
   'users.edit'(userId, modifier) {
-
+    // console.log('Users.simpleSchema(): ', Users.simpleSchema()._schema);
     // checking might be redundant because SimpleSchema already enforces the schema, but you never know
-    check(modifier, Match.OneOf({$set: Users.simpleSchema()}, {$unset: Object}, {$set: Users.simpleSchema(), $unset: Object}));
+    // check(modifier, Match.OneOf({$set: Users.simpleSchema()}, {$unset: Object}, {$set: Users.simpleSchema(), $unset: Object}));
+    check(modifier, Match.OneOf({$set: Object}, {$unset: Object}, {$set: Object, $unset: Object}));
     check(userId, String);
 
     const currentUser = Meteor.user();
@@ -82,7 +83,7 @@ Meteor.methods({
       // loop over each property being operated on
       _.keys(operation).forEach(function (fieldName) {
 
-        const field = schema[fieldName];
+        var field = schema[fieldName];
         if (!Users.canEditField(currentUser, field, user)) {
           throw new Meteor.Error('disallowed_property', 'disallowed_property_detected' + ': ' + fieldName);
         }
@@ -102,6 +103,7 @@ Meteor.methods({
       const user = Users.findOne(userId);
       Users.remove(userId);
       Grudr.callbacks.runAsync('users.remove.async', user, options);
+
     }
 
   },
@@ -112,8 +114,8 @@ Meteor.methods({
     check(settingName, String);
     check(value, Match.OneOf(String, Number, Boolean));
 
-    const currentUser = Meteor.user();
-    const user = Users.findOne(userId);
+    var currentUser = Meteor.user(),
+      user = Users.findOne(userId);
 
     // check that user can edit document
     if (!user || !Users.canEdit(currentUser, user)) {
@@ -121,6 +123,7 @@ Meteor.methods({
     }
 
     Users.methods.setSetting(userId, settingName, value);
+
   }
 
 });

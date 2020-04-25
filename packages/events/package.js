@@ -8,7 +8,7 @@ Package.onUse(function(api) {
   api.versionsFrom('1.10.1');
   
   api.use([
-    'grudr:lib',
+    'grudr:lib'
   ]);
 
   api.export('Events');

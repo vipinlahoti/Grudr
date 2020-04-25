@@ -51,10 +51,10 @@ Users.getUserNameById = function (userId) {return Users.getUserName(Users.findOn
  * @param {Object} user
  */
 Users.getDisplayName = function (user) {
-  if (!user) {
+  if (typeof user === 'undefined') {
     return '';
   } else {
-    return (user.grudr && user.grudr.displayName) ? user.grudr.displayName : Users.getUserName(user);
+    return (user.grudr && user.displayName) ? user.displayName : Users.getUserName(user);
   }
 };
 Users.helpers({getDisplayName: function () {return Users.getDisplayName(this);}});
@@ -66,13 +66,13 @@ Users.getDisplayNameById = function (userId) {return Users.getDisplayName(Users.
  * @param {Boolean} isAbsolute
  */
 Users.getProfileUrl = function (user, isAbsolute) {
-  if (!user) {
+  if (typeof user === 'undefined') {
     return '';
   }
   isAbsolute = typeof isAbsolute === 'undefined' ? false : isAbsolute; // default to false
   var prefix = isAbsolute ? Grudr.utils.getSiteUrl().slice(0,-1) : '';
-  if (user.grudr && user.grudr.slug) {
-    return `${prefix}/users/${user.grudr.slug}`;
+  if (user.grudr && user.slug) {
+    return `${prefix}/users/${user.slug}`;
   } else {
     return '';
   }
@@ -128,8 +128,8 @@ Users.getGitHubNameById = function (userId) {return Users.getGitHubName(Users.fi
  * @param {Object} user
  */
 Users.getEmail = function (user) {
-  if(user.grudr && user.grudr.email){
-    return user.grudr.email;
+  if(user.grudr && user.email){
+    return user.email;
   }else{
     return null;
   }
@@ -142,7 +142,7 @@ Users.getEmailById = function (userId) {return Users.getEmail(Users.findOne(user
  * @param {Object} user
  */
 Users.getEmailHash = function (user) {
-  return user.grudr.emailHash;
+  return user.emailHash;
 };
 Users.helpers({getEmailHash: function () {return Users.getEmailHash(this);}});
 Users.getEmailHashById = function (userId) {return Users.getEmailHash(Users.findOne(userId));};
@@ -156,8 +156,8 @@ Users.getEmailHashById = function (userId) {return Users.getEmailHash(Users.find
 Users.getSetting = function (user, settingName, defaultValue) {
   user = user || Meteor.user();
   defaultValue = defaultValue || null;
-  // all settings should be in the user.grudr namespace, so add 'grudr.' if needed
-  settingName = settingName.slice(0,10) === 'grudr.' ? settingName : 'grudr.' + settingName;
+  // all settings should be in the user.grudr namespace, so add '' if needed
+  settingName = settingName.slice(0,10) === '' ? settingName : '' + settingName;
 
   if (user && user.grudr) {
     var settingValue = Users.getProperty(user, settingName);
@@ -177,13 +177,32 @@ Users.helpers({getSetting: function (settingName, defaultValue) {return Users.ge
  * @param {Object} user
  */
 Users.hasCompletedProfile = function (user) {
-  console.log('Users.hasCompletedProfile', user)
   return _.every(Users.getRequiredFields(), function (fieldName) {
     return !!Grudr.getNestedProperty(user, fieldName);
   });
 };
 Users.helpers({hasCompletedProfile: function () {return Users.hasCompletedProfile(this);}});
 Users.hasCompletedProfileById = function (userId) {return Users.hasCompletedProfile(Users.findOne(userId));};
+
+/**
+ * @summary Check if a user has upvoted a document
+ * @param {Object} user
+ * @param {Object} document
+ */
+Users.hasUpvoted = function (user, document) {
+  return user && _.include(document.upvoters, user._id);
+};
+Users.helpers({hasUpvoted: function (document) {return Users.hasUpvoted(this, document);}});
+
+/**
+ * @summary Check if a user has downvoted a document
+ * @param {Object} user
+ * @param {Object} document
+ */
+Users.hasDownvoted = function (user, document) {
+  return user && _.include(document.downvoters, user._id);
+};
+Users.helpers({hasDownvoted: function (document) {return Users.hasDownvoted(this, document);}});
 
 ///////////////////
 // Other Helpers //
@@ -241,7 +260,6 @@ Users.getRequiredFields = function () {
     var field = schema[fieldName];
     return !!field.required;
   });
-  console.log('fields: ', fields);
   return fields;
 };
 
@@ -254,6 +272,6 @@ Users.getCurrentUserEmail = function () {
 };
 
 Users.findByEmail = function (email) {
-  return Users.findOne({'grudr.email': email});
+  return Users.findOne({'email': email});
 };
 

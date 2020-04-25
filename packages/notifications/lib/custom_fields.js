@@ -13,7 +13,7 @@ const canEdit = Users.canEdit;
 // Add notifications options to user profile settings
 Users.addField([
   {
-    fieldName: 'grudr.notifications_users',
+    fieldName: 'notifications_users',
     fieldSchema: {
       label: 'New users',
       type: Boolean,

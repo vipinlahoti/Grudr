@@ -45,7 +45,6 @@ Users.createGroup = groupName => {
  */
 Users.getGroups = user => {
 
-  console.log('user groups.js: ', user)
   let userGroups = [];
 
   if (!user) { // anonymous user
@@ -54,8 +53,8 @@ Users.getGroups = user => {
   } else {
     userGroups = ['default'];
 
-    if (user.grudr.groups) { // custom groups
-      userGroups = userGroups.concat(user.grudr.groups);
+    if (user.groups) { // custom groups
+      userGroups = userGroups.concat(user.groups);
     } 
     
     if (Users.isAdmin(user)) { // admin

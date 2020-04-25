@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage, intlShape } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import Formsy from 'formsy-react';
-import { Button } from 'react-bootstrap';
-import Flash from "./Flash.jsx";
-import FormGroup from "./FormGroup.jsx";
-import { flatten, deepValue, getEditableFields, getInsertableFields } from './utils.js';
+import FormGroup from './FormGroup';
+import { flatten, deepValue, getEditableFields, getInsertableFields } from './utils';
 
 /*
 1. Constructor
@@ -17,53 +15,81 @@ import { flatten, deepValue, getEditableFields, getInsertableFields } from './ut
 */
 
 class GrudrForm extends Component{
-
   // --------------------------------------------------------------------- //
   // ----------------------------- Constructor --------------------------- //
   // --------------------------------------------------------------------- //
 
-  constructor(props) {
-    super(props);
-    this.submitForm = this.submitForm.bind(this);
-    this.updateState = this.updateState.bind(this);
-    this.methodCallback = this.methodCallback.bind(this);
-    this.addToAutofilledValues = this.addToAutofilledValues.bind(this);
-    this.throwError = this.throwError.bind(this);
-    this.clearErrors = this.clearErrors.bind(this);
-    this.updateCurrentValue = this.updateCurrentValue.bind(this);
-    this.formKeyDown = this.formKeyDown.bind(this);
+  // constructor(props) {
+  //   super(props);
+  //   // a debounced version of seState that only updates state every 500 ms (not used)
+  //   this.debouncedSetState = _.debounce(this.setState, 500);
 
-    // a debounced version of seState that only updates state every 500 ms (not used)
-    this.debouncedSetState = _.debounce(this.setState, 500);
+  //   this.state = {
+  //     disabled: false,
+  //     errors: [],
+  //     autofilledValues: {},
+  //     currentValues: {}
+  //   };
+  // }
 
-    this.state = {
+    state = {
       disabled: false,
       errors: [],
       autofilledValues: {},
       currentValues: {}
     };
-  }
-
   // --------------------------------------------------------------------- //
   // ------------------------------- Helpers ----------------------------- //
   // --------------------------------------------------------------------- //
 
+  // if a document is being passed, this is an edit form
+  getFormType() {
+    return this.props.document ? 'edit' : 'new';
+  }
+
   // return the current schema based on either the schema or collection prop
   getSchema() {
+    console.log('getSchema(): ', this.props)
     return this.props.schema ? this.props.schema : this.props.collection.simpleSchema()._schema;
   }
 
-  getFieldGroups() {
+  // for each field, we apply the following logic:
+  // - if its value is currently being inputted, use that
+  // - else if its value was provided by the db, use that (i.e. props.document)
+  // - else if its value is provded by the autofilledValues object, use that
+  getDocument() {
+    console.log('this.state: ', this.state)
+    const currentDocument = _.clone(this.props.document) || {};
+    const document = Object.assign(_.clone(this.state.autofilledValues), currentDocument,  _.clone(this.state.currentValues));
+    return document;
+  }
 
+  // get relevant fields
+  getFieldNames() {
+    const fields = this.props.fields;
+
+    // get all editable/insertable fields (depending on current form type)
+    let relevantFields = this.getFormType() === 'edit' ? getEditableFields(this.getSchema(), this.context.currentUser, this.getDocument()) : getInsertableFields(this.getSchema(), this.context.currentUser);
+
+    // if 'fields' prop is specified, restrict list of fields to it
+    if (typeof fields !== 'undefined' && fields.length > 0) {
+      relevantFields = _.intersection(relevantFields, fields);
+    }
+
+    console.log('getFieldNames(): ', relevantFields);
+
+    return relevantFields;
+  }
+
+  getFieldGroups() {
     const schema = this.getSchema();
 
     // build fields array by iterating over the list of field names
     let fields = this.getFieldNames().map(fieldName => {
-
       // get schema for the current field
       const fieldSchema = schema[fieldName];
 
-      fieldSchema.name = fieldName;
+      // fieldSchema.name = fieldName;
 
       // intialize properties
       let field = {
@@ -75,17 +101,11 @@ class GrudrForm extends Component{
       }
 
       // add label
-      const intlFieldName = this.context.intl.formatMessage({id: this.props.collection._name + '.' + fieldName});
+      const intlFieldName = this.props.intl.formatMessage({id: this.props.collection._name + '.' + fieldName});
       field.label = (typeof this.props.labelFunction === 'function') ? this.props.labelFunction(intlFieldName) : intlFieldName,
 
       // add value
       field.value = this.getDocument() && deepValue(this.getDocument(), fieldName) ? deepValue(this.getDocument(), fieldName) : "";
-
-      // backward compatibility from 'autoform' to 'form'
-      if (fieldSchema.autoform) {
-        fieldSchema.form = fieldSchema.autoform;
-        console.warn(`🔭 Grudr Warning: The 'autoform' field is deprecated. You should rename it to 'form' instead. It was defined on your '${fieldName}' field  on the '${this.props.collection._name}' collection`); // eslint-disable-line
-      }
 
       // replace value by prefilled value if value is empty
       if (fieldSchema.form && fieldSchema.form.prefill) {
@@ -131,21 +151,18 @@ class GrudrForm extends Component{
       field.document = this.getDocument();
 
       return field;
-
     });
 
     // remove fields where control = "none"
     fields = _.reject(fields, field => field.control === 'none');
     fields = _.sortBy(fields, 'order');
 
-    // console.log(fields)
-
     // get list of all groups used in current fields
     let groups = _.compact(_.unique(_.pluck(fields, 'group')));
 
     // for each group, add relevant fields
     groups = groups.map(group => {
-      group.label = group.label || this.context.intl.formatMessage({id: group.name});
+      group.label = group.label || this.props.intl.formatMessage({id: group.name});
       group.fields = _.filter(fields, field => {return field.group && field.group.name === group.name});
       return group;
     });
@@ -161,74 +178,47 @@ class GrudrForm extends Component{
     // sort by order
     groups = _.sortBy(groups, 'order');
 
-    // console.log(groups);
+    console.log('fields: ', fields);
+    console.log('groups: ', groups);
 
     return groups;
   }
 
-  // if a document is being passed, this is an edit form
-  getFormType() {
-    return this.props.document ? 'edit' : 'new';
-  }
-
-  // get relevant fields
-  getFieldNames() {
-    const fields = this.props.fields;
-
-    // get all editable/insertable fields (depending on current form type)
-    let relevantFields = this.getFormType() === 'edit' ? getEditableFields(this.getSchema(), this.context.currentUser, this.getDocument()) : getInsertableFields(this.getSchema(), this.context.currentUser);
-
-    // if 'fields' prop is specified, restrict list of fields to it
-    if (typeof fields !== 'undefined' && fields.length > 0) {
-      relevantFields = _.intersection(relevantFields, fields);
-    }
-
-    return relevantFields;
-  }
-
-  // for each field, we apply the following logic:
-  // - if its value is currently being inputted, use that
-  // - else if its value was provided by the db, use that (i.e. props.document)
-  // - else if its value is provded by the autofilledValues object, use that
-  getDocument() {
-    const currentDocument = _.clone(this.props.document) || {};
-    const document = Object.assign(_.clone(this.state.autofilledValues), currentDocument,  _.clone(this.state.currentValues));
-    return document;
-  }
 
   // NOTE: this is not called anymore since we're updating on blur, not on change
   // whenever the form changes, update its state
-  updateState(e) {
-    // e can sometimes be event, sometims be currentValue
-    // see https://github.com/christianalfoni/formsy-react/issues/203
-    if (e.stopPropagation) {
-      e.stopPropagation();
-    } else {
-      // get rid of empty fields
-      _.forEach(e, (value, key) => {
-        if (_.isEmpty(value)) {
-          delete e[key];
-        }
-      });
-      this.setState({
-        currentValues: e
-      });
-    }
-  }
+  // updateState(e) {
+  //   // e can sometimes be event, sometims be currentValue
+  //   // see https://github.com/christianalfoni/formsy-react/issues/203
+  //   if (e.stopPropagation) {
+  //     e.stopPropagation();
+  //   } else {
+  //     // get rid of empty fields
+  //     _.forEach(e, (value, key) => {
+  //       if (_.isEmpty(value)) {
+  //         delete e[key];
+  //       }
+  //     });
+  //     this.setState({
+  //       currentValues: e
+  //     });
+  //   }
+  // }
 
   // manually update current value (i.e. on blur). See above for on change instead
-  updateCurrentValue(fieldName, fieldValue) {
-    const currentValues = this.state.currentValues;
-    currentValues[fieldName] = fieldValue;
-    this.setState({currentValues: currentValues});
-  }
+  // updateCurrentValue(fieldName, fieldValue) {
+  //   console.log('fieldName, fieldValue:', fieldName, fieldValue)
+  //   const currentValues = this.state.currentValues;
+  //   currentValues[fieldName] = fieldValue;
+  //   this.setState({currentValues: currentValues});
+  // }
 
   // --------------------------------------------------------------------- //
   // ------------------------------- Errors ------------------------------ //
   // --------------------------------------------------------------------- //
 
   // clear all errors and re-enable the form
-  clearErrors() {
+  clearErrors = () => {
     this.setState({
       errors: [],
       disabled: false,
@@ -237,7 +227,7 @@ class GrudrForm extends Component{
 
   // render errors
   renderErrors() {
-    return <div className="form-errors">{this.state.errors.map(message => <Flash key={message} message={message}/>)}</div>
+    return <div className="form-errors">{this.state.errors.map((message, index) => <Grudr.components.Flash key={index} message={message}/>)}</div>
   }
 
   // --------------------------------------------------------------------- //
@@ -245,14 +235,14 @@ class GrudrForm extends Component{
   // --------------------------------------------------------------------- //
 
   // add error to state
-  throwError(error) {
+  throwError = error => {
     this.setState({
       errors: [error]
     });
   }
 
   // add something to prefilled values
-  addToAutofilledValues(property) {
+  addToAutofilledValues = property => {
     this.setState(function(state){
       return {
         autofilledValues: {
@@ -263,18 +253,13 @@ class GrudrForm extends Component{
     });
   }
 
-  // clear value
-  clearValue(property) {
-
-  }
-
   // pass on context to all child components
   getChildContext() {
     return {
       throwError: this.throwError,
       autofilledValues: this.state.autofilledValues,
       addToAutofilledValues: this.addToAutofilledValues,
-      updateCurrentValue: this.updateCurrentValue,
+      // updateCurrentValue: this.updateCurrentValue,
       getDocument: this.getDocument,
     };
   }
@@ -284,15 +269,14 @@ class GrudrForm extends Component{
   // --------------------------------------------------------------------- //
 
   // common callback for both new and edit forms
-  methodCallback(error, document) {
+  methodCallback = (error, document) => {
+    console.log('error, document: ', error, document)
 
     if (error) { // error
-
       this.setState({disabled: false});
+      console.log('error methodCallback: ', error); // eslint-disable-line
 
-      console.log(error); // eslint-disable-line
-
-      const errorContent = this.context.intl.formatMessage({id: error.reason}, {details: error.details})
+      const errorContent = this.props.intl.formatMessage({id: error.reason}, {details: error.details})
       // add error to state
       this.throwError({
         content: errorContent,
@@ -303,7 +287,6 @@ class GrudrForm extends Component{
       if (this.props.errorCallback) this.props.errorCallback(document, error);
 
     } else { // success
-
       // reset form if this is a new document form
       if (this.getFormType() === 'new') this.refs.form.reset();
 
@@ -320,7 +303,7 @@ class GrudrForm extends Component{
   }
 
   // submit form handler
-  submitForm(data) {
+  submitForm= data => {
     this.setState({disabled: true});
 
     // complete the data with values from custom components which are not being catched by Formsy mixin
@@ -332,14 +315,13 @@ class GrudrForm extends Component{
     };
 
     const fields = this.getFieldNames();
-
+    
     // if there's a submit callback, run it
     if (this.props.submitCallback) {
       data = this.props.submitCallback(data);
     }
 
     if (this.getFormType() === 'new') { // new document form
-
       // remove any empty properties
       let document = _.compactObject(flatten(data));
 
@@ -352,24 +334,24 @@ class GrudrForm extends Component{
       Meteor.call(this.props.methodName, document, this.methodCallback);
 
     } else { // edit document form
-
       const document = this.getDocument();
-
+   
       // put all keys with data on $set
       const set = _.compactObject(flatten(data));
 
       // put all keys without data on $unset
       const unsetKeys = _.difference(fields, _.keys(set));
       const unset = _.object(unsetKeys, unsetKeys.map(()=>true));
-
+      
       // build modifier
       const modifier = {$set: set};
+
       if (!_.isEmpty(unset)) modifier.$unset = unset;
       // call method with _id of document being edited and modifier
+
+      console.log('submit data: ', this.props.methodName, document._id, modifier, this.methodCallback);
       Meteor.call(this.props.methodName, document._id, modifier, this.methodCallback);
-
     }
-
   }
 
   componentWillUnmount() {
@@ -382,8 +364,7 @@ class GrudrForm extends Component{
   }
 
   // key down handler
-  formKeyDown(event) {
-
+  formKeyDown = event => {
     if( (event.ctrlKey || event.metaKey) && event.keyCode === 13) {
       this.submitForm(this.refs.form.getModel());
     }
@@ -394,26 +375,24 @@ class GrudrForm extends Component{
   // --------------------------------------------------------------------- //
 
   render() {
-
     const fieldGroups = this.getFieldGroups();
 
     return (
-      <div className={"document-" + this.getFormType()}>
-        <Formsy.Form
+      <div className={"form-" + this.getFormType()}>
+        <Formsy
           onSubmit={this.submitForm}
           onKeyDown={this.formKeyDown}
           disabled={this.state.disabled}
           ref="form"
         >
           {this.renderErrors()}
-          {fieldGroups.map(group => <FormGroup key={group.name} {...group} updateCurrentValue={this.updateCurrentValue} />)}
-          <Button type="submit" variant="primary"><FormattedMessage id="forms.submit"/></Button>
+          {fieldGroups.map(group => <FormGroup key={group.name} {...group} />)}
+          <Grudr.components.Button type="submit" variant="primary"><FormattedMessage id="forms.submit"/></Grudr.components.Button>
           {this.props.cancelCallback ? <a className="form-cancel" onClick={this.props.cancelCallback}><FormattedMessage id="forms.cancel"/></a> : null}
-        </Formsy.Form>
+        </Formsy>
       </div>
     )
   }
-
 }
 
 GrudrForm.propTypes = {
@@ -422,7 +401,7 @@ GrudrForm.propTypes = {
   document: PropTypes.object, // if a document is passed, this will be an edit form
   submitCallback: PropTypes.func,
   successCallback: PropTypes.func,
-  errorCallback: PropTypes.func,
+  // errorCallback: PropTypes.func,
   methodName: PropTypes.string,
   labelFunction: PropTypes.func,
   prefilledProps: PropTypes.object,
@@ -438,15 +417,15 @@ GrudrForm.defaultProps = {
 GrudrForm.contextTypes = {
   closeCallback: PropTypes.func,
   currentUser: PropTypes.object,
-  intl: intlShape
+  // intl: intlShape
 }
 
 GrudrForm.childContextTypes = {
   autofilledValues: PropTypes.object,
   addToAutofilledValues: PropTypes.func,
-  updateCurrentValue: PropTypes.func,
+  // updateCurrentValue: PropTypes.func,
   throwError: PropTypes.func,
   getDocument: PropTypes.func
 }
 
-export default GrudrForm;
+export default injectIntl(GrudrForm);

@@ -2,6 +2,7 @@ import Grudr from './config.js';
 import marked from 'marked';
 import moment from 'moment';
 import getSlug from 'speakingurl';
+import sanitizeHtml from 'sanitize-html';
 
 /**
  * @summary The global namespace for Grudr utils.
@@ -160,7 +161,7 @@ Grudr.utils.getUnusedSlug = (collection, slug) => {
   let index = 0;
 
   // handle edge case for Users collection
-  const field = collection._name === 'users' ? 'grudr.slug' : 'slug';
+  const field = collection._name === 'users' ? 'slug' : 'slug';
 
   // test if slug is already in use
   while (!!collection.findOne({[field]: slug + suffix})) {
@@ -201,6 +202,22 @@ Grudr.utils.addHttp = url => {
 
 Grudr.utils.cleanUp = s => {
   return Grudr.utils.stripHTML(s);
+};
+
+Grudr.utils.sanitize = s => {
+  // console.log('// before sanitization: ', s)
+  if(Meteor.isServer){
+    s = sanitizeHtml(s, {
+      allowedTags: [
+        'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul',
+        'ol', 'nl', 'li', 'b', 'i', 'strong', 'em', 'strike',
+        'code', 'hr', 'br', 'div', 'table', 'thead', 'caption',
+        'tbody', 'tr', 'th', 'td', 'pre', 'img'
+      ]
+    });
+    // console.log('// after sanitization: ', s)
+  }
+  return s;
 };
 
 Grudr.utils.stripHTML = s => {

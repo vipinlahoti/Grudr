@@ -1,6 +1,6 @@
 Package.describe({
   name: 'grudr:users',
-  summary: 'Grudr Users & permissions.',
+  summary: 'Grudr permissions package',
   version: '0.0.1'
 });
 
@@ -8,9 +8,8 @@ Package.onUse(function (api) {
   api.versionsFrom('1.10.1');
 
   api.use([
-    'grudr:lib',
-    'grudr:email',
-    'grudr:events'
+    'grudr:lib@0.0.1',
+    'grudr:email@0.0.1'
   ]);
   
   api.mainModule('lib/server/main.js', 'server');

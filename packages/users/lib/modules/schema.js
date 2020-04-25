@@ -20,20 +20,86 @@ const canEditAll = user => Users.canDo(user, 'users.edit.all');
  * @summary User Data schema
  * @type {SimpleSchema}
  */
-Grudr.schemas.userData = new SimpleSchema({
+// Grudr.schemas.userData = new SimpleSchema({
+  
+// });
+
+/**
+ * @summary Users schema
+ * @type {SimpleSchema}
+ */
+Users.schema = new SimpleSchema({
+  _id: {
+    type: String,
+    publish: true,
+    optional: true
+  },
+  username: {
+    type: String,
+    // regEx: /^[a-z0-9A-Z_]{3,15}$/,
+    publish: true,
+    optional: true
+  },
+  emails: {
+    type: Array,
+    optional: true
+  },
+  'emails.$': {
+    type: Object,
+    optional: true
+  },
+  'emails.$.address': {
+    type: String,
+    regEx: SimpleSchema.RegEx.Email,
+    optional: true
+  },
+  'emails.$.verified': {
+    type: Boolean,
+    optional: true
+  },
+  createdAt: {
+    type: Date,
+    publish: true,
+    optional: true
+  },
+  isAdmin: {
+    type: Boolean,
+    label: 'Admin',
+    control: 'checkbox',
+    optional: true,
+    insertableIf: canEditAll,
+    editableIf: canEditAll,
+    group: adminGroup
+  },
+  profile: {
+    type: Object,
+    optional: true,
+    blackbox: true
+  },
+  services: {
+    type: Object,
+    optional: true,
+    blackbox: true
+  },
+
   /**
     Bio (Markdown version)
   */
   bio: {
     type: String,
-    // optional: true,
+    optional: true,
     control: 'textarea',
     insertableIf: canInsert,
-    editableIf: canEdit,
-    required: true,
-    // form: {
-    //   rows: 5
-    // }
+    editableIf: canEdit
+  },
+  /**
+    The HTML version of the bio field
+  */
+  htmlBio: {
+    type: String,
+    publish: true,
+    profile: true,
+    optional: true
   },
   /**
     The name displayed throughout the app. Can contain spaces and special characters, doesn't need to be unique
@@ -69,24 +135,10 @@ Grudr.schemas.userData = new SimpleSchema({
     optional: true
   },
   /**
-    The HTML version of the bio field
-  */
-  htmlBio: {
-    type: String,
-    publish: true,
-    profile: true,
-    optional: true,
-    // form: {
-    //   omit: true
-    // },
-    template: 'user_profile_bio'
-  },
-  /**
     The user's karma
   */
   karma: {
     type: Number,
-    // decimal: true,
     publish: true,
     optional: true
   },
@@ -157,76 +209,6 @@ Grudr.schemas.userData = new SimpleSchema({
     optional: true,
   }
 });
-
-/**
- * @summary Users schema
- * @type {SimpleSchema}
- */
-Users.schema = new SimpleSchema({
-  _id: {
-    type: String,
-    publish: true,
-    optional: true
-  },
-  username: {
-    type: String,
-    // regEx: /^[a-z0-9A-Z_]{3,15}$/,
-    publish: true,
-    optional: true
-  },
-  emails: {
-    type: Array,
-    optional: true
-  },
-  'emails.$': {
-    type: String,
-    optional: true,
-  },
-  'emails.$.address': {
-    type: String,
-    regEx: SimpleSchema.RegEx.Email,
-    optional: true
-  },
-  'emails.$.verified': {
-    type: Boolean,
-    optional: true
-  },
-  createdAt: {
-    type: Date,
-    publish: true,
-    optional: true
-  },
-  isAdmin: {
-    type: Boolean,
-    label: 'Admin',
-    control: 'checkbox',
-    optional: true,
-    insertableIf: canEditAll,
-    editableIf: canEditAll,
-    group: adminGroup
-    // form: {
-    //   omit: true
-    // }
-  },
-  profile: {
-    type: Object,
-    optional: true,
-    blackbox: true
-  },
-  grudr: { // grudr-specific data
-    type: Grudr.schemas.userData,
-    optional: true
-  },
-  services: {
-    type: Object,
-    optional: true,
-    blackbox: true
-  }
-});
-
-// Meteor.startup(function(){
-//   Users.internationalize();
-// });
 
 /**
  * @summary Attach schema to Users (Meteor.users at the moment) collection

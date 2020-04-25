@@ -1,3 +1,4 @@
+import Grudr from 'meteor/grudr:lib';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Alert } from 'react-bootstrap';
@@ -17,4 +18,4 @@ Flash.propTypes = {
   message: PropTypes.object.isRequired
 }
 
-export default Flash;
+Grudr.registerComponent('Flash', Flash);

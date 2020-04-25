@@ -34,12 +34,10 @@ const Avatar = ({user, size, link, className}) => {
 
   const avatarUrl = Users.avatar.getUrl(user);
 
-  const img = <img alt={Users.getDisplayName(user)} style={imgStyle} className="shadow-lg avatar" src={avatarUrl} title={user.username} />;
+  const img = <img alt={Users.getDisplayName(user)} style={imgStyle} className={classNames('shadow-lg', avatarClassNames)} src={avatarUrl} title={user.username} />;
   const initials = <span className={avatarClassNames}><span>{Users.avatar.getInitials(user)}</span></span>;
 
   const avatar = avatarUrl ? img : initials;
-
-  console.log(avatarClassNames)
 
   return link ? <Link style={aStyle} className={avatarClassNames} to={Users.getProfileUrl(user)}>{avatar}</Link> : avatar;
 

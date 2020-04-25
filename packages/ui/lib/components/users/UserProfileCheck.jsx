@@ -9,7 +9,7 @@ import { withRouter } from 'react-router'
 import { Modal } from 'react-bootstrap';
 
 const UsersProfileCheckModal = ({show, router}, {currentUser}) => {
-  console.log('show, router', show, router)
+  // console.log('show, router', show, router)
   // return fields that are required by the schema but haven't been filled out yet
   const schema = Users.simpleSchema()._schema;
   const requiredFields = _.filter(_.keys(schema), (fieldName) => {
@@ -33,7 +33,7 @@ const UsersProfileCheckModal = ({show, router}, {currentUser}) => {
 };
 
 const UserProfileCheck = (props, {currentUser}) => {
-  console.log('UserProfileCheck show', Users.hasCompletedProfile(currentUser))
+  // console.log('UserProfileCheck show', Users.hasCompletedProfile(currentUser))
   return currentUser ? <UsersProfileCheckModal show={!Users.hasCompletedProfile(currentUser)}/> : null;
 };
 

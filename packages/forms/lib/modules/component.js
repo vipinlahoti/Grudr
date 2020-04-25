@@ -63,8 +63,8 @@ const FormHelpers = {
    * Also see the parent-context mixin.
    */
   getLayout() {
-    let defaultProperty = this.context.layout || 'horizontal';
-    return this.props.layout ? this.props.layout : defaultProperty;
+    // let defaultProperty = this.context.layout || 'horizontal';
+    return this.props ? this.props.layout : 'horizontal';
   },
 
   getValidatePristine() {
@@ -86,13 +86,13 @@ const FormHelpers = {
 
   getRowProperties() {
     return {
-      label: this.props.label,
-      rowClassName: this.getRowClassName(),
-      labelClassName: this.getLabelClassName(),
-      elementWrapperClassName: this.getElementWrapperClassName(),
+      // label: this.props.label,
+      // rowClassName: this.getRowClassName(),
+      // labelClassName: this.getLabelClassName(),
+      // elementWrapperClassName: this.getElementWrapperClassName(),
       layout: this.getLayout(),
-      required: this.isRequired(),
-      hasErrors: this.showErrors()
+      // required: this.isRequired(),
+      // hasErrors: this.showErrors()
     };
   },
 

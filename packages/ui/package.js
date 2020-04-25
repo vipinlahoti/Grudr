@@ -13,6 +13,7 @@ Package.onUse(function(api) {
     'grudr:accounts',
     'grudr:email',
     'grudr:events',
+    'grudr:forms'
   ]);
 
   api.addFiles([

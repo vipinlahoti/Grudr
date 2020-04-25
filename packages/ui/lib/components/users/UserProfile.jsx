@@ -17,10 +17,13 @@ const UserProfile = (props, { currentUser }) => {
       <Jumbotron className="section-hero section-small">
         <Container>
           <Row>
-            <Col sm={12} md={7} lg={7}>
+            <Col sm={12} md={7} lg={8}>
               <div className="d-flex">
-                <Grudr.components.Avatar size="large" user={currentUser} link={false} className="mr-3" />
-                <h2 className="page-title">{Users.getDisplayName(currentUser)}</h2>
+                <Grudr.components.Avatar className="mr-3" size="large" user={currentUser} link={false} />
+                <div className="">
+                  <h2 className="page-title">{Users.getDisplayName(currentUser)}</h2>
+                  <div className="mt-2">{currentUser.bio}</div>
+                </div>
               </div>
             </Col>
           </Row>

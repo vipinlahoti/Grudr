@@ -7,17 +7,17 @@ Package.onUse(function(api) {
   api.versionsFrom('1.10.1');
   
   var packages = [
-    'meteor-base',
-    'mongo',
-    'tracker',
-    'reactive-var',
+    'meteor-base@1.4.0',
+    'mongo@1.10.0',
+    'tracker@1.2.0',
+    'reactive-var@1.0.11',
 
-    'standard-minifier-css',
-    'standard-minifier-js',
-    'es5-shim',
-    'ecmascript',
+    'standard-minifier-css@1.6.0',
+    'standard-minifier-js@2.6.0',
+    'es5-shim@4.8.0',
+    'ecmascript@0.14.3',
 
-    'shell-server',
+    'shell-server@0.5.0',
     'server-render',
     'check',
     'http',

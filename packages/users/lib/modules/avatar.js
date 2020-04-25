@@ -1,13 +1,15 @@
+// import { Gravatar } from 'meteor/jparker:gravatar';
 import Users from './collection.js';
 import md5 from 'crypto-js/md5';
 
-// let _ = require('underscore');
+// var _ = require('underscore');
 
 // import Gravatar from 'gravatar';
 
 Users.avatar = {
 
-   /**
+
+  /**
    * `cleantString` remove starting and trailing whitespaces
    * and lowercase the input
    * @param  {String} string input string that may contain leading and trailing
@@ -76,7 +78,7 @@ Users.avatar = {
     ? url + '?' + params
     : url;
   },
-
+  
   // Default functionality. You can override these options by calling
   // Users.avatar.setOptions (do not set this.options directly)
 
@@ -112,7 +114,7 @@ Users.avatar = {
     // If a value is set to, 'foo' for example, the resulting CSS classes are prefixed with 'foo'.
     cssClassPrefix: '',
 
-    // This property defines the letious image sizes available
+    // This property defines the various image sizes available
     imageSizes: {
       'large': 80,
       'small': 30,
@@ -164,9 +166,9 @@ Users.avatar = {
   // Get the initials of the user
   getInitials: function (user) {
 
-    let initials = '';
-    let name = '';
-    let parts = [];
+    var initials = '';
+    var name = '';
+    var parts = [];
 
     if (user && user.profile && user.profile.firstName) {
       initials = user.profile.firstName.charAt(0).toUpperCase();
@@ -208,8 +210,8 @@ Users.avatar = {
     // Default to the currently logged in user, unless otherwise specified.
     if (!user) return null;
 
-    let url = '';
-    let defaultUrl, svc;
+    var url = '';
+    var defaultUrl, svc;
 
     if (user) {
       svc = this.getService(user);
@@ -237,7 +239,7 @@ Users.avatar = {
         url = this.getCustomUrl(user);
       }
       else if (svc === 'none') {
-        defaultUrl = this.options.defaultImageUrl;
+        defaultUrl = this.options.defaultImageUrl || '/packages/utilities_avatar/default.png';
         // If it's a relative path (no '//' anywhere), complete the URL
         if (defaultUrl.indexOf('//') === -1) {
           // Add starting slash if it does not exist
@@ -253,9 +255,9 @@ Users.avatar = {
   },
 
   getService: function (user) {
-    let services = user && user.services || {};
+    var services = user && user.services || {};
     if (this.getCustomUrl(user)) { return 'custom'; }
-    let service = _.find([['twitter', 'profile_image_url_https'], ['facebook', 'id'], ['google', 'picture'], ['github', 'username'], ['instagram', 'profile_picture'], ['linkedin', 'pictureUrl']], function(s) { return !!services[s[0]] && s[1].length && !!services[s[0]][s[1]]; });
+    var service = _.find([['twitter', 'profile_image_url_https'], ['facebook', 'id'], ['google', 'picture'], ['github', 'username'], ['instagram', 'profile_picture'], ['linkedin', 'pictureUrl']], function(s) { return !!services[s[0]] && s[1].length && !!services[s[0]][s[1]]; });
     if(!service)
       return 'none';
     else
@@ -272,14 +274,14 @@ Users.avatar = {
   },
 
   getDescendantProp: function (obj, desc) {
-    let arr = desc.split('.');
+    var arr = desc.split('.');
     while(arr.length && (obj = obj[arr.shift()]));
     return obj;
   },
 
   getCustomUrl: function (user) {
 
-    let customProp = user && this.options.customImageProperty;
+    var customProp = user && this.options.customImageProperty;
     if (typeof customProp === 'function') {
       return this.computeUrl(customProp, user);
     } else if (customProp) {
@@ -288,21 +290,21 @@ Users.avatar = {
   },
 
   getGravatarUrl: function (user, defaultUrl) {
-    let gravatarDefault;
-    let validGravatars = ['404', 'mm', 'identicon', 'monsterid', 'wavatar', 'retro', 'blank'];
+    var gravatarDefault;
+    var validGravatars = ['404', 'mm', 'identicon', 'monsterid', 'wavatar', 'retro', 'blank'];
 
     // Initials are shown when Gravatar returns 404.
     if (this.options.fallbackType !== 'initials') {
-      let valid = _.contains(validGravatars, this.options.gravatarDefault);
+      var valid = _.contains(validGravatars, this.options.gravatarDefault);
       gravatarDefault = valid ? this.options.gravatarDefault : defaultUrl;
     }
     else {
       gravatarDefault = '404';
     }
 
-    let emailOrHash = this.getUserEmail(user) || Users.getEmailHash(user);
-    // let secure = true;
-    let options = {
+    var emailOrHash = this.getUserEmail(user) || Users.getEmailHash(user);
+    // var secure = true;
+    var options = {
       // NOTE: Gravatar's default option requires a publicly accessible URL,
       // so it won't work when your app is running on localhost and you're
       // using an image with either the standard default image URL or a custom
@@ -317,7 +319,7 @@ Users.avatar = {
 
   // Get the user's email address
   getUserEmail: function (user) {
-    let emails = _.pluck(user.emails, 'address');
+    var emails = _.pluck(user.emails, 'address');
     return emails[0] || null;
   },
 
@@ -329,7 +331,7 @@ Users.avatar = {
 
   // Returns the shape class for an avatar
   getShapeClass: function (context) {
-    let valid = ['rounded', 'circle'];
+    var valid = ['rounded', 'circle'];
     return _.contains(valid, context.shape) ? this.getCssClassPrefix() + '-' + context.shape : '';
   },
 

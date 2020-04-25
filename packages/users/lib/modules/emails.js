@@ -6,6 +6,7 @@ const getUser = (userId) => {
 };
 
 GrudrEmail.addEmails({
+  
   newUser: {
     template: 'newUser',
     path: '/email/new-user/:_id?',

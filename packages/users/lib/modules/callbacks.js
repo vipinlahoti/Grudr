@@ -1,5 +1,5 @@
 import Grudr from 'meteor/grudr:lib';
-import Events from 'meteor/grudr:events';
+// import Events from 'meteor/grudr:events';
 import GrudrEmail from 'meteor/grudr:email';
 // import { Gravatar } from 'meteor/jparker:gravatar';
 import marked from 'marked';
@@ -29,8 +29,8 @@ Users.after.insert(function (userId, user) {
  */
 Users.before.update(function (userId, doc, fieldNames, modifier) {
   // if bio is being modified, update htmlBio too
-  if (Meteor.isServer && modifier.$set && modifier.$set['grudr.bio']) {
-    modifier.$set['grudr.htmlBio'] = Grudr.utils.sanitize(marked(modifier.$set['grudr.bio']));
+  if (Meteor.isServer && modifier.$set && modifier.$set['bio']) {
+    modifier.$set['htmlBio'] = Grudr.utils.sanitize(marked(modifier.$set['bio']));
   }
 });
 
@@ -44,7 +44,7 @@ Users.before.update(function (userId, doc, fieldNames, modifier) {
 });
 
 /**
- * @summary If user.grudr.email has changed, check for existing emails and change user.emails and email hash if needed
+ * @summary If user.email has changed, check for existing emails and change user.emails and email hash if needed
  */
  if (Meteor.isServer) {
   Users.before.update(function (userId, doc, fieldNames, modifier) {
@@ -52,9 +52,9 @@ Users.before.update(function (userId, doc, fieldNames, modifier) {
     var user = doc;
 
     // if email is being modified, update user.emails too
-    if (Meteor.isServer && modifier.$set && modifier.$set['grudr.email']) {
+    if (Meteor.isServer && modifier.$set && modifier.$set['email']) {
 
-      var newEmail = modifier.$set['grudr.email'];
+      var newEmail = modifier.$set['email'];
 
       // check for existing emails and throw error if necessary
       var userWithSameEmail = Users.findByEmail(newEmail);
@@ -69,7 +69,7 @@ Users.before.update(function (userId, doc, fieldNames, modifier) {
       }
 
       // update email hash
-      // modifier.$set['grudr.emailHash'] = Gravatar.hash(newEmail);
+      // modifier.$set['emailHash'] = Gravatar.hash(newEmail);
 
     }
   });
@@ -91,52 +91,57 @@ function setupUser (user, options) {
     grudr: {
       karma: 0,
       isInvited: false,
-      invitedCount: 0
+      postCount: 0,
+      commentCount: 0,
+      invitedCount: 0,
+      upvotedPosts: [],
+      downvotedPosts: [],
+      upvotedComments: [],
+      downvotedComments: []
     }
   };
   user = _.extend(user, userProperties);
 
   // look in a few places for the user email
   if (options.email) {
-    user.grudr.email = options.email;
+    user.email = options.email;
   } else if (user.services['meteor-developer'] && user.services['meteor-developer'].emails) {
-    user.grudr.email = _.findWhere(user.services['meteor-developer'].emails, { primary: true }).address;
+    user.email = _.findWhere(user.services['meteor-developer'].emails, { primary: true }).address;
   } else if (user.services.facebook && user.services.facebook.email) {
-    user.grudr.email = user.services.facebook.email;
+    user.email = user.services.facebook.email;
   } else if (user.services.github && user.services.github.email) {
-    user.grudr.email = user.services.github.email;
+    user.email = user.services.github.email;
   } else if (user.services.google && user.services.google.email) {
-    user.grudr.email = user.services.google.email;
+    user.email = user.services.google.email;
   } else if (user.services.linkedin && user.services.linkedin.emailAddress) {
-    user.grudr.email = user.services.linkedin.emailAddress;
+    user.email = user.services.linkedin.emailAddress;
   }
 
   // generate email hash
-  // if (!!user.grudr.email) {
-  //   user.grudr.emailHash = Gravatar.hash(user.grudr.email);
+  // if (!!user.email) {
+  //   user.emailHash = Gravatar.hash(user.email);
   // }
 
   // look in a few places for the displayName
   if (user.profile.username) {
-    user.grudr.displayName = user.profile.username;
+    user.displayName = user.profile.username;
   } else if (user.profile.name) {
-    user.grudr.displayName = user.profile.name;
+    user.displayName = user.profile.name;
   } else if (user.services.linkedin && user.services.linkedin.firstName) {
-    user.grudr.displayName = user.services.linkedin.firstName + ' ' + user.services.linkedin.lastName;
+    user.displayName = user.services.linkedin.firstName + ' ' + user.services.linkedin.lastName;
   } else {
-    user.grudr.displayName = user.username;
+    user.displayName = user.username;
   }
 
   // create a basic slug from display name and then modify it if this slugs already exists;
-  const basicSlug = Grudr.utils.slugify(user.grudr.displayName);
-  user.grudr.slug = Grudr.utils.getUnusedSlug(Users, basicSlug);
+  const basicSlug = Grudr.utils.slugify(user.displayName);
+  user.slug = Grudr.utils.getUnusedSlug(Users, basicSlug);
 
   // if this is not a dummy account, and is the first user ever, make them an admin
   user.isAdmin = (!user.profile.isDummy && Users.find({'profile.isDummy': {$ne: true}}).count() === 0) ? true : false;
 
-  Events.track('new user', {username: user.grudr.displayName, email: user.grudr.email});
+  // Events.track('new user', {username: user.displayName, email: user.email});
 
-  console.log('users callback: ', user)
   return user;
 }
 Grudr.callbacks.add('users.new.sync', setupUser);

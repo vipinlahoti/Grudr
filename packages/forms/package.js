@@ -9,15 +9,13 @@ Package.onUse(function(api) {
   
   api.use([
     'fourseven:scss@4.12.0',
-
     'ecmascript',
-    'check',
   ]);
 
   api.addFiles([
-    'lib/datetime.scss'
+    'lib/styles/datetime.scss'
   ], 'client');
 
-  api.mainModule('lib/export.js', ['client', 'server']);
-
+  api.mainModule('lib/client/main.js', ['client']);
+  api.mainModule('lib/server/main.js', ['server']);
 });

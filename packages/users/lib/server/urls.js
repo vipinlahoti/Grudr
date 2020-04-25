@@ -1,1 +1,1 @@
-// Accounts.urls.resetPassword = (token) => Meteor.absoluteUrl(`reset-password/${token}`);
+Accounts.urls.resetPassword = (token) => Meteor.absoluteUrl(`reset-password/${token}`);
