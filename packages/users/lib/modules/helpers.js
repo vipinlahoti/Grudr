@@ -54,7 +54,7 @@ Users.getDisplayName = function (user) {
   if (typeof user === 'undefined') {
     return '';
   } else {
-    return (user.grudr && user.displayName) ? user.displayName : Users.getUserName(user);
+    return (user && user.displayName) ? user.displayName : Users.getUserName(user);
   }
 };
 Users.helpers({getDisplayName: function () {return Users.getDisplayName(this);}});
@@ -70,8 +70,10 @@ Users.getProfileUrl = function (user, isAbsolute) {
     return '';
   }
   isAbsolute = typeof isAbsolute === 'undefined' ? false : isAbsolute; // default to false
-  var prefix = isAbsolute ? Grudr.utils.getSiteUrl().slice(0,-1) : '';
-  if (user.grudr && user.slug) {
+  const prefix = isAbsolute ? Grudr.utils.getSiteUrl().slice(0,-1) : '';
+
+  if (user && user.slug) {
+    console.log('Users.getProfileUrl: ', user, prefix);
     return `${prefix}/users/${user.slug}`;
   } else {
     return '';
@@ -128,9 +130,9 @@ Users.getGitHubNameById = function (userId) {return Users.getGitHubName(Users.fi
  * @param {Object} user
  */
 Users.getEmail = function (user) {
-  if(user.grudr && user.email){
+  if(user && user.email) {
     return user.email;
-  }else{
+  } else {
     return null;
   }
 };
@@ -156,10 +158,10 @@ Users.getEmailHashById = function (userId) {return Users.getEmailHash(Users.find
 Users.getSetting = function (user, settingName, defaultValue) {
   user = user || Meteor.user();
   defaultValue = defaultValue || null;
-  // all settings should be in the user.grudr namespace, so add '' if needed
+  // all settings should be in the user namespace, so add '' if needed
   settingName = settingName.slice(0,10) === '' ? settingName : '' + settingName;
 
-  if (user && user.grudr) {
+  if (user) {
     var settingValue = Users.getProperty(user, settingName);
     return typeof settingValue === 'undefined' ? defaultValue : settingValue;
   } else {
@@ -258,7 +260,7 @@ Users.getRequiredFields = function () {
   var schema = Users.simpleSchema()._schema;
   var fields = _.filter(_.keys(schema), function (fieldName) {
     var field = schema[fieldName];
-    return !!field.required;
+    return !!field.mustComplete;
   });
   return fields;
 };

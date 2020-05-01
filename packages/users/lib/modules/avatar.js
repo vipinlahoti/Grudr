@@ -1,14 +1,7 @@
-// import { Gravatar } from 'meteor/jparker:gravatar';
 import Users from './collection.js';
 import md5 from 'crypto-js/md5';
 
-// var _ = require('underscore');
-
-// import Gravatar from 'gravatar';
-
 Users.avatar = {
-
-
   /**
    * `cleantString` remove starting and trailing whitespaces
    * and lowercase the input

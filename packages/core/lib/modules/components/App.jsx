@@ -24,6 +24,27 @@ const RouteWithLayout = ({ component: Component, ...rest }) => {
 
 class App extends PureComponent {
 
+  /*
+   * Clear messages on route change
+   * See https://stackoverflow.com/a/45373907/649299
+   */
+  UNSAFE_componentWillMount() {
+    this.unlisten = this.props.history.listen((location, action) => {
+      this.clear();
+    });
+  }
+
+  componentWillUnmount() {
+    this.unlisten();
+  }
+
+  /*
+   * Clear all flash messages
+   */
+  clear = () => {
+    // this.props.flash = [];
+  };
+
   getLocale() {
     return Grudr.settings.get('locale');
   }
@@ -37,6 +58,7 @@ class App extends PureComponent {
       currentUser: this.props.currentUser,
       actions: this.props.actions,
       messages: this.props.messages,
+      flash: this.props.flash
     };
   }
 
@@ -87,13 +109,15 @@ App.propTypes = {
   ready: PropTypes.bool,
   currentUser: PropTypes.object,
   actions: PropTypes.object,
-  messages: PropTypes.object
+  messages: PropTypes.object,
+  flash: PropTypes.array,
 };
 
 App.childContextTypes = {
   currentUser: PropTypes.object,
   actions: PropTypes.object,
   messages: PropTypes.object,
+  flash: PropTypes.array,
   // intl: intlShape,
   getLocale: PropTypes.func,
 };
@@ -109,7 +133,9 @@ const AppContainer = withTracker(() => {
       currentUser: Meteor.user(),
       actions: {call: Meteor.call},
       messages: Messages,
+      flash: Messages.collection.find({show: true}).fetch(),
     }
+
     if (!subscriptions.length || _.every(subscriptions, handle => handle.ready())) {
       data.ready = true;
     } else {

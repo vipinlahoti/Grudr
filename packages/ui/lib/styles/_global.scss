@@ -51,7 +51,7 @@
 }
 
 .section-dashboard {
-  min-height: 550px;
+  // min-height: 550px;
 }
 
 .section-main {
@@ -149,9 +149,17 @@
 }
 
 .section-small {
-  height: 300px;
+  // height: 300px;
 }
 
 .section-xsmall {
   height: 120px;
+}
+
+.h-250 {
+  height: 250px;
+}
+
+.section-dashboard {
+  height: auto;
 }

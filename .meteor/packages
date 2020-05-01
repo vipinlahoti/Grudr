@@ -1,8 +1,2 @@
 grudr:core
-grudr:notifications
-
-grudr:email-templates
 grudr:ui
-grudr:forms
-
-grudr:debug

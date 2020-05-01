@@ -11,10 +11,10 @@ const UserProfile = (props, { currentUser }) => {
   console.log('getUser', getUser, ' -- currentUser -- ', currentUser);
 
   return (
-    <Grudr.components.CanDo action="users.edit.own" displayNoPermissionMessage={true}>
+    <React.Fragment>
       <Grudr.components.HeadTags url={Users.getProfileUrl(currentUser, true)} title={Users.getDisplayName(currentUser)} />
       
-      <Jumbotron className="section-hero section-small">
+      <Jumbotron className="section-hero section-dashboard">
         <Container>
           <Row>
             <Col sm={12} md={7} lg={8}>
@@ -23,6 +23,9 @@ const UserProfile = (props, { currentUser }) => {
                 <div className="">
                   <h2 className="page-title">{Users.getDisplayName(currentUser)}</h2>
                   <div className="mt-2">{currentUser.bio}</div>
+                  <div className="mt-2">Karma: {currentUser.karma}</div>
+                  <div className="mt-2">Twitter: {currentUser.twitterUsername}</div>
+                  <div className="mt-2">Website: {currentUser.website}</div>
                 </div>
               </div>
             </Col>
@@ -30,25 +33,12 @@ const UserProfile = (props, { currentUser }) => {
         </Container>
       </Jumbotron>
 
-    </Grudr.components.CanDo>
+    </React.Fragment>
   )
 }
 
 UserProfile.contextTypes = {
   currentUser: PropTypes.object
 }
-
-const UserProfileContainer = withTracker(() => {
-  let subscriptions;
-
-  if (Meteor.isClient) {
-    subscription = Meteor.subscribe('users.single');
-  }
-  console.log('subscription: ', subscription)
-
-  return {
-    // links: LinksCollection.find().fetch(),
-  };
-})(UserProfile);
 
 Grudr.registerComponent('UserProfile', UserProfile);

@@ -12,68 +12,67 @@ import Users from './collection.js';
 /**
  * @summary Generate HTML body from Markdown on user bio insert
  */
-Users.after.insert(function (userId, user) {
+// Users.after.insert(function (userId, user) {
 
-  // run create user async callbacks
-  Grudr.callbacks.runAsync('users.new.async', user);
+//   // run create user async callbacks
+//   Grudr.callbacks.runAsync('users.new.async', user);
 
-  // check if all required fields have been filled in. If so, run profile completion callbacks
-  if (Users.hasCompletedProfile(user)) {
-    Grudr.callbacks.runAsync('users.profileCompleted.async', user);
-  }
-
-});
+//   // check if all required fields have been filled in. If so, run profile completion callbacks
+//   if (Users.hasCompletedProfile(user)) {
+//     Grudr.callbacks.runAsync('users.profileCompleted.async', user);
+//   }
+// });
 
 /**
  * @summary Generate HTML body from Markdown when user bio is updated
  */
-Users.before.update(function (userId, doc, fieldNames, modifier) {
-  // if bio is being modified, update htmlBio too
-  if (Meteor.isServer && modifier.$set && modifier.$set['bio']) {
-    modifier.$set['htmlBio'] = Grudr.utils.sanitize(marked(modifier.$set['bio']));
-  }
-});
+// Users.before.update(function (userId, doc, fieldNames, modifier) {
+//   // if bio is being modified, update htmlBio too
+//   if (Meteor.isServer && modifier.$set && modifier.$set['bio']) {
+//     modifier.$set['htmlBio'] = Grudr.utils.sanitize(marked(modifier.$set['bio']));
+//   }
+// });
 
 /**
  * @summary Disallow $rename
  */
-Users.before.update(function (userId, doc, fieldNames, modifier) {
-  if (!!modifier.$rename) {
-    throw new Meteor.Error('illegal $rename operator detected!');
-  }
-});
+// Users.before.update(function (userId, doc, fieldNames, modifier) {
+//   if (!!modifier.$rename) {
+//     throw new Meteor.Error('illegal $rename operator detected!');
+//   }
+// });
 
 /**
  * @summary If user.email has changed, check for existing emails and change user.emails and email hash if needed
  */
- if (Meteor.isServer) {
-  Users.before.update(function (userId, doc, fieldNames, modifier) {
+// if (Meteor.isServer) {
+//   Users.before.update(function (userId, doc, fieldNames, modifier) {
 
-    var user = doc;
+//     var user = doc;
 
-    // if email is being modified, update user.emails too
-    if (Meteor.isServer && modifier.$set && modifier.$set['email']) {
+//     // if email is being modified, update user.emails too
+//     if (Meteor.isServer && modifier.$set && modifier.$set['email']) {
 
-      var newEmail = modifier.$set['email'];
+//       var newEmail = modifier.$set['email'];
 
-      // check for existing emails and throw error if necessary
-      var userWithSameEmail = Users.findByEmail(newEmail);
-      if (userWithSameEmail && userWithSameEmail._id !== doc._id) {
-        throw new Meteor.Error('email_taken2', 'this_email_is_already_taken' + ' (' + newEmail + ')');
-      }
+//       // check for existing emails and throw error if necessary
+//       var userWithSameEmail = Users.findByEmail(newEmail);
+//       if (userWithSameEmail && userWithSameEmail._id !== doc._id) {
+//         throw new Meteor.Error('email_taken2', 'this_email_is_already_taken' + ' (' + newEmail + ')');
+//       }
 
-      // if user.emails exists, change it too
-      if (!!user.emails) {
-        user.emails[0].address = newEmail;
-        modifier.$set.emails = user.emails;
-      }
+//       // if user.emails exists, change it too
+//       if (!!user.emails) {
+//         user.emails[0].address = newEmail;
+//         modifier.$set.emails = user.emails;
+//       }
 
-      // update email hash
-      // modifier.$set['emailHash'] = Gravatar.hash(newEmail);
+//       // update email hash
+//       // modifier.$set['emailHash'] = Gravatar.hash(newEmail);
 
-    }
-  });
-}
+//     }
+//   });
+// }
 
 //////////////////////////////////////////////////////
 // Callbacks                                        //
@@ -86,19 +85,10 @@ Users.before.update(function (userId, doc, fieldNames, modifier) {
  */
 function setupUser (user, options) {
   // ------------------------------ Properties ------------------------------ //
-  var userProperties = {
+  const userProperties = {
     profile: options.profile || {},
-    grudr: {
-      karma: 0,
-      isInvited: false,
-      postCount: 0,
-      commentCount: 0,
-      invitedCount: 0,
-      upvotedPosts: [],
-      downvotedPosts: [],
-      upvotedComments: [],
-      downvotedComments: []
-    }
+    karma: 0,
+    isInvited: false
   };
   user = _.extend(user, userProperties);
 

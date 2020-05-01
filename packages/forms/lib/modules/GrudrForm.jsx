@@ -49,7 +49,7 @@ class GrudrForm extends Component{
 
   // return the current schema based on either the schema or collection prop
   getSchema() {
-    console.log('getSchema(): ', this.props)
+    // console.log('getSchema(): ', this.props)
     return this.props.schema ? this.props.schema : this.props.collection.simpleSchema()._schema;
   }
 
@@ -58,7 +58,7 @@ class GrudrForm extends Component{
   // - else if its value was provided by the db, use that (i.e. props.document)
   // - else if its value is provded by the autofilledValues object, use that
   getDocument() {
-    console.log('this.state: ', this.state)
+    // console.log('this.state: ', this.state)
     const currentDocument = _.clone(this.props.document) || {};
     const document = Object.assign(_.clone(this.state.autofilledValues), currentDocument,  _.clone(this.state.currentValues));
     return document;
@@ -178,8 +178,8 @@ class GrudrForm extends Component{
     // sort by order
     groups = _.sortBy(groups, 'order');
 
-    console.log('fields: ', fields);
-    console.log('groups: ', groups);
+    // console.log('fields: ', fields);
+    // console.log('groups: ', groups);
 
     return groups;
   }

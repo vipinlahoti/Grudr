@@ -74,7 +74,7 @@ Meteor.methods({
 
     // check that user can edit document
     if (!user || !Users.canEdit(currentUser, user)) {
-      throw new Meteor.Error(601, 'sorry_you_cannot_edit_this_user');
+      throw new Meteor.Error(601, 'Sorry you cannot edit this user');
     }
 
     // go over each field and throw an error if it's not editable
@@ -85,7 +85,7 @@ Meteor.methods({
 
         var field = schema[fieldName];
         if (!Users.canEditField(currentUser, field, user)) {
-          throw new Meteor.Error('disallowed_property', 'disallowed_property_detected' + ': ' + fieldName);
+          throw new Meteor.Error('disallowed_property', 'Disallowed property detected' + ': ' + fieldName);
         }
 
       });
@@ -103,7 +103,6 @@ Meteor.methods({
       const user = Users.findOne(userId);
       Users.remove(userId);
       Grudr.callbacks.runAsync('users.remove.async', user, options);
-
     }
 
   },
@@ -123,7 +122,6 @@ Meteor.methods({
     }
 
     Users.methods.setSetting(userId, settingName, value);
-
   }
 
 });

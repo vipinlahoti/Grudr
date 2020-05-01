@@ -17,14 +17,6 @@ const canEdit = Users.canEdit;
 const canEditAll = user => Users.canDo(user, 'users.edit.all');
 
 /**
- * @summary User Data schema
- * @type {SimpleSchema}
- */
-// Grudr.schemas.userData = new SimpleSchema({
-  
-// });
-
-/**
  * @summary Users schema
  * @type {SimpleSchema}
  */
@@ -88,6 +80,7 @@ Users.schema = new SimpleSchema({
   bio: {
     type: String,
     optional: true,
+    mustComplete: true,
     control: 'textarea',
     insertableIf: canInsert,
     editableIf: canEdit

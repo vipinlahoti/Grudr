@@ -22,13 +22,13 @@ Package.onUse(function(api) {
     'check',
     'http',
     'email',
-    'react-meteor-data',
+    'react-meteor-data@2.1.0',
 
     'underscore',
 
-    'meteorhacks:picker',
+    // 'meteorhacks:picker',
     'matb33:collection-hooks',
-    'dburles:collection-helpers'
+    // 'dburles:collection-helpers'
   ]
 
   api.use(packages);

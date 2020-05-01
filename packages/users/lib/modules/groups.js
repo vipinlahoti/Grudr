@@ -119,6 +119,7 @@ Users.canView = function (user, document) {
  */
 Users.canEdit = function (user, document) {
 
+  console.log('user:', user, ' document: ', document);
   user = (typeof user === 'undefined') ? Meteor.user() : user;
   const collectionName = document.getCollectionName();
 

@@ -11,7 +11,7 @@ const DashboardPage = (props, { currentUser }) => {
     <Grudr.components.CanDo action="users.edit.own" displayNoPermissionMessage={true}>
       <Grudr.components.HeadTags title="Dashboard" description="Dashboard description" />
 
-      <Jumbotron className="section-hero section-small">
+      <Jumbotron className="section-hero section-small h-250">
         <Container>
           <Row>
             <Col sm={12} md={7} lg={7}>

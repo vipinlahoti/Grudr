@@ -73,3 +73,26 @@ Mongo.Collection.prototype.attachSchema = function (schemaOrFields) {
     this.simpleSchema().extend(schemaOrFields);
   }
 };
+
+// see https://github.com/dburles/meteor-collection-helpers/blob/master/collection-helpers.js
+Mongo.Collection.prototype.helpers = function (helpers) {
+  var self = this;
+
+  if (self._transform && !self._helpers)
+    throw new Meteor.Error(
+      "Can't apply helpers to '" + self._name + "' a transform function already exists!"
+    );
+
+  if (!self._helpers) {
+    self._helpers = function Document(doc) {
+      return Object.assign(this, doc);
+    };
+    self._transform = function (doc) {
+      return new self._helpers(doc);
+    };
+  }
+
+  Object.keys(helpers).forEach(function (key) {
+    self._helpers.prototype[key] = helpers[key];
+  });
+};
