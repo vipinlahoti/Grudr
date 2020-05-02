@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node server.js",
+    "start": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "prod": "NODE_ENV=production node server.js",
     "lint": "eslint . --cache --ext .jsx,js",
     "lintfix": "eslint . --cache --fix --ext .jsx,js"
   },
