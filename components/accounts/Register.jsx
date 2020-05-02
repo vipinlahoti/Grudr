@@ -34,6 +34,7 @@ class Register extends Component {
             </Link>
           </Form>
         </Card.Header>
+
         <Card.Body className="text-center pt-4 pb-5">
           <div className="text-muted text-center mb-3">
             <small>or Register with</small>

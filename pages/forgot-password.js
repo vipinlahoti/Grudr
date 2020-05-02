@@ -5,7 +5,7 @@ import { Container, Row } from 'react-bootstrap';
 export default () => {
   return (
     <Grudr.components.Layout>
-      <Grudr.components.HeadTags title="Login Page" description="Login Page" />
+      <Grudr.components.HeadTags title="Forgot Password" description="Forgot Password Page" />
       
       <div className="login__wrapper">
         <Container>
