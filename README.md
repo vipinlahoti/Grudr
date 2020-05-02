@@ -1,4 +1,4 @@
-# Grudr
+# Grudr built with Next.js
 
 Install it and run:
 
