@@ -6,12 +6,12 @@ import Button from 'react-bootstrap/Button';
 class GrudrButton extends Component {
 
   render() {
-    const { variant, size, path, icon, children, ...rest } = this.props;
+    const { variant, type, size, path, icon, children, ...rest } = this.props;
     const btnClass = `btn btn-${variant}`;
 
     return (
       <React.Fragment>
-        {variant === 'link' ?
+        {type === 'link' ?
           <Link href={path}>
             <a className={btnClass}>
               {icon ? <Grudr.components.Icon name={icon} /> : null}
