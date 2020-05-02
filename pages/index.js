@@ -1,9 +1,7 @@
 import Grudr from '@grudr';
 import Head from 'next/head';
+import React, { Component } from 'react';
 import { Jumbotron, Container, Row, Col, Card } from 'react-bootstrap';
-import { useEffect } from 'react';
-import { useUser } from '../context/userContext';
-import firebase from '../firebase/clientApp';
 
 export default () => {
 
@@ -32,59 +30,59 @@ export default () => {
       </Jumbotron>
 
       <div className="section section-features">
-      <Container>
-        <Row className="justify-content-md-center text-center mb-4">
-          <Col sm={12} md={8} lg={8}>
-            <h3 className="display-3">Excepteur sint occaecat cupidatat.</h3>
-            <p className="lead">hero.description</p>
-          </Col>
-        </Row>
+        <Container>
+          <Row className="justify-content-md-center text-center mb-4">
+            <Col sm={12} md={8} lg={8}>
+              <h3 className="display-3">Excepteur sint occaecat cupidatat.</h3>
+              <p className="lead">hero.description</p>
+            </Col>
+          </Row>
 
-        <Row>
-          <Col sm={12} md={4} lg={4}>
-            <Card className="featured-card">
-              <Card.Body>
-                <div className="card-icon rounded-circle bg-primary text-white">
-                  <Grudr.components.Icon name="person_add"/>
-                </div>
-                <Card.Title>Lorem ipsum dolor sit amet</Card.Title>
-                <Card.Text>
-                  hero.description
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
+          <Row>
+            <Col sm={12} md={4} lg={4}>
+              <Card className="featured-card">
+                <Card.Body>
+                  <div className="card-icon rounded-circle bg-primary text-white">
+                    <Grudr.components.Icon name="person_add"/>
+                  </div>
+                  <Card.Title>Lorem ipsum dolor sit amet</Card.Title>
+                  <Card.Text>
+                    hero.description
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
 
-          <Col sm={12} md={4} lg={4}>
-            <Card className="featured-card">
-              <Card.Body>
-                <div className="card-icon rounded-circle bg-warning text-white">
-                  <Grudr.components.Icon name="account"/>
-                </div>
-                <Card.Title>Lorem ipsum dolor sit amet</Card.Title>
-                <Card.Text>
-                  hero.description
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
+            <Col sm={12} md={4} lg={4}>
+              <Card className="featured-card">
+                <Card.Body>
+                  <div className="card-icon rounded-circle bg-warning text-white">
+                    <Grudr.components.Icon name="account"/>
+                  </div>
+                  <Card.Title>Lorem ipsum dolor sit amet</Card.Title>
+                  <Card.Text>
+                    hero.description
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
 
-          <Col sm={12} md={4} lg={4}>
-            <Card className="featured-card">
-              <Card.Body>
-                <div className="card-icon rounded-circle bg-dark text-white">
-                  <Grudr.components.Icon name="person_add"/>
-                </div>
-                <Card.Title>Lorem ipsum dolor sit amet</Card.Title>
-                <Card.Text>
-                  hero.description
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+            <Col sm={12} md={4} lg={4}>
+              <Card className="featured-card">
+                <Card.Body>
+                  <div className="card-icon rounded-circle bg-dark text-white">
+                    <Grudr.components.Icon name="person_add"/>
+                  </div>
+                  <Card.Title>Lorem ipsum dolor sit amet</Card.Title>
+                  <Card.Text>
+                    hero.description
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div>
 
       <div className="section">
         <Container>
