@@ -29,8 +29,6 @@ const NavLoggedOut = () =>
   </Nav>
 
 const Header = props => {
-  console.log('Header: ', Grudr);
-
   return (
     <Navbar variant="light">
       <Grudr.components.Logo siteTitle={siteTitle}/>

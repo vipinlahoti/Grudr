@@ -1,9 +1,36 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+.eslintcache
+npm-debug.log
+*.scssc
+.sass-cache/*
+.DS_Store
+*-ck.js
+providers_secret.js
+*.sublime-project
 
-# dependencies
+*.sublime-workspace
+codekit-config.json
+
+config.rb
+
+deploy.sh
+
+.idea
+
+scratch
+
+.deploy
+.deploy/*
+
+versions
+
+
 /node_modules
 /.pnp
 .pnp.js
+bundle.tar.gz
+
+jsdoc-conf.json
+jsdoc.json
 
 # testing
 /coverage
