@@ -5,14 +5,14 @@ import { Container, Row } from 'react-bootstrap';
 export default () => {
   return (
     <Grudr.components.Layout>
-      <Grudr.components.HeadTags title="Register Page" description="Register Page" />
+      <Grudr.components.HeadTags title="Login Page" description="Login Page" />
       
       <div className="login__wrapper">
         <Container>
           <Row>
             <div className="accounts-card">
               <div className="accounts-card-banner"></div>
-              <Grudr.components.Register />
+              <Grudr.components.ForgotPassword />
             </div>
           </Row>
         </Container>

@@ -1,10 +1,12 @@
 import Grudr from '@grudr';
 import Link from 'next/link';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
 const siteTitle = 'Grudr';
 // const logoUrl = Grudr.settings.get('logoUrl');
+// {pathname === '/' ? 'is-active' : ''}
 
 const NavLoggedOut = () => 
   <Nav className="ml-auto">
@@ -36,5 +38,9 @@ const Header = props => {
     </Navbar>
   )
 }
+
+Header.contextTypes = {
+  currentUser: PropTypes.object,
+};
 
 Grudr.registerComponent('Header', Header);

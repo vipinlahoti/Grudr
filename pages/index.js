@@ -1,5 +1,4 @@
 import Grudr from '@grudr';
-import Head from 'next/head';
 import React, { Component } from 'react';
 import { Jumbotron, Container, Row, Col, Card } from 'react-bootstrap';
 
@@ -22,6 +21,7 @@ export default () => {
                 <Grudr.components.Button variant="white" type="link" path="/login" icon="account">
                   Login
                 </Grudr.components.Button>
+
               </div>
             
             </Col>

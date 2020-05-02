@@ -7,7 +7,9 @@
         "root": ["."],
         "alias": {
           "@grudr": "./grudr",
-          "@components": "./components"
+          "@components": "./components",
+          "@credentials": "./credentials",
+          "@context": "./context",
         }
       }
     ]

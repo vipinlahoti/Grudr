@@ -1,8 +1,10 @@
-import Grudr from '@grudr';
+import UserProvider from '../context/userContext';
 import '@components';
 import '../styles/main.scss';
 
 // Custom App to wrap
 export default ({ Component, pageProps }) => (
-  <Component {...pageProps} />
+  <UserProvider>
+    <Component {...pageProps} />
+  </UserProvider>
 )

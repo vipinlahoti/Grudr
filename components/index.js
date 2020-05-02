@@ -7,6 +7,7 @@ import './common/Icon.jsx';
 
 import './common/Button.jsx';
 
-// Pages
-import './pages/HomePage.jsx';
-import './pages/LoginPage.jsx';
+// accounts
+import './accounts/Login.jsx';
+import './accounts/Register.jsx';
+import './accounts/ForgotPassword.jsx';

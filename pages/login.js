@@ -12,7 +12,7 @@ export default () => {
           <Row>
             <div className="accounts-card">
               <div className="accounts-card-banner"></div>
-              Login Form
+              <Grudr.components.Login />
             </div>
           </Row>
         </Container>
