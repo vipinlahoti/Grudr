@@ -1,6 +1,6 @@
 import Grudr from './config.js';
 import marked from 'marked';
-import moment from 'moment';
+import moment from 'moment/moment';
 import getSlug from 'speakingurl';
 import sanitizeHtml from 'sanitize-html';
 import * as _ from 'underscore';
