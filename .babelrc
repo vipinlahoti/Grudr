@@ -1,15 +1,15 @@
 {
-	"plugins": [
-	],
-  "presets": [
+  "presets": ["next/babel"],
+  "plugins": [
     [
-      "@babel/preset-env",
+      "module-resolver",
       {
-        "shippedProposals": true,
-        "corejs":2,
-        "useBuiltIns": "usage"
+        "root": ["."],
+        "alias": {
+          "@grudr": "./grudr",
+          "@components": "./components"
+        }
       }
-    ],
-    "@babel/preset-react"
+    ]
   ]
 }

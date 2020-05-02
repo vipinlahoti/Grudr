@@ -1,0 +1,12 @@
+import './common/Layout.jsx';
+import './common/Header.jsx';
+import './common/Footer.jsx';
+import './common/HeadTags.jsx';
+import './common/Logo.jsx';
+import './common/Icon.jsx';
+
+import './common/Button.jsx';
+
+// Pages
+import './pages/HomePage.jsx';
+import './pages/LoginPage.jsx';

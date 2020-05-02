@@ -1,80 +1,33 @@
 {
   "name": "Grudr",
-  "version": "0.0.1",
-  "engines": {
-    "npm": "^3.0"
-  },
-  "private": true,
+  "version": "0.1.0",
   "scripts": {
-    "start": "meteor --settings settings.json",
-    "lint": "eslint . --cache --ext .jsx,js",
-    "lintfix": "eslint . --cache --fix --ext .jsx,js"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
-    "@babel/runtime": "^7.8.4",
-    "bcrypt": "^4.0.1",
     "classnames": "^2.2.6",
-    "crypto-js": "^4.0.0",
-    "handlebars": "^4.7.3",
+    "firebase": "^7.14.2",
     "html-to-text": "^5.1.1",
-    "intl": "^1.2.5",
-    "intl-locales-supported": "^1.8.4",
     "juice": "^6.0.0",
-    "marked": "^0.8.2",
-    "meteor-node-stubs": "^1.0.0",
-    "moment": "^2.24.0",
+    "marked": "^1.0.0",
+    "moment": "^2.25.1",
+    "next": "^9.3.6",
+    "node-sass": "^4.14.0",
     "pluralize": "^8.0.0",
-    "prop-types": "^15.7.2",
-    "random": "^2.2.0",
-    "react": "^16.13.0",
-    "react-bootstrap": "^1.0.0",
-    "react-cookie": "^4.0.3",
-    "react-datetime": "^2.16.3",
-    "react-dom": "^16.13.0",
-    "react-helmet": "^6.0.0",
-    "react-intl": "^4.2.2",
-    "react-router": "^5.1.2",
-    "react-router-bootstrap": "^0.25.0",
-    "react-router-dom": "^5.1.2",
-    "sanitize-html": "^1.22.1",
-    "simpl-schema": "^1.5.7",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.0.1",
+    "react-dom": "^16.13.1",
+    "sanitize-html": "^1.23.0",
+    "sass": "^1.26.5",
+    "simpl-schema": "^1.7.0",
     "speakingurl": "^14.0.1",
-    "underscore": "^1.9.2",
-    "universal-cookie": "^4.0.3"
+    "underscore": "^1.10.2"
   },
   "devDependencies": {
-    "autoprefixer": "^9.7.5",
-    "babel-eslint": "^10.1.0",
-    "babel-runtime": "^6.26.0",
-    "css-loader": "^3.4.2",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.1.0",
-    "eslint-config-meteor": "^0.1.1",
-    "eslint-import-resolver-meteor": "^0.4.0",
-    "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-meteor": "^7.0.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.19.0",
-    "husky": "^4.2.3",
-    "moment-timezone": "^0.5.28",
-    "node-sass": "^4.13.1",
-    "prettier": "^2.0.2",
-    "sass-loader": "^8.0.2"
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {
-        "browsers": [
-          "last 2 versions"
-        ]
-      }
-    }
+    "babel-plugin-module-resolver": "^4.0.0",
+    "dotenv": "^8.2.0",
+    "husky": "^4.2.5"
   }
 }
