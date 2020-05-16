@@ -2,11 +2,6 @@ import SimpleSchema from 'simpl-schema';
 import Grudr from './config.js';
 
 /**
- * @summary Meteor Collections.
- * @class Mongo.Collection
- */
-
-/**
  * @summary @summary Add an additional field (or an array of fields) to a schema.
  * @param {Object|Object[]} field
  */
@@ -27,19 +22,6 @@ Mongo.Collection.prototype.addField = function (fieldOrFieldArray) {
 };
 
 /**
- * @summary Remove a field from a schema.
- * @param {String} fieldName
- */
-Mongo.Collection.prototype.removeField = function (fieldName) {
-
-  var collection = this;
-  var schema = _.omit(collection.simpleSchema()._schema, fieldName);
-
-  // add field schema to collection schema
-  collection.attachSchema(schema, {replace: true});
-};
-
-/**
  * @summary Get a list of a schema's private fields
  * @namespace Grudr.schemas
  */
@@ -51,7 +33,6 @@ Mongo.Collection.prototype.getPrivateFields = function () {
   });
   return fields;
 };
-
 
 /**
  * @summary Get a list of a schema's public fields

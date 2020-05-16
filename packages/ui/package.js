@@ -8,12 +8,7 @@ Package.onUse(function(api) {
 
   api.use([
     'fourseven:scss@4.12.0',
-    
-    'grudr:core',
-    'grudr:accounts',
-    'grudr:email',
-    'grudr:events',
-    'grudr:forms'
+    'grudr:core'
   ]);
 
   api.addFiles([

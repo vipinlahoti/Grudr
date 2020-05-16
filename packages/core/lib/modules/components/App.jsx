@@ -1,11 +1,9 @@
 import Grudr from 'meteor/grudr:lib';
 import { withTracker } from 'meteor/react-meteor-data';
 import React, { PureComponent } from 'react';
-import { Redirect } from 'react-router'
 import PropTypes from 'prop-types';
-import { IntlProvider, intlShape } from 'react-intl';
-import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
-import Messages from '../messages.js';
+import { Switch, Route, withRouter } from 'react-router-dom';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const RouteWithLayout = ({ component: Component, ...rest }) => {
   return (
@@ -24,66 +22,26 @@ const RouteWithLayout = ({ component: Component, ...rest }) => {
 
 class App extends PureComponent {
 
-  /*
-   * Clear messages on route change
-   * See https://stackoverflow.com/a/45373907/649299
-   */
-  UNSAFE_componentWillMount() {
-    this.unlisten = this.props.history.listen((location, action) => {
-      this.clear();
-    });
-  }
-
-  componentWillUnmount() {
-    this.unlisten();
-  }
-
-  /*
-   * Clear all flash messages
-   */
-  clear = () => {
-    // this.props.flash = [];
-  };
-
-  getLocale() {
-    return Grudr.settings.get('locale');
-  }
-
   getChildContext() {
-    // const { intl } = intlProvider.getChildContext();
-
-    // This return will keep keep these props as context
     return {
-      getLocale: this.getLocale,
-      currentUser: this.props.currentUser,
-      actions: this.props.actions,
-      messages: this.props.messages,
-      flash: this.props.flash
+      currentUser: this.props.currentUser
     };
   }
 
   render() {
     const routeNames = Grudr.routes.routes;
-    const currentRoute = this.props.location.pathname;
-    
-    if (Meteor.isClient) {
-      if ((Meteor.user() && currentRoute === '/login') || (Meteor.user() && currentRoute === '/register')) {
-        return (<Redirect to='/dashboard' />)
-      }
-    }
 
     return (
-      <IntlProvider
-        locale={this.getLocale()}
-        key={this.getLocale()}
-        messages={Grudr.strings[this.getLocale()]}
-      >
+      <React.Fragment>
         <Grudr.components.ScrollToTop />
         <Grudr.components.HeadTags />
-        
-        {this.props.ready ?
-          <React.Fragment>
-            {routeNames.length ? (
+
+        {routeNames.length ? (
+          <TransitionGroup className="transition-group">
+            <CSSTransition
+              timeout={{ enter: 300, exit: 300 }}
+              classNames="fade"
+            >
               <Switch>
                 {routeNames.map((route, i) => (
                   <RouteWithLayout
@@ -95,57 +53,34 @@ class App extends PureComponent {
                 <RouteWithLayout
                   component={Grudr.components.Error404}
                 />
-              </Switch> )
-            : ( <Grudr.components.HelloWorld /> )}
-          </React.Fragment>
-        : <Grudr.components.Loading /> }
+              </Switch>
+            </CSSTransition>
+          </TransitionGroup>)
+        : ( <Grudr.components.HelloWorld /> )}
 
-      </IntlProvider>
+      </React.Fragment>
     );
   }
 }
 
 App.propTypes = {
-  ready: PropTypes.bool,
-  currentUser: PropTypes.object,
-  actions: PropTypes.object,
-  messages: PropTypes.object,
-  flash: PropTypes.array,
+  currentUser: PropTypes.object
 };
 
 App.childContextTypes = {
-  currentUser: PropTypes.object,
-  actions: PropTypes.object,
-  messages: PropTypes.object,
-  flash: PropTypes.array,
-  // intl: intlShape,
-  getLocale: PropTypes.func,
+  currentUser: PropTypes.object
 };
 
-const AppContainer = withTracker(() => {
-  let subscriptions;
-  let data;
+// const AppContainer = withTracker(() => {
+//   let data;
 
-  if (Meteor.isClient) {
-    subscriptions = Grudr.subscriptions.map((sub) => Meteor.subscribe(sub.name, sub.arguments));
+//   if (Meteor.isClient) {
+//     data = {
+//       currentUser: Meteor.user()
+//     }
+//   }
 
-    data = {
-      currentUser: Meteor.user(),
-      actions: {call: Meteor.call},
-      messages: Messages,
-      flash: Messages.collection.find({show: true}).fetch(),
-    }
+//   return data;
+// })(App);
 
-    if (!subscriptions.length || _.every(subscriptions, handle => handle.ready())) {
-      data.ready = true;
-    } else {
-      data.ready = false;
-    }
-  }
-
-  return data;
-})(App);
-
-const MainAppContainer = withRouter(AppContainer)
-
-Grudr.registerComponent('App', MainAppContainer);
+Grudr.registerComponent('App', withRouter(App));

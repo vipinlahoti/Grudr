@@ -53,17 +53,8 @@ Grudr.callbacks.run = function () {
   if (typeof callbacks !== 'undefined' && !!callbacks.length) { // if the hook exists, and contains callbacks to run
 
     return callbacks.reduce(function(result, callback) {
-      // console.log(callback.name);
-      // return callback(result, constant);
       const newArguments = [result].concat(args);
       return callback.apply(this, newArguments);
-      // uncomment for debugging
-      // try {
-      //   return callback(result, constant);
-      // } catch (error) {
-      //   console.log(`// error at callback [${callback.name}] in hook [${hook}]`)
-      //   throw error;
-      // }
     }, item);
 
   } else { // else, just return the item unchanged

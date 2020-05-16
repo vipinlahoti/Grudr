@@ -1,17 +1,47 @@
 import Grudr from 'meteor/grudr:lib';
-import { AccountsReactComponent } from 'meteor/grudr:accounts'
-
 import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 
 const RegisterPage = () =>
   <React.Fragment>
-    <div className="login__wrapper">
+    <Grudr.components.HeadTags title="Register Page" description="Register Page" />
+
+    <div className="section">
       <Container>
         <Row>
           <div className="accounts-card">
-            <div className="accounts-card-banner"></div>
-            <AccountsReactComponent state='signUp'/>
+            <Card className="shadow-lg">
+              <Card.Header>
+
+                <div className="title-5 mb-2">
+                  Create an Account
+                </div>
+
+                <Form>
+                  <Form.Group controlId="email">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control type="email" />
+                  </Form.Group>
+
+                  <Form.Group controlId="username">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control type="text" />
+                  </Form.Group>
+
+                  <Form.Group controlId="password">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" />
+                  </Form.Group>
+                  
+                  <Grudr.components.Button variant="black" block>
+                    Register
+                  </Grudr.components.Button>
+
+                  <p className="mt-1">Already have an account? <Link to={{ pathname: '/login' }}>Sign In</Link>.</p>
+                </Form>
+              </Card.Header>
+            </Card>
           </div>
         </Row>
       </Container>

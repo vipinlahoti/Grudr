@@ -25,14 +25,9 @@ Package.onUse(function(api) {
     'react-meteor-data@2.1.0',
 
     'underscore',
-
-    // 'meteorhacks:picker',
-    'matb33:collection-hooks',
-    // 'dburles:collection-helpers'
   ]
 
   api.use(packages);
-
   api.imply(packages);
 
   api.export('Grudr');
@@ -40,8 +35,3 @@ Package.onUse(function(api) {
   api.mainModule('lib/server/main.js', 'server');
   api.mainModule('lib/client/main.js', 'client');
 });
-
-
-
-
-

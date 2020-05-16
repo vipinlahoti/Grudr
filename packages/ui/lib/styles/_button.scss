@@ -1,0 +1,116 @@
+.btn {
+  @include padding(4px 32px);
+  @include font-size(16px);
+  background-color: transparent;
+  border: 3px solid $dark;
+  height: 50px;
+  line-height: 35px;
+  color: $gray-800;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 700;
+  text-align: center;
+  user-select: none;
+  vertical-align: middle;
+  will-change: transform;
+  transition: .3s all ease-in-out;
+
+  .icon {
+    @include margin(5px, right);
+    line-height: 35px;
+  }
+
+  .icon-arrow_forward {
+    @include margin(-24px, left);
+    transition: all 0.3s ease-in-out 0s;
+    opacity: 0;
+  }
+
+  ~.btn {
+    @include margin(20px, left);
+  }
+
+  &:hover {
+    background: $dark;
+    color: $white;
+
+    .icon-arrow_forward {
+      @include margin(8px, left);
+      opacity: 1;
+    }
+  }
+
+  &:focus,
+  &.focus {
+    outline: 0;
+  }
+
+  &.disabled,
+  &:disabled {
+    opacity: .65;
+  }
+
+  &.btn-white {
+    border-color: $white;
+    color: $white;
+
+    &:hover {
+      background: $white;
+      color: $dark;
+    }
+
+    &-fill {
+      background: $white;
+      border-color: $white;
+      color: $dark;
+    }
+  }
+
+  &.btn-primary {
+    border-color: $primary;
+    color: $primary;
+
+    &:hover {
+      background: $primary;
+      color: $white;
+    }
+  }
+
+  &.btn-secondary {
+    border-color: $secondary;
+    color: $secondary;
+
+    &:hover {
+      background: $secondary;
+      color: $white;
+    }
+  }
+
+  &.btn-black {
+    &-fill {
+      background: $dark;
+      border-color: $dark;
+      color: $white; 
+    }
+  }
+
+  &.btn-small {
+    @include padding(4px 20px);
+    @include font-size(15px);
+    height: 40px;
+    line-height: 25px;
+
+    .icon {
+      line-height: 25px;
+    }
+  }
+
+}
+
+//
+// Block button
+//
+.btn-block {
+  justify-content: center;
+  width: 100%;
+}

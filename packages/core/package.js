@@ -7,9 +7,7 @@ Package.onUse(function(api) {
   api.versionsFrom('1.10.1');
   
   api.use([
-    'grudr:lib',
-    'grudr:accounts',
-    'grudr:users'
+    'grudr:lib'
   ]);
 
   api.imply(['grudr:lib']);

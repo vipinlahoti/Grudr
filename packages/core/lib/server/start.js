@@ -1,5 +1,4 @@
 import { onPageLoad } from 'meteor/server-render';
-
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import { renderToString } from 'react-dom/server';
@@ -29,6 +28,7 @@ onPageLoad(sink => {
 
   const wrappedHtmlContent = `<div id="react-app">${htmlContent}</div>`;
   const helmet = Helmet.renderStatic();
+
   sink.appendToBody(wrappedHtmlContent);
   sink.appendToHead(helmet.meta.toString());
   sink.appendToHead(helmet.title.toString());  

@@ -6,20 +6,20 @@ import { Link } from 'react-router-dom';
 class GrudrButton extends Component {
 
   render() {
-    const { variant, size, path, icon, children, ...rest } = this.props;
-    const btnClass = `btn btn-${variant}`;
+    const { type, variant, size, path, icon, children, ...rest } = this.props;
+    const btnClass = `btn btn-${variant} btn-${size}`;
 
     return (
       <React.Fragment>
-        {variant === 'link' ?
+        {type === 'link' ?
           <Link to={{ pathname: path }} className={btnClass}>
-            {icon ? <Grudr.components.Icon name={icon} /> : null}
             {children}
+            <Grudr.components.Icon name="arrow_forward" />
           </Link>
         :
           <Button variant={variant} size={size} {...rest}>
-            {icon ? <Grudr.components.Icon name={icon} /> : null}
             {children}
+            <Grudr.components.Icon name="arrow_forward" />
           </Button>
         }
       </React.Fragment>

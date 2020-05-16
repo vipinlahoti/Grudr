@@ -8,23 +8,17 @@ import Grudr from './config.js';
 Grudr.schemas = {};
 
 SimpleSchema.extendOptions([
-  'private',
   'editable',
   'hidden',
   'required',
-  'mustComplete',
   'profile',
-  'template',
-  'form',
-  'autoform',
   'control',
   'order',
   'group',
 
-  'insertableIf',
-  'editableIf',
-  'publish',
-
+  'insertableBy',
+  'editableBy',
+  'publish'
 ]);
 
 SimpleSchema.prototype.getProfileFields = function () {

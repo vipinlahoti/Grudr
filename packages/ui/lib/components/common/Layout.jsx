@@ -6,14 +6,11 @@ import PropTypes from 'prop-types';
 class Layout extends Component {
   render() {
     return (
-      <div className="wrapper" id="wrapper">
-        { this.context.currentUser ? <Grudr.components.UserProfileCheck /> : null }
-
+      <React.Fragment>
         <Grudr.components.Header />
-        <Grudr.components.FlashMessages />
         {this.props.children}
         <Grudr.components.Footer />        
-      </div>
+      </React.Fragment>
     )
   }
 }

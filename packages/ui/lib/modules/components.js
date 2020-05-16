@@ -3,21 +3,14 @@ import '../components/common/Layout.jsx';
 import '../components/common/Logo.jsx';
 import '../components/common/Footer.jsx';
 import '../components/common/Header.jsx';
+import '../components/common/MiniFooter.jsx';
+import '../components/common/DomainSearch.jsx';
 
 // Pages
 import '../components/pages/HomePage.jsx';
 import '../components/pages/LoginPage.jsx';
 import '../components/pages/RegisterPage.jsx';
+import '../components/pages/ForgotPassword.jsx';
 
-
-// Accounts
-import '../components/accounts/DashboardPage.jsx';
-
-// Users
-import '../components/users/UserName.jsx';
-import '../components/users/UserMenu.jsx';
-import '../components/users/UserEdit.jsx';
-import '../components/users/UserProfile.jsx';
-import '../components/users/UserProfileCheck.jsx';
-
-
+import '../components/pages/HostingPage.jsx';
+import '../components/pages/DomainsPage.jsx';

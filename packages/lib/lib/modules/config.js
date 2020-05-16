@@ -6,9 +6,6 @@
 // eslint-disable-next-line no-undef
 Grudr = {};
 
-// eslint-disable-next-line no-undef
-Grudr.VERSION = '0.0.1';
-
 // Components
 Grudr.components = {};
 
@@ -16,9 +13,6 @@ Grudr.components = {};
 Grudr.registerComponent = (name, component) => {
   Grudr.components[name] = component;
 };
-
-// Strings can be for i18n
-Grudr.strings = {};
 
 /**
 * @summary Routes namespace

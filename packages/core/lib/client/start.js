@@ -5,11 +5,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-// Create the root element
-// const rootElement = document.createElement('div');
-// rootElement.id = 'react-app';
-// document.body.appendChild(rootElement);
-
 const Main = () => 
   <BrowserRouter>
     <Grudr.components.App />

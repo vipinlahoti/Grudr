@@ -1,7 +1,5 @@
 import Grudr from 'meteor/grudr:lib';
-
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import { Jumbotron, Container, Row, Col, Card } from 'react-bootstrap';
 
 const HomePage = () => {
@@ -16,11 +14,11 @@ const HomePage = () => {
               <h4 className="display-4">An agile suite that’s designed for change.</h4>
               <p>Business today moves fast. Faster than ever before. That’s why we bring your enterprise applications into one agile suite. With finance, HR, planning, and analytics together, you gain the insight, efficiency, and agility needed to succeed in the ever-changing world.</p>
               <div className="mt-4">
-                <Grudr.components.Button variant="white" type="link" path="/register" icon="person_add">
-                  <FormattedMessage id="accounts.register"/>
+                <Grudr.components.Button type="link" path="/register" icon="person_add">
+                  Register
                 </Grudr.components.Button>
-                <Grudr.components.Button variant="white" type="link" path="/login" icon="account">
-                  <FormattedMessage id="accounts.login"/>
+                <Grudr.components.Button variant="black-fill" type="link" path="/login" icon="account">
+                  Login
                 </Grudr.components.Button>
               </div>
             
@@ -31,10 +29,10 @@ const HomePage = () => {
 
       <div className="section section-features">
       <Container>
-        <Row className="justify-content-md-center text-center mb-4">
+        <Row className="center-xs mb-4">
           <Col sm={12} md={8} lg={8}>
             <h3 className="display-3">Excepteur sint occaecat cupidatat.</h3>
-            <p className="lead"><FormattedMessage id="hero.description"/></p>
+            <p className="lead">Business today moves fast. Faster than ever before. That’s why we bring your enterprise applications into one agile suite. With finance, HR, planning, and analytics together, you gain the insight, efficiency, and agility needed to succeed in the ever-changing world.</p>
           </Col>
         </Row>
 
@@ -47,7 +45,7 @@ const HomePage = () => {
                 </div>
                 <Card.Title>Lorem ipsum dolor sit amet</Card.Title>
                 <Card.Text>
-                  <FormattedMessage id="hero.description"/>
+                  Business today moves fast. Faster than ever before. That’s why we bring your enterprise applications into one agile suite. With finance, HR, planning, and analytics together, you gain the insight, efficiency, and agility needed to succeed in the ever-changing world.
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -61,7 +59,7 @@ const HomePage = () => {
                 </div>
                 <Card.Title>Lorem ipsum dolor sit amet</Card.Title>
                 <Card.Text>
-                  <FormattedMessage id="hero.description"/>
+                  Business today moves fast. Faster than ever before. That’s why we bring your enterprise applications into one agile suite. With finance, HR, planning, and analytics together, you gain the insight, efficiency, and agility needed to succeed in the ever-changing world.
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -75,7 +73,7 @@ const HomePage = () => {
                 </div>
                 <Card.Title>Lorem ipsum dolor sit amet</Card.Title>
                 <Card.Text>
-                  <FormattedMessage id="hero.description"/>
+                  Business today moves fast. Faster than ever before. That’s why we bring your enterprise applications into one agile suite. With finance, HR, planning, and analytics together, you gain the insight, efficiency, and agility needed to succeed in the ever-changing world.
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -89,7 +87,7 @@ const HomePage = () => {
           <Row>
             <Col sm={12} md={5} lg={5}>
               <h4 className="display-3">HomePage dolor <span className="text-primary">sit amet, consectetur adipiscing elit.</span></h4>
-              <p className="lead"><FormattedMessage id="hero.description"/></p>
+              <p className="lead">Business today moves fast. Faster than ever before. That’s why we bring your enterprise applications into one agile suite. With finance, HR, planning, and analytics together, you gain the insight, efficiency, and agility needed to succeed in the ever-changing world.</p>
             </Col>
 
             <Col sm={12} md={7} lg={7}></Col>
@@ -103,7 +101,7 @@ const HomePage = () => {
             <Col sm={12} md={7} lg={7}></Col>
             <Col sm={12} md={5} lg={5}>
               <h4 className="display-3">Lorem ipsum dolor <span className="text-danger">sit amet, consectetur adipiscing elit.</span></h4>
-              <p className="lead"><FormattedMessage id="hero.description"/></p>
+              <p className="lead">Business today moves fast. Faster than ever before. That’s why we bring your enterprise applications into one agile suite. With finance, HR, planning, and analytics together, you gain the insight, efficiency, and agility needed to succeed in the ever-changing world.</p>
             </Col>
           </Row>
         </Container>

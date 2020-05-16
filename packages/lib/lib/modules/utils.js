@@ -1,8 +1,5 @@
 import Grudr from './config.js';
-import marked from 'marked';
-import moment from 'moment';
 import getSlug from 'speakingurl';
-import sanitizeHtml from 'sanitize-html';
 
 /**
  * @summary The global namespace for Grudr utils.
@@ -113,16 +110,6 @@ Grudr.utils.scrollIntoView = selector => {
   }
 };
 
-Grudr.utils.getDateRange = pageNumber => {
-  const now = moment(new Date());
-  const dayToDisplay = now.subtract(pageNumber-1, 'days');
-  const range = {};
-  range.start = dayToDisplay.startOf('day').valueOf();
-  range.end = dayToDisplay.endOf('day').valueOf();
-  // console.log("after: ", dayToDisplay.startOf('day').format("dddd, MMMM Do YYYY, h:mm:ss a"));
-  // console.log("before: ", dayToDisplay.endOf('day').format("dddd, MMMM Do YYYY, h:mm:ss a"));
-  return range;
-};
 
 //////////////////////////
 // URL Helper Functions //
@@ -204,29 +191,9 @@ Grudr.utils.cleanUp = s => {
   return Grudr.utils.stripHTML(s);
 };
 
-Grudr.utils.sanitize = s => {
-  // console.log('// before sanitization: ', s)
-  if(Meteor.isServer){
-    s = sanitizeHtml(s, {
-      allowedTags: [
-        'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul',
-        'ol', 'nl', 'li', 'b', 'i', 'strong', 'em', 'strike',
-        'code', 'hr', 'br', 'div', 'table', 'thead', 'caption',
-        'tbody', 'tr', 'th', 'td', 'pre', 'img'
-      ]
-    });
-    // console.log('// after sanitization: ', s)
-  }
-  return s;
-};
 
 Grudr.utils.stripHTML = s => {
   return s.replace(/<(?:.|\n)*?>/gm, '');
-};
-
-Grudr.utils.stripMarkdown = s => {
-  const htmlBody = marked(s);
-  return Grudr.utils.stripHTML(htmlBody);
 };
 
 // http://stackoverflow.com/questions/2631001/javascript-test-for-existence-of-nested-object-key

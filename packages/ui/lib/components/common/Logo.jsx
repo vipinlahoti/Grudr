@@ -1,5 +1,4 @@
 import Grudr from 'meteor/grudr:lib';
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 

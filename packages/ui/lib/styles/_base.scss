@@ -1,0 +1,223 @@
+*,
+*::after,
+*::before {
+  @include box-sizing(border-box);
+  image-rendering: -webkit-optimize-contrast;
+}
+
+html {
+  -webkit-text-size-adjust: 100%; // 4
+  -webkit-tap-highlight-color: rgba($black, 0); // 5
+  -webkit-overflow-scrolling: touch;
+}
+
+body {
+  @include font-size($base-font-size);
+  @include margin(0);
+  @include padding(0);
+  font-family: $base-font-family;
+  font-weight: $font-weight-base;
+  color: $text-color;
+  text-align: left;
+  background-color: $white;
+}
+
+// Shim for "new" HTML5 structural elements to display correctly (IE10, older browsers)
+// TODO: remove in v5
+// stylelint-disable-next-line selector-list-comma-newline-after
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+  display: block;
+}
+
+hr {
+  @include margin(32px 0); 
+  border: 0;
+  border-top: 1px solid $gray-700;
+  width: 10%;
+  box-sizing: content-box; // 1
+  height: 0; // 1
+  overflow: visible; // 2
+}
+
+ol,
+ul {
+  @include margin(0);
+}
+
+small {
+  font-size: 80%;
+}
+
+.font-xsmall {
+  font-size: 60%;
+}
+
+
+// .show {
+//   display: block !important;
+// }
+
+// .hide {
+//   display: none !important;
+// }
+
+a {
+  color: $primary;
+  text-decoration: none;
+  background-color: transparent; // Remove the gray background on active links in IE 10.
+
+  &:hover {
+    color: $primary;
+    text-decoration: none;
+  }
+}
+
+.list {
+  @include margin(16px, top);
+  @include padding(0);
+
+  li {
+    @include margin(4px, bottom);
+    list-style: none;
+  }
+}
+
+.font-weight-light {
+  font-weight: 300;
+}
+
+.font-weight-normal {
+  font-weight: 400;
+}
+
+.font-weight-bold {
+  font-weight: 600;
+}
+
+.font-weight-bolder {
+  font-weight: 700;
+}
+
+.bg-primary {
+  background: $primary;
+}
+
+.bg-secondary {
+  background: $secondary;
+}
+
+.bg-success {
+  background: $success;
+}
+
+.bg-info {
+  background: $info;
+}
+
+.bg-warning {
+  background: $warning;
+}
+
+.bg-danger {
+  background: $danger;
+}
+
+.bg-light {
+  background: $light;
+}
+
+.bg-gray {
+  background: $gray-100;
+}
+
+.bg-dark {
+  background: $dark;
+}
+
+.bg-white {
+  background: $white;
+}
+
+.bg-black {
+  background: $black;
+}
+
+.bg-sweet-blue {
+  background: $sweet-blue;
+}
+
+.bg-sweet-pink {
+  background: $sweet-pink;
+}
+
+.bg-sweet-purple {
+  background: $sweet-purple;
+}
+
+.bg-sweet-yellow {
+  background: $sweet-yellow
+}
+
+.text-primary {
+  color: $primary;
+}
+
+.text-secondary {
+  color: $secondary;
+}
+
+.text-success {
+  color: $success;
+}
+
+.text-info {
+  color: $info;
+}
+
+.text-warning {
+  color: $warning;
+}
+
+.text-danger {
+  color: $danger;
+}
+
+.text-light {
+  color: $light;
+}
+
+.text-dark {
+  color: $dark;
+
+  a {
+    color: inherit;    
+  }
+}
+
+.text-white {
+  color: $white;
+
+  a {
+    color: inherit;    
+  }
+}
+
+.text-black {
+  color: $black;
+}
+
+.rounded {
+  border-radius: 5px !important;
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+.rounded-pill {
+  border-radius: 50px !important;
+}
+
+.d-block {
+  display: block!important;
+}
