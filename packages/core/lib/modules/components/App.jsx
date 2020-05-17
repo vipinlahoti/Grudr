@@ -2,8 +2,7 @@ import Grudr from 'meteor/grudr:lib';
 import { withTracker } from 'meteor/react-meteor-data';
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route, withRouter } from 'react-router-dom';
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { Switch, Route } from 'react-router-dom';
 
 const RouteWithLayout = ({ component: Component, ...rest }) => {
   return (
@@ -37,25 +36,18 @@ class App extends PureComponent {
         <Grudr.components.HeadTags />
 
         {routeNames.length ? (
-          <TransitionGroup className="transition-group">
-            <CSSTransition
-              timeout={{ enter: 300, exit: 300 }}
-              classNames="fade"
-            >
-              <Switch>
-                {routeNames.map((route, i) => (
-                  <RouteWithLayout
-                    exact
-                    key={i}
-                    {...route}
-                  />
-                ))}
-                <RouteWithLayout
-                  component={Grudr.components.Error404}
-                />
-              </Switch>
-            </CSSTransition>
-          </TransitionGroup>)
+          <Switch>
+            {routeNames.map((route, i) => (
+              <RouteWithLayout
+                exact
+                key={i}
+                {...route}
+              />
+            ))}
+            <RouteWithLayout
+              component={Grudr.components.Error404}
+            />
+          </Switch> )
         : ( <Grudr.components.HelloWorld /> )}
 
       </React.Fragment>
@@ -83,4 +75,4 @@ App.childContextTypes = {
 //   return data;
 // })(App);
 
-Grudr.registerComponent('App', withRouter(App));
+Grudr.registerComponent('App', App);

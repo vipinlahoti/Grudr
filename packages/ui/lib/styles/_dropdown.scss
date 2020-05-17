@@ -2,30 +2,56 @@
   position: relative;
 
   .dropdown-menu {
-    @include width(150px, min);
+    @include width(180px, min);
     @include padding(8px 0px);
     @include margin(2px 0px);
-    @include round-corner(5px);
+    @include round-corner(3px);
     position: absolute;
-    top: 100%;
     left: 0;
     z-index: 1000;
     display: none;
     list-style: none;
   
     &.show {
+      @include padding(16px);
+      background: $white;
       display: block;
+      left: -33px;
+      // position: relative;
+
+      &:before {
+        z-index: -1;
+        content: "";
+        width: 0;
+        height: 0;
+        border-color: transparent transparent #fff;
+        border-style: solid;
+        border-width: 0 8px 8px;
+        position: absolute;
+        top: -8px;
+        display: block;
+        left: 45%;
+        
+      }
     }
   }
 
   .dropdown-item {
-    @include padding(4px 2px);
+    @include padding(4px 8px);
+    @include round-corner(3px);
+    color: $dark;
+    font-weight: 600;
     display: block;
     width: 100%;
     clear: both;
     font-weight: 400;
     text-align: inherit;
     white-space: nowrap;
+
+    &:hover {
+      background: $primary;
+      color: $white;
+    }
   }
 }
 

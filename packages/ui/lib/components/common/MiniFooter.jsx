@@ -7,7 +7,7 @@ const MiniFooter = ({title, variant, link, className}) =>
   <div className={classNames('section-stripe section-xsmall text-white', className, variant)}>
     <Container>
       <Row className="center-xs">
-        <Col sm={8}>
+        <Col sm={12} md={10}>
           <Row className={className}>
             <Col>
               <h4 className="mb-0 font-weight-light title-5">{title}</h4>

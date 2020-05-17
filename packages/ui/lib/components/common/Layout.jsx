@@ -9,6 +9,11 @@ class Layout extends Component {
       <React.Fragment>
         <Grudr.components.Header />
         {this.props.children}
+        <Grudr.components.MiniFooter
+          variant="bg-primary"
+          className="center-xs"
+          title="Sign up for the Skawe Cloud Newsletter"
+        />
         <Grudr.components.Footer />        
       </React.Fragment>
     )

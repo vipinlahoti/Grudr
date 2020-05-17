@@ -1,3 +1,17 @@
+.form-inline {
+  display: flex;
+  align-items: center;
+
+  .form-control {
+    @include width(260px, min);
+  }
+
+  .form-group {
+    @include margin(8px, right);
+    @include margin(0, bottom);
+  }
+}
+
 .form-group {
   @include margin(16px, bottom);
 }
@@ -8,11 +22,11 @@ label {
 }
 
 .form-control {
+  @include height(55px);
   @include padding(4px 16px);
   @include font-size(16px);
   @extend .font-weight-normal;
   display: block;
-  height: 50px;
   width: 100%;
   color: $dark;
   background-color: $white;

@@ -31,16 +31,13 @@ const Footer = () =>
                 Universal Terms of Service
               </Link>.
             </div>
-            <div className="copyright mt-1">
-              Copyright &copy; 2020 All Rights Reserved. &nbsp;
-              <Link to={{ pathname: '/tos/privacy-policy'}}>
-                Privacy Policy
-              </Link>.
-            </div>
-            
           </Col>
+
           <Col>
-            <Grudr.components.Logo siteTitle={siteTitle}/>
+            <div className="text-right">
+              <Grudr.components.Logo siteTitle={siteTitle}/>
+              <div className="copyright mt-1">Copyright &copy; 2020 All Rights Reserved.</div>
+            </div>
           </Col>
         </Row>
       </Container>

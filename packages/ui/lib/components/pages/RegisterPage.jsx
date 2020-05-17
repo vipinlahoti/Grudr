@@ -24,11 +24,6 @@ const RegisterPage = () =>
                     <Form.Control type="email" />
                   </Form.Group>
 
-                  <Form.Group controlId="username">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" />
-                  </Form.Group>
-
                   <Form.Group controlId="password">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" />

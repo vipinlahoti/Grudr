@@ -1,10 +1,10 @@
 .btn {
   @include padding(4px 32px);
   @include font-size(16px);
+  @include height(55px);
   background-color: transparent;
   border: 3px solid $dark;
-  height: 50px;
-  line-height: 35px;
+  line-height: 40px;
   color: $gray-800;
   cursor: pointer;
   display: inline-flex;
@@ -17,7 +17,7 @@
 
   .icon {
     @include margin(5px, right);
-    line-height: 35px;
+    line-height: 40px;
   }
 
   .icon-arrow_forward {
