@@ -33,7 +33,7 @@
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.7.0",
     "react-firebaseui": "^4.1.0",
-    "sanitize-html": "^1.23.0",
+    "sanitize-html": "^2.3.2",
     "sass": "^1.26.5",
     "session-file-store": "^1.0.0",
     "simpl-schema": "^1.7.0",
