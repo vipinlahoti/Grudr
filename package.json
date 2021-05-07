@@ -38,7 +38,7 @@
     "session-file-store": "^1.0.0",
     "simpl-schema": "^1.7.0",
     "speakingurl": "^14.0.1",
-    "underscore": "^1.10.2"
+    "underscore": "^1.12.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
